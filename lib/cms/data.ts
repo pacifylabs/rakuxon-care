@@ -1,3 +1,4 @@
+import { CATALOGUE } from "./catalogue";
 import type {
   Arm,
   Faq,
@@ -6,6 +7,7 @@ import type {
   Segment,
   Service,
   SiteSettings,
+  Opportunity,
   Stat,
   TeamMember,
   Testimonial,
@@ -57,181 +59,11 @@ export const ARMS: Arm[] = [
 
 /* PRD §4.2 slugs. Arm 1 has a single `home-care` service covering personal
    and domiciliary care; Arm 2 has six service lines. */
-export const SERVICES: Service[] = [
-  {
-    slug: "home-care",
-    title: "Home care services",
-    lane: "b2c",
-    arm: "care",
-    summary:
-      "Personal care and domiciliary care delivered in the person's own home, from scheduled visits to live-in support.",
-    overview:
-      "Care that happens where the person already lives, built from an assessment at home rather than a template. Every package starts with a visit, a conversation with the family, and a written plan you agree to before anything begins.",
-    whoFor: [
-      "Families arranging care for a relative",
-      "Councils and ICBs commissioning packages",
-      "People funded through NHS Continuing Healthcare",
-      "Direct-payment and personal-budget holders",
-    ],
-    features: [
-      "Washing, dressing and personal hygiene",
-      "Continence, mobility and medication support",
-      "Scheduled visits, live-in, respite and companionship",
-      "Complex and dementia-informed care",
-    ],
-    sections: [
-      {
-        id: "personal-care",
-        title: "Personal care",
-        body: "Hands-on support with the things that make a day possible, delivered with dignity and without rushing.",
-        items: [
-          "Washing, dressing and personal hygiene",
-          "Continence and mobility support",
-          "Medication support and prompts",
-          "Meal preparation and nutrition",
-        ],
-      },
-      {
-        id: "domiciliary-care",
-        title: "Domiciliary care",
-        body: "Care arranged around the household, from short daily calls through to a carer living in.",
-        items: [
-          "Scheduled visits, from short calls upwards",
-          "Live-in care and overnight support",
-          "Respite cover for family carers",
-          "Companionship and complex, dementia-informed care",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "cqc-registration",
-    title: "CQC registration",
-    lane: "b2b",
-    arm: "agency",
-    summary:
-      "End-to-end registration: provider application, registered manager, statement of purpose and interview preparation.",
-    overview:
-      "Registration is decided long before the application is submitted. We build the evidence, the policies and the manager's readiness first, then take the application through to the decision.",
-    whoFor: [
-      "Founders preparing a first registration",
-      "Providers who have been refused once already",
-      "Registered providers adding a regulated activity",
-    ],
-    features: [
-      "Statement of purpose and provider application",
-      "Registered manager and nominated individual support",
-      "Evidence mapped to the single assessment framework",
-      "Interview preparation through to the decision",
-    ],
-  },
-  {
-    slug: "tender-writing",
-    title: "Tender and framework writing",
-    lane: "b2b",
-    arm: "agency",
-    summary:
-      "Get onto local-authority frameworks and dynamic purchasing systems, and win the contracts that make a provider viable.",
-    overview:
-      "Most providers lose bids on evidence, not price. We write the responses, model the pricing and capacity, and stay involved through mobilisation once the contract lands.",
-    whoFor: [
-      "Providers applying to a framework or DPS for the first time",
-      "Providers who bid regularly but rarely win",
-      "Providers scaling into a new local authority area",
-    ],
-    features: [
-      "Framework, DPS and portal registration",
-      "Bid writing and social value responses",
-      "Pricing and capacity modelling",
-      "Post-award mobilisation",
-    ],
-  },
-  {
-    slug: "policies-procedures",
-    title: "Policies and procedures",
-    lane: "b2b",
-    arm: "agency",
-    summary:
-      "A policy suite that survives inspection, plus the audit routine that keeps it true in practice.",
-    overview:
-      "A policy pack does not pass an inspection; the evidence behind it does. We supply the suite we use in our own service, along with the audit calendar that keeps it current.",
-    whoFor: [
-      "New providers building a compliance framework",
-      "Providers preparing for an inspection",
-      "Providers whose paperwork has drifted from practice",
-    ],
-    features: [
-      "Policies mapped to the quality statements",
-      "Audit calendar and evidence templates",
-      "Mock inspection and action plan",
-      "Annual review and updates",
-    ],
-  },
-  {
-    slug: "digital-branding",
-    title: "Digital and branding",
-    lane: "b2b",
-    arm: "agency",
-    summary:
-      "Brand, website and referral routes, so enquiries arrive without chasing them.",
-    overview:
-      "Families and commissioners both check you online before they call. We build the identity, the site and the referral routes that make a new provider look established.",
-    whoFor: [
-      "New providers with no brand or website yet",
-      "Providers whose enquiries all come from cold outreach",
-      "Providers recruiting and needing to look credible",
-    ],
-    features: [
-      "Identity, tone and print collateral",
-      "Website built for local search",
-      "Referral routes with social workers and hospitals",
-      "Recruitment marketing that fills shifts",
-    ],
-  },
-  {
-    slug: "consulting",
-    title: "Consulting",
-    lane: "b2b",
-    arm: "agency",
-    summary:
-      "Business planning, governance and growth advice from people running a regulated service themselves.",
-    overview:
-      "Advice from operators rather than advisers. We sit on the same side of the framework you are judged against, so the plan has to work in practice, not just on paper.",
-    whoFor: [
-      "Founders deciding whether the business is viable",
-      "Providers planning growth or a second location",
-      "Providers needing governance and quality assurance",
-    ],
-    features: [
-      "Business plans and financial modelling",
-      "Governance and quality assurance",
-      "Growth and mobilisation planning",
-      "Ongoing advisory retainer",
-    ],
-  },
-  {
-    slug: "staffing",
-    title: "Rakuxon Staffing",
-    lane: "b2b",
-    arm: "agency",
-    summary:
-      "Recruitment and temporary staffing supplying vetted carers and support workers to other providers.",
-    overview:
-      "Permanent, temporary and temp-to-perm placements, with every worker's file in order before their first shift so you can evidence safe recruitment.",
-    whoFor: [
-      "Providers with gaps in the rota",
-      "Providers recruiting permanent care staff",
-      "Providers searching for a registered manager",
-    ],
-    features: [
-      "Permanent care-worker recruitment",
-      "Temporary and bank cover",
-      "Temp-to-perm placements",
-      "Registered manager and nominated individual search",
-    ],
-    href: "/staffing",
-  },
-];
+/**
+ * Superseded by the architecture-doc catalogue. Re-exported under the old
+ * name so existing call sites keep working while routes migrate.
+ */
+export const SERVICES: Service[] = CATALOGUE;
 
 /* PRD §7 — real market figures, not placeholders. Public source citations
    still need adding before launch; see TODO.md. */
@@ -525,3 +357,43 @@ export const SITE_SETTINGS: SiteSettings = {
     { label: "Instagram", href: "https://www.instagram.com" },
   ],
 };
+
+/**
+ * Placeholder opportunities. In production this is either a CMS collection
+ * or an external feed (Contracts Finder / Find a Tender); the shape is kept
+ * deliberately close to those so the swap is a data-source change.
+ */
+export const OPPORTUNITIES: Opportunity[] = [
+  {
+    id: "placeholder-1",
+    title: "Domiciliary care framework — Lot 2",
+    buyer: "Placeholder County Council",
+    region: "Placeholder region",
+    value: "Value on application",
+    closes: "Date to be confirmed",
+    status: "open",
+    summary:
+      "Placeholder entry. Live opportunities will be pulled from a feed rather than hand-entered.",
+  },
+  {
+    id: "placeholder-2",
+    title: "Supported living dynamic purchasing system",
+    buyer: "Placeholder ICB",
+    region: "Placeholder region",
+    value: "Value on application",
+    closes: "Date to be confirmed",
+    status: "closing-soon",
+    summary:
+      "Placeholder entry. Status, value and closing date come from the source feed.",
+  },
+  {
+    id: "placeholder-3",
+    title: "Complex care package — spot purchase",
+    buyer: "Placeholder Council",
+    region: "Placeholder region",
+    value: "Value on application",
+    closes: "Closed",
+    status: "closed",
+    summary: "Placeholder entry retained to show the closed state.",
+  },
+];

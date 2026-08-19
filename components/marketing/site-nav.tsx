@@ -11,28 +11,120 @@ import { Logo } from "@/components/marketing/logo";
 import { useScrolled } from "@/lib/hooks/use-scrolled";
 import { cn } from "@/lib/cn";
 
-export interface NavArm {
-  /** "Arm 1 — Rakuxon Care" */
+export interface NavCluster {
+  label: string;
+  links: { label: string; href: string }[];
+}
+
+export interface NavLane {
+  /** Mega-menu trigger, e.g. "For individuals & families". */
+  trigger: string;
   eyebrow: string;
   label: string;
   href: string;
   blurb: string;
-  links: { label: string; href: string }[];
+  clusters: NavCluster[];
 }
 
-/* PRD §3.1. The full spec also lists Resources ▾ (Blog, Case Studies,
-   Guides, FAQ) and Careers; those routes arrive in Phases 4–5, so only FAQ
-   is surfaced for now rather than shipping links that 404. Logged in
-   TODO.md. */
-/** Rendered after the Services trigger. Home is rendered before it. */
-const LINKS = [
-  { label: "Find care", href: "/find-care" },
-  { label: "Launch Kit", href: "/launch-kit" },
-  { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
+/* 04_SITE_ARCHITECTURE §2 — global nav. Home is kept ahead of the two lane
+   menus at the user's request; the doc's list starts at the lane menus. */
+const TAIL_LINKS = [
+  { label: "Resources", href: "/resources" },
+  { label: "About & CQC", href: "/about" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
 ];
 
-export function SiteNav({ arms }: { arms: { one: NavArm; two: NavArm } }) {
+function LaneMenu({ lane, care }: { lane: NavLane; care: boolean }) {
+  return (
+    <NavigationMenu.Item>
+      <NavigationMenu.Trigger className="group inline-flex min-h-11 items-center gap-1.5 rounded-pill px-3 text-body whitespace-nowrap text-ink-700 transition-colors hover:bg-navy-50 hover:text-navy-800 data-[state=open]:bg-navy-50 data-[state=open]:text-navy-800">
+        {lane.trigger}
+        <ChevronDown
+          className="size-4 transition-transform duration-200 group-data-[state=open]:rotate-180"
+          aria-hidden="true"
+        />
+      </NavigationMenu.Trigger>
+
+      {/* Width clamped to the viewport so the panel can never overflow. */}
+      <NavigationMenu.Content className="absolute top-full left-1/2 z-50 w-[min(64rem,calc(100vw-3rem))] -translate-x-1/2">
+        <div className="mt-3 rounded-lg border border-navy-100 bg-paper-100 p-6 shadow-card">
+          <NavigationMenu.Link asChild>
+            <Link
+              href={lane.href}
+              className={cn(
+                "block rounded-md p-4 transition-colors",
+                care
+                  ? "bg-care-50 hover:bg-care-100"
+                  : "bg-navy-50 hover:bg-navy-100",
+              )}
+            >
+              <span
+                className={cn(
+                  "block text-overline uppercase",
+                  care ? "text-care-700" : "text-navy-800",
+                )}
+              >
+                {lane.eyebrow}
+              </span>
+              <span className="font-display mt-1 block text-h4 text-ink-900">
+                {lane.label}
+              </span>
+              <span className="mt-1 block text-small text-ink-500">
+                {lane.blurb}
+              </span>
+            </Link>
+          </NavigationMenu.Link>
+
+          <div
+            className={cn(
+              "mt-5 grid gap-x-6 gap-y-5",
+              lane.clusters.length > 3
+                ? "md:grid-cols-3"
+                : "md:grid-cols-2 lg:grid-cols-3",
+            )}
+          >
+            {lane.clusters.map((c) => (
+              <div key={c.label} className="flex min-w-0 flex-col gap-1">
+                <p
+                  className={cn(
+                    "px-3 text-overline uppercase",
+                    care ? "text-care-700" : "text-navy-800",
+                  )}
+                >
+                  {c.label}
+                </p>
+                <ul className="flex min-w-0 flex-col">
+                  {c.links.map((l) => (
+                    <li key={l.href} className="min-w-0">
+                      <NavigationMenu.Link asChild>
+                        <Link
+                          href={l.href}
+                          className="flex min-h-11 min-w-0 items-center rounded-md px-3 py-2 text-ink-700 transition-colors hover:bg-paper-0 hover:text-navy-800"
+                        >
+                          {/* Wraps rather than truncating — several cluster
+                              labels are longer than a third of the panel and
+                              an ellipsis hides which service the link is. */}
+                          <span>{l.label}</span>
+                        </Link>
+                      </NavigationMenu.Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </NavigationMenu.Content>
+    </NavigationMenu.Item>
+  );
+}
+
+export function SiteNav({
+  lanes,
+}: {
+  lanes: { care: NavLane; agency: NavLane };
+}) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const scrolled = useScrolled(8);
   const closeDrawer = () => setDrawerOpen(false);
@@ -59,9 +151,10 @@ export function SiteNav({ arms }: { arms: { one: NavArm; two: NavArm } }) {
             <Logo priority className="h-6 md:h-7" />
           </Link>
 
-          {/* ---------------- Desktop (lg and up) ---------------- */}
+          {/* Desktop nav. Seven items plus two long lane labels do not fit at
+              lg, so the full bar starts at xl and the drawer covers below. */}
           <NavigationMenu.Root
-            className="relative hidden lg:flex lg:flex-1 lg:justify-center"
+            className="relative hidden xl:flex xl:flex-1 xl:justify-center"
             delayDuration={0}
           >
             <NavigationMenu.List className="flex items-center gap-0.5">
@@ -75,71 +168,11 @@ export function SiteNav({ arms }: { arms: { one: NavArm; two: NavArm } }) {
                   </Link>
                 </NavigationMenu.Link>
               </NavigationMenu.Item>
-              <NavigationMenu.Item>
-                <NavigationMenu.Trigger className="group inline-flex min-h-11 items-center gap-1.5 rounded-pill px-3 text-body text-ink-700 transition-colors hover:bg-navy-50 hover:text-navy-800 data-[state=open]:bg-navy-50 data-[state=open]:text-navy-800">
-                  Services
-                  <ChevronDown
-                    className="size-4 transition-transform duration-200 group-data-[state=open]:rotate-180"
-                    aria-hidden="true"
-                  />
-                </NavigationMenu.Trigger>
 
-                {/* Two columns keyed to the two arms — PRD §3.1. Width is
-                    clamped so the panel can never exceed the viewport. */}
-                <NavigationMenu.Content className="absolute top-full left-1/2 z-50 w-[min(58rem,calc(100vw-3rem))] -translate-x-1/2">
-                  <div className="mt-3 grid gap-6 rounded-lg border border-navy-100 bg-paper-100 p-6 shadow-card md:grid-cols-2">
-                    {[arms.one, arms.two].map((arm, idx) => (
-                      <div
-                        key={arm.href}
-                        className="flex min-w-0 flex-col gap-3"
-                      >
-                        <NavigationMenu.Link asChild>
-                          <Link
-                            href={arm.href}
-                            className={cn(
-                              "rounded-md p-4 transition-colors",
-                              idx === 0
-                                ? "bg-care-50 hover:bg-care-100"
-                                : "bg-navy-50 hover:bg-navy-100",
-                            )}
-                          >
-                            <span
-                              className={cn(
-                                "block text-overline uppercase",
-                                idx === 0 ? "text-care-700" : "text-navy-800",
-                              )}
-                            >
-                              {arm.eyebrow}
-                            </span>
-                            <span className="font-display mt-1 block text-h4 text-ink-900">
-                              {arm.label}
-                            </span>
-                            <span className="mt-1 block text-small text-ink-500">
-                              {arm.blurb}
-                            </span>
-                          </Link>
-                        </NavigationMenu.Link>
-                        <ul className="flex min-w-0 flex-col">
-                          {arm.links.map((l) => (
-                            <li key={l.label} className="min-w-0">
-                              <NavigationMenu.Link asChild>
-                                <Link
-                                  href={l.href}
-                                  className="flex min-h-11 min-w-0 items-center rounded-md px-3 py-2 text-ink-700 transition-colors hover:bg-paper-0 hover:text-navy-800"
-                                >
-                                  <span className="truncate">{l.label}</span>
-                                </Link>
-                              </NavigationMenu.Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </NavigationMenu.Content>
-              </NavigationMenu.Item>
+              <LaneMenu lane={lanes.care} care />
+              <LaneMenu lane={lanes.agency} care={false} />
 
-              {LINKS.map((l) => (
+              {TAIL_LINKS.map((l) => (
                 <NavigationMenu.Item key={l.href}>
                   <NavigationMenu.Link asChild>
                     <Link
@@ -154,8 +187,7 @@ export function SiteNav({ arms }: { arms: { one: NavArm; two: NavArm } }) {
             </NavigationMenu.List>
           </NavigationMenu.Root>
 
-          {/* Ghost Log in + filled Get in touch — PRD §3.1. */}
-          <div className="hidden shrink-0 items-center gap-2 lg:flex">
+          <div className="hidden shrink-0 items-center gap-2 xl:flex">
             <Link
               href="/login"
               className="inline-flex min-h-11 items-center rounded-pill px-3 text-body whitespace-nowrap text-navy-800 transition-colors hover:bg-navy-50"
@@ -170,25 +202,21 @@ export function SiteNav({ arms }: { arms: { one: NavArm; two: NavArm } }) {
             </Link>
           </div>
 
-          {/* ---------------- Below lg ---------------- */}
+          {/* ---------------- Below xl ---------------- */}
           <Dialog.Root open={drawerOpen} onOpenChange={setDrawerOpen}>
             <Dialog.Trigger
               aria-label="Open menu"
-              className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-pill border-2 border-navy-800 px-4 text-small font-semibold text-navy-800 transition-colors hover:bg-navy-50 lg:hidden"
+              className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-pill border-2 border-navy-800 px-4 text-small font-semibold text-navy-800 transition-colors hover:bg-navy-50 xl:hidden"
             >
               <Menu className="size-5" aria-hidden="true" />
               <span className="hidden sm:inline">Menu</span>
             </Dialog.Trigger>
             <Dialog.Portal>
-              <Dialog.Overlay className="fixed inset-0 z-50 bg-navy-900/50" />
-              <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col overflow-y-auto bg-paper-50 p-5 shadow-card sm:p-6">
-                <div className="flex items-center justify-between gap-4">
-                  <Dialog.Title asChild>
-                    <span className="flex items-center">
-                      <Logo className="h-6" />
-                      <span className="sr-only">Rakuxon Care menu</span>
-                    </span>
-                  </Dialog.Title>
+              <Dialog.Overlay className="fixed inset-0 z-50 bg-navy-900/40 backdrop-blur-sm" />
+              <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-[min(24rem,100vw)] flex-col overflow-y-auto bg-paper-50 shadow-card focus:outline-none">
+                <Dialog.Title className="sr-only">Menu</Dialog.Title>
+                <div className="flex items-center justify-between border-b border-navy-100 px-5 py-3">
+                  <Logo className="h-6" />
                   <Dialog.Close
                     aria-label="Close menu"
                     className="inline-flex size-11 items-center justify-center rounded-pill text-ink-700 transition-colors hover:bg-navy-50"
@@ -196,74 +224,99 @@ export function SiteNav({ arms }: { arms: { one: NavArm; two: NavArm } }) {
                     <X className="size-5" aria-hidden="true" />
                   </Dialog.Close>
                 </div>
-                <Dialog.Description className="sr-only">
-                  Site navigation, starting with the two arms.
-                </Dialog.Description>
 
-                {/* Lane split first — PRD §3.1. */}
-                <div className="mt-6 flex flex-col gap-3">
-                  {[arms.one, arms.two].map((arm, idx) => (
-                    <Link
-                      key={arm.href}
-                      href={arm.href}
-                      onClick={closeDrawer}
-                      className={cn(
-                        "flex flex-col gap-1 rounded-lg border p-5",
-                        idx === 0
-                          ? "border-care-100 bg-care-50"
-                          : "border-navy-100 bg-navy-50",
-                      )}
-                    >
-                      <span
+                <div className="flex flex-col gap-6 px-5 py-6">
+                  {/* Lane split first — 04_SITE_ARCHITECTURE §2. */}
+                  <div className="grid gap-3">
+                    {[
+                      { lane: lanes.care, care: true },
+                      { lane: lanes.agency, care: false },
+                    ].map(({ lane, care }) => (
+                      <Link
+                        key={lane.href}
+                        href={lane.href}
+                        onClick={closeDrawer}
                         className={cn(
-                          "text-overline uppercase",
-                          idx === 0 ? "text-care-700" : "text-navy-800",
+                          "rounded-md p-4 transition-colors",
+                          care
+                            ? "bg-care-50 hover:bg-care-100"
+                            : "bg-navy-50 hover:bg-navy-100",
                         )}
                       >
-                        {arm.eyebrow}
-                      </span>
-                      <span className="font-display text-h4 text-ink-900">
-                        {arm.label}
-                      </span>
-                      <span className="text-small text-ink-500">
-                        {arm.blurb}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-
-                <ul className="mt-6 flex flex-col border-t border-ink-300/50 pt-2">
-                  {[
-                    { label: "Home", href: "/" },
-                    { label: "All services", href: "/services" },
-                    { label: "Launch Kit", href: "/launch-kit" },
-                    { label: "Rakuxon Staffing", href: "/staffing" },
-                    { label: "About", href: "/about" },
-                    { label: "FAQ", href: "/faq" },
-                    { label: "Log in", href: "/login" },
-                  ].map((l) => (
-                    <li key={l.href}>
-                      <Link
-                        href={l.href}
-                        onClick={closeDrawer}
-                        className="flex min-h-12 items-center text-body-lg text-ink-700"
-                      >
-                        {l.label}
+                        <span
+                          className={cn(
+                            "block text-overline uppercase",
+                            care ? "text-care-700" : "text-navy-800",
+                          )}
+                        >
+                          {lane.eyebrow}
+                        </span>
+                        <span className="font-display mt-1 block text-h4 text-ink-900">
+                          {lane.label}
+                        </span>
+                        <span className="mt-1 block text-small text-ink-500">
+                          {lane.blurb}
+                        </span>
                       </Link>
-                    </li>
-                  ))}
-                </ul>
+                    ))}
+                  </div>
 
-                <Link
-                  href="/contact"
-                  onClick={closeDrawer}
-                  className={buttonClasses({
-                    fullWidth: true,
-                    className: "mt-auto",
-                  })}
-                >
-                  Get in touch
-                </Link>
+                  {[lanes.care, lanes.agency].map((lane) => (
+                    <div key={lane.href} className="flex flex-col gap-4">
+                      {lane.clusters.map((c) => (
+                        <div key={c.label} className="flex flex-col gap-1">
+                          <p className="px-3 text-overline text-ink-500 uppercase">
+                            {c.label}
+                          </p>
+                          <ul className="flex flex-col">
+                            {c.links.map((l) => (
+                              <li key={l.href}>
+                                <Link
+                                  href={l.href}
+                                  onClick={closeDrawer}
+                                  className="flex min-h-11 items-center rounded-md px-3 text-ink-700 transition-colors hover:bg-paper-0"
+                                >
+                                  {l.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+
+                  <ul className="flex flex-col border-t border-navy-100 pt-4">
+                    {[{ label: "Home", href: "/" }, ...TAIL_LINKS].map((l) => (
+                      <li key={l.href}>
+                        <Link
+                          href={l.href}
+                          onClick={closeDrawer}
+                          className="flex min-h-11 items-center rounded-md px-3 text-ink-700 transition-colors hover:bg-paper-0"
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-col gap-3 border-t border-navy-100 pt-5">
+                    <Link
+                      href="/login"
+                      onClick={closeDrawer}
+                      className={buttonClasses({ variant: "secondary" })}
+                    >
+                      Log in
+                    </Link>
+                    <Link
+                      href="/contact"
+                      onClick={closeDrawer}
+                      className={buttonClasses({})}
+                    >
+                      Get in touch
+                    </Link>
+                  </div>
+                </div>
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>

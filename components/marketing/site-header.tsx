@@ -1,10 +1,15 @@
+import {
+  AGENCY_CLUSTERS,
+  AGENCY_EXTRA_PAGES,
+  CARE_CLUSTERS,
+  CARE_TRUST_PAGES,
+  serviceHref,
+} from "@/lib/clusters";
 import { getArms, getServicesByArm } from "@/lib/cms";
-import { serviceHref } from "@/lib/services";
-import { SiteNav, type NavArm } from "./site-nav";
+import { SiteNav, type NavCluster, type NavLane } from "./site-nav";
 
-/* Server wrapper: the mega-menu's two columns come from the data layer.
-   Every link resolves to its own page or its own anchor — serviceHref() is
-   the single source of truth for service URLs. */
+/* Server wrapper: both mega-menus are built from the catalogue's cluster
+   field, so nav, footer and hubs cannot drift apart. */
 export async function SiteHeader() {
   const [armList, careServices, agencyServices] = await Promise.all([
     getArms(),
@@ -12,37 +17,51 @@ export async function SiteHeader() {
     getServicesByArm("agency"),
   ]);
   const [armOne, armTwo] = armList;
-  const homeCare = careServices.find((s) => s.slug === "home-care");
-  const homeCareHref = homeCare ? serviceHref(homeCare) : "/find-care";
 
-  const arms: { one: NavArm; two: NavArm } = {
-    one: {
+  const careClusters: NavCluster[] = CARE_CLUSTERS.map((meta) => ({
+    label: meta.label,
+    links:
+      meta.id === "care-trust"
+        ? CARE_TRUST_PAGES.map((p) => ({
+            label: p.title,
+            href: `/care/${p.slug}`,
+          }))
+        : careServices
+            .filter((s) => s.cluster === meta.id)
+            .map((s) => ({ label: s.title, href: serviceHref(s) })),
+  }));
+
+  const agencyClusters: NavCluster[] = AGENCY_CLUSTERS.map((meta) => ({
+    label: meta.label,
+    links: [
+      ...agencyServices
+        .filter((s) => s.cluster === meta.id)
+        .map((s) => ({ label: s.title, href: serviceHref(s) })),
+      ...AGENCY_EXTRA_PAGES.filter((p) => p.cluster === meta.id).map((p) => ({
+        label: p.title,
+        href: `/agency/${p.slug}`,
+      })),
+    ],
+  }));
+
+  const lanes: { care: NavLane; agency: NavLane } = {
+    care: {
+      trigger: "For individuals & families",
       eyebrow: armOne.name,
-      label: armOne.laneLabel,
-      href: armOne.href,
+      label: "Care at home",
+      href: "/care",
       blurb: armOne.audience,
-      links: [
-        { label: "Home care services", href: homeCareHref },
-        { label: "Personal care", href: `${homeCareHref}#personal-care` },
-        { label: "Domiciliary care", href: `${homeCareHref}#domiciliary-care` },
-        { label: "For councils and ICBs", href: "/find-care#councils" },
-        { label: "How it works", href: "/find-care#how-it-works" },
-      ],
+      clusters: careClusters,
     },
-    two: {
+    agency: {
+      trigger: "For care businesses",
       eyebrow: armTwo.name,
-      label: armTwo.laneLabel,
-      href: armTwo.href,
+      label: "Build and grow a care business",
+      href: "/agency",
       blurb: armTwo.audience,
-      links: [
-        ...agencyServices.map((s) => ({
-          label: s.title,
-          href: serviceHref(s),
-        })),
-        { label: "Care Business Launch Kit", href: "/launch-kit" },
-      ],
+      clusters: agencyClusters,
     },
   };
 
-  return <SiteNav arms={arms} />;
+  return <SiteNav lanes={lanes} />;
 }

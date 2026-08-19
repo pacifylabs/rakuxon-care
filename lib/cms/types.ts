@@ -20,20 +20,39 @@ export interface Arm {
   services: string[];
 }
 
+/** Drives the mega-menu grouping — 04_SITE_ARCHITECTURE §3. */
+export type Cluster =
+  | "care-service"
+  | "who-we-support"
+  | "care-trust"
+  | "registration-compliance"
+  | "tenders-frameworks"
+  | "brand-digital"
+  | "staffing-hr"
+  | "advisory";
+
+/** Selects the page layout — 04_SITE_ARCHITECTURE §5. */
+export type Template =
+  "care-service" | "who-we-support" | "agency-service" | "conversion" | "list";
+
 export interface Service {
   slug: string;
   title: string;
   lane: Lane;
   arm: Arm["slug"];
+  cluster: Cluster;
+  template: Template;
   summary: string;
   features: string[];
-  /** Longer intro for the /services/{slug} detail template. */
   overview: string;
   /** "Who it's for" bullets — PRD §5.6. */
   whoFor: string[];
-  /** Optional sub-sections, anchored (e.g. personal vs domiciliary care). */
+  /** Optional anchored sub-sections within a page. */
   sections?: { id: string; title: string; body: string; items: string[] }[];
-  /** Set when the service has its own top-level page instead of /services/{slug}. */
+  /**
+   * Set only when the page lives outside its namespace's {slug} route
+   * (e.g. who-we-support pages nest one level deeper).
+   */
   href?: string;
 }
 
@@ -97,4 +116,16 @@ export interface SiteSettings {
   address: string[];
   regionsServed: string[];
   socials: { label: string; href: string }[];
+}
+
+/** Live tender opportunities feed — 04_SITE_ARCHITECTURE §5. */
+export interface Opportunity {
+  id: string;
+  title: string;
+  buyer: string;
+  region: string;
+  value: string;
+  closes: string;
+  status: "open" | "closing-soon" | "closed";
+  summary: string;
 }

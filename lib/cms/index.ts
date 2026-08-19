@@ -85,3 +85,8 @@ export async function getFaqs(lane?: Lane) {
 export async function getTeam() {
   return TEAM;
 }
+
+export async function getOpportunities() {
+  const { OPPORTUNITIES } = await import("./data");
+  return OPPORTUNITIES;
+}

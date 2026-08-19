@@ -196,3 +196,32 @@ These are unchanged from the Phase 0–2 build and still block launch.
 Recorded in `docs/design-system.md` §7.1: no `care-800`/`accent-700` for
 active button states, no tint/text pair for semantic colours, and
 `care-500`/`accent-500` being large-text-only at ~3.4:1.
+
+## Architecture v3.0 restructure (this pass)
+
+**Done**
+- `/care/*` and `/agency/*` namespaces per `04_SITE_ARCHITECTURE §3`; 56 routes build.
+- `Service` gained `cluster` + `template` (PRD §6); nav, footer and both hubs
+  are generated from those fields, so they cannot drift apart.
+- All 15 §6 migration redirects verified resolving to 200.
+
+**Outstanding**
+- **Body copy for all 29 catalogue entries is filler I wrote.** Routes,
+  titles, clusters and templates come from the architecture doc and are
+  authoritative; the prose does not. See the header comment in
+  `lib/cms/catalogue.ts`.
+- **`/services/digital-branding` splits in two per §6.** It redirects to
+  `/agency/digital-services` only; anyone wanting the branding half has to
+  navigate on. Confirm that is the right default.
+- **Forms are not yet wired to one pipeline.** Conversion pages link to
+  `/contact?intent=…` as a placeholder. The shared CRM pipeline (§4) is
+  Phase 3 work and the intent param is not yet read by the form.
+- **Opportunities feed is placeholder data** in `lib/cms/data.ts`. §5 expects
+  a CMS collection or an external feed (Contracts Finder / Find a Tender).
+- **`/resources` and `/careers` are stubs** so the global nav has real
+  destinations; the collections arrive in Phases 4–5.
+- **Booking engine (§4) not built.** `/agency/book-a-call`, `/agency/coaching`
+  and `/agency/digital-audit` all point at the contact form instead.
+- **`docs/01_prd.md` contains the whole document twice** — an accidental
+  double-paste. Both copies are byte-identical apart from a stray trailing
+  line. Worth deleting one.

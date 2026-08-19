@@ -35,56 +35,55 @@ const SOCIALS = [
 /* PRD §3.2 — four columns keyed to the arms, company and getting started.
    Blog, case studies and careers arrive in Phases 4–5; those links are held
    back rather than shipped as 404s. Logged in TODO.md. */
+/* 04_SITE_ARCHITECTURE §3 — footer mirrors the nested namespaces. */
 const COLUMNS = [
   {
-    heading: "Rakuxon Care",
+    heading: "Care at home",
     links: [
-      { label: "Home care services", href: "/services/home-care" },
-      { label: "Personal care", href: "/services/home-care#personal-care" },
-      {
-        label: "Domiciliary care",
-        href: "/services/home-care#domiciliary-care",
-      },
-      { label: "For councils and ICBs", href: "/find-care#councils" },
-      { label: "How it works", href: "/find-care#how-it-works" },
+      { label: "Care services", href: "/care" },
+      { label: "Personal care", href: "/care/personal-care" },
+      { label: "Home care", href: "/care/home-care" },
+      { label: "Live-in care", href: "/care/live-in-care" },
+      { label: "Respite care", href: "/care/respite-care" },
+      { label: "Who we support", href: "/care#who-we-support" },
+      { label: "Areas we cover", href: "/care/areas-we-cover" },
+      { label: "Fees and funding", href: "/care/fees-funding" },
     ],
   },
   {
-    heading: "Rakuxon Care Agency",
+    heading: "Care businesses",
     links: [
-      { label: "CQC registration", href: "/services/cqc-registration" },
-      {
-        label: "Tender and framework writing",
-        href: "/services/tender-writing",
-      },
-      {
-        label: "Policies and procedures",
-        href: "/services/policies-procedures",
-      },
-      { label: "Digital and branding", href: "/services/digital-branding" },
-      { label: "Consulting", href: "/services/consulting" },
-      { label: "Rakuxon Staffing", href: "/staffing" },
-      { label: "Care Business Launch Kit", href: "/launch-kit" },
+      { label: "Business services", href: "/agency" },
+      { label: "CQC registration", href: "/agency/cqc-registration" },
+      { label: "Tender and bid writing", href: "/agency/tender-writing" },
+      { label: "Live tender opportunities", href: "/agency/opportunities" },
+      { label: "Website and digital", href: "/agency/digital-services" },
+      { label: "Recruitment and staffing", href: "/agency/staffing" },
+      { label: "Consulting", href: "/agency/consulting" },
+      { label: "Care Business Launch Kit", href: "/agency/launch-kit" },
     ],
   },
   {
     heading: "Company",
     links: [
       { label: "Home", href: "/" },
-      { label: "About us", href: "/about" },
-      { label: "Our model", href: "/about#model" },
-      { label: "All services", href: "/services" },
+      { label: "About & CQC", href: "/about" },
+      { label: "Our CQC rating", href: "/care/cqc-rating" },
+      { label: "Resources", href: "/resources" },
+      { label: "Case studies", href: "/agency/case-studies" },
+      { label: "Careers", href: "/careers" },
       { label: "FAQ", href: "/faq" },
-      { label: "Contact", href: "/contact" },
     ],
   },
   {
     heading: "Get started",
     links: [
-      { label: "Make an enquiry", href: "/contact" },
+      { label: "Request care", href: "/care/refer" },
+      { label: "Book a free call", href: "/agency/book-a-call" },
+      { label: "Free digital audit", href: "/agency/digital-audit" },
+      { label: "Join as a carer", href: "/care/careers" },
+      { label: "Contact", href: "/contact" },
       { label: "Create an account", href: "/login" },
-      { label: "Find care", href: "/find-care" },
-      { label: "For care businesses", href: "/care-businesses" },
     ],
   },
 ];
