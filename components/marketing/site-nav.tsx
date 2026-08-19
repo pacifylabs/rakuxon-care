@@ -3,8 +3,9 @@
 import * as React from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as Accordion from "@radix-ui/react-accordion";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { buttonClasses } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/marketing/logo";
@@ -100,12 +101,16 @@ function LaneMenu({ lane, care }: { lane: NavLane; care: boolean }) {
                       <NavigationMenu.Link asChild>
                         <Link
                           href={l.href}
-                          className="flex min-h-11 min-w-0 items-center rounded-md px-3 py-2 text-ink-700 transition-colors hover:bg-paper-0 hover:text-navy-800"
+                          className="group/link flex min-h-11 min-w-0 items-center justify-between gap-2 rounded-md px-3 py-2 text-ink-700 transition-colors hover:bg-paper-0 hover:text-navy-800"
                         >
                           {/* Wraps rather than truncating — several cluster
                               labels are longer than a third of the panel and
                               an ellipsis hides which service the link is. */}
                           <span>{l.label}</span>
+                          <ChevronRight
+                            className="size-4 shrink-0 text-ink-300 opacity-0 transition-all duration-200 group-hover/link:translate-x-0.5 group-hover/link:opacity-100"
+                            aria-hidden="true"
+                          />
                         </Link>
                       </NavigationMenu.Link>
                     </li>
@@ -261,28 +266,77 @@ export function SiteNav({
                     ))}
                   </div>
 
-                  {[lanes.care, lanes.agency].map((lane) => (
-                    <div key={lane.href} className="flex flex-col gap-4">
-                      {lane.clusters.map((c) => (
-                        <div key={c.label} className="flex flex-col gap-1">
-                          <p className="px-3 text-overline text-ink-500 uppercase">
-                            {c.label}
-                          </p>
-                          <ul className="flex flex-col">
-                            {c.links.map((l) => (
-                              <li key={l.href}>
-                                <Link
-                                  href={l.href}
-                                  onClick={closeDrawer}
-                                  className="flex min-h-11 items-center rounded-md px-3 text-ink-700 transition-colors hover:bg-paper-0"
-                                >
-                                  {l.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                  {/* Collapsed by default. Expanding every cluster inline
+                      put ~39 links in one scroll; as an accordion the drawer
+                      opens to 8 rows and the reader chooses what to expand. */}
+                  {[
+                    { lane: lanes.care, care: true },
+                    { lane: lanes.agency, care: false },
+                  ].map(({ lane, care }) => (
+                    <div key={lane.href} className="flex flex-col gap-2">
+                      <p
+                        className={cn(
+                          "px-3 text-overline uppercase",
+                          care ? "text-care-700" : "text-navy-800",
+                        )}
+                      >
+                        {lane.label}
+                      </p>
+                      <Accordion.Root
+                        type="multiple"
+                        className="flex flex-col gap-2"
+                      >
+                        {lane.clusters.map((c) => (
+                          <Accordion.Item
+                            key={c.label}
+                            value={`${lane.href}-${c.label}`}
+                            className="overflow-hidden rounded-md border border-navy-100 bg-paper-100"
+                          >
+                            <Accordion.Header>
+                              <Accordion.Trigger className="group flex min-h-11 w-full items-center justify-between gap-3 px-4 py-3 text-left text-ink-900 transition-colors hover:bg-navy-50">
+                                <span className="flex min-w-0 items-center gap-2">
+                                  <span
+                                    className={cn(
+                                      "size-1.5 shrink-0 rounded-pill",
+                                      care ? "bg-care-600" : "bg-navy-800",
+                                    )}
+                                    aria-hidden="true"
+                                  />
+                                  {c.label}
+                                </span>
+                                <span className="flex shrink-0 items-center gap-2">
+                                  <span className="text-small text-ink-500">
+                                    {c.links.length}
+                                  </span>
+                                  <ChevronDown
+                                    className="size-4 text-ink-500 transition-transform duration-200 group-data-[state=open]:rotate-180"
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              </Accordion.Trigger>
+                            </Accordion.Header>
+                            <Accordion.Content className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden">
+                              <ul className="flex flex-col px-2 pb-2">
+                                {c.links.map((l) => (
+                                  <li key={l.href}>
+                                    <Link
+                                      href={l.href}
+                                      onClick={closeDrawer}
+                                      className="group/link flex min-h-11 items-center justify-between gap-2 rounded-md px-3 text-ink-700 transition-colors hover:bg-paper-0 hover:text-navy-800"
+                                    >
+                                      <span>{l.label}</span>
+                                      <ChevronRight
+                                        className="size-4 shrink-0 text-ink-300 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:text-navy-800"
+                                        aria-hidden="true"
+                                      />
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </Accordion.Content>
+                          </Accordion.Item>
+                        ))}
+                      </Accordion.Root>
                     </div>
                   ))}
 

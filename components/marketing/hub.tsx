@@ -112,7 +112,11 @@ export function Hub({
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {cluster.cards.map((card) => (
-              <Link key={card.key} href={card.href} className="group">
+              <Link
+                key={card.key}
+                href={card.href}
+                className="group rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-800"
+              >
                 <IconCard
                   icon={card.icon ?? fallbackIcon}
                   title={card.title}

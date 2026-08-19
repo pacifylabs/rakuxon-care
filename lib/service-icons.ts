@@ -15,7 +15,6 @@ import {
   Globe,
   HandHeart,
   Heart,
-  HeartHandshake,
   House,
   Lightbulb,
   MapPin,

@@ -200,12 +200,14 @@ active button states, no tint/text pair for semantic colours, and
 ## Architecture v3.0 restructure (this pass)
 
 **Done**
+
 - `/care/*` and `/agency/*` namespaces per `04_SITE_ARCHITECTURE §3`; 56 routes build.
 - `Service` gained `cluster` + `template` (PRD §6); nav, footer and both hubs
   are generated from those fields, so they cannot drift apart.
 - All 15 §6 migration redirects verified resolving to 200.
 
 **Outstanding**
+
 - **Body copy for all 29 catalogue entries is filler I wrote.** Routes,
   titles, clusters and templates come from the architecture doc and are
   authoritative; the prose does not. See the header comment in

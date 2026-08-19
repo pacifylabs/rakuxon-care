@@ -34,12 +34,18 @@ export function IconCard({
     <div
       className={cn(
         "flex h-full flex-col gap-3 rounded-lg bg-paper-100 p-6 shadow-card",
+        /* Lift on hover of the wrapping link. Motion is clamped to ~0ms by
+           the prefers-reduced-motion block in globals.css. */
+        "transition-[transform,box-shadow,background-color] duration-200 ease-out",
+        "group-hover:-translate-y-1 group-hover:shadow-card-hover",
+        "group-focus-visible:-translate-y-1 group-focus-visible:shadow-card-hover",
         className,
       )}
     >
       <span
         className={cn(
           "grid size-11 shrink-0 place-items-center rounded-md",
+          "transition-transform duration-200 ease-out group-hover:scale-105",
           a.chip,
         )}
       >
