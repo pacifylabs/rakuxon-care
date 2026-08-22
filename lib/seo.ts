@@ -33,6 +33,12 @@ export function pageMetadata({
 }): Metadata {
   const url = absoluteUrl(path);
   const ogTitle = absoluteTitle ?? `${title} · ${SITE_NAME}`;
+  const ogImage = {
+    url: absoluteUrl("/opengraph-image"),
+    width: 1200,
+    height: 630,
+    alt: "Rakuxon Care — personal care at home",
+  };
   return {
     title: absoluteTitle ? { absolute: absoluteTitle } : title,
     description,
@@ -44,11 +50,13 @@ export function pageMetadata({
       type: "website",
       locale: "en_GB",
       siteName: SITE_NAME,
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle,
       description,
+      images: [ogImage.url],
     },
   };
 }

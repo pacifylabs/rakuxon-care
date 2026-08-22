@@ -5,6 +5,7 @@ import { Check, Loader2 } from "lucide-react";
 import { buttonClasses } from "@/components/ui/button";
 import { INTENTS, type EnquiryErrors, type Intent } from "@/lib/enquiry";
 import { cn } from "@/lib/cn";
+import { Turnstile, resetTurnstile } from "@/components/marketing/turnstile";
 
 /* PRD §8.1 — step 1 picks the intent, step 2 shows only that branch's fields.
    Validation is server-authoritative: the API returns field-keyed errors and
@@ -83,6 +84,7 @@ export function EnquiryForm({
       payload[key] = key === "consent" ? value === "on" : value;
     });
     payload.consent = data.get("consent") === "on";
+    payload.turnstileToken = data.get("cf-turnstile-response") ?? "";
 
     try {
       const res = await fetch("/api/enquiry", {
@@ -95,6 +97,7 @@ export function EnquiryForm({
         setErrors(body.errors ?? {});
         setFormError(body.formError ?? null);
         setStatus("idle");
+        resetTurnstile();
         // Move focus to the summary so a screen reader announces the failure.
         requestAnimationFrame(() => errorRef.current?.focus());
         return;
@@ -103,6 +106,7 @@ export function EnquiryForm({
     } catch {
       setFormError("We could not send that. Please try again, or email us.");
       setStatus("idle");
+      resetTurnstile();
       requestAnimationFrame(() => errorRef.current?.focus());
     }
   }
@@ -136,21 +140,20 @@ export function EnquiryForm({
     <form
       onSubmit={onSubmit}
       noValidate
-      className="flex flex-col gap-8 rounded-lg bg-paper-100 p-6 shadow-card md:p-8"
+      className="relative flex flex-col gap-8 rounded-lg bg-paper-100 p-5 shadow-card sm:p-8"
     >
-      {/* Step 1 */}
-      <fieldset className="flex flex-col gap-4">
+      <fieldset className="flex flex-col gap-3">
         <legend className="font-display text-h4 text-ink-900">
-          1. What is this about?
+          What is this about?
         </legend>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="flex flex-col gap-2">
           {INTENTS.map((option) => {
             const selected = intent === option.value;
             return (
               <label
                 key={option.value}
                 className={cn(
-                  "flex cursor-pointer flex-col gap-1 rounded-md border-2 p-4 transition-colors",
+                  "flex cursor-pointer flex-col gap-0.5 rounded-md border-2 px-4 py-3 transition-colors sm:flex-row sm:items-center sm:justify-between sm:gap-4",
                   selected
                     ? "border-brand-care bg-care-50"
                     : "border-navy-100 hover:bg-navy-50",
@@ -178,29 +181,31 @@ export function EnquiryForm({
       {intent ? (
         <fieldset className="flex flex-col gap-5">
           <legend className="font-display text-h4 text-ink-900">
-            2. Your details
+            Your details
           </legend>
 
-          <Field id={f("name")} label="Your name" error={errors.name}>
-            <input
-              id={f("name")}
-              name="name"
-              autoComplete="name"
-              className={FIELD}
-              {...err("name")}
-            />
-          </Field>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field id={f("name")} label="Your name" error={errors.name}>
+              <input
+                id={f("name")}
+                name="name"
+                autoComplete="name"
+                className={FIELD}
+                {...err("name")}
+              />
+            </Field>
 
-          <Field id={f("email")} label="Email address" error={errors.email}>
-            <input
-              id={f("email")}
-              name="email"
-              type="email"
-              autoComplete="email"
-              className={FIELD}
-              {...err("email")}
-            />
-          </Field>
+            <Field id={f("email")} label="Email address" error={errors.email}>
+              <input
+                id={f("email")}
+                name="email"
+                type="email"
+                autoComplete="email"
+                className={FIELD}
+                {...err("email")}
+              />
+            </Field>
+          </div>
 
           <Field
             id={f("phone")}
@@ -381,6 +386,8 @@ export function EnquiryForm({
             ) : null}
           </div>
 
+          <Turnstile />
+
           <div
             ref={errorRef}
             tabIndex={-1}
@@ -399,7 +406,10 @@ export function EnquiryForm({
           <button
             type="submit"
             disabled={status === "sending"}
-            className={cn(buttonClasses({ tone: "care" }), "w-fit")}
+            className={cn(
+              buttonClasses({ tone: "care" }),
+              "w-full sm:w-auto",
+            )}
           >
             {status === "sending" ? (
               <>
@@ -412,8 +422,8 @@ export function EnquiryForm({
           </button>
         </fieldset>
       ) : (
-        <p className="text-ink-500">
-          Choose one above and the rest of the form will appear.
+        <p className="text-small text-ink-500">
+          Choose an option to continue.
         </p>
       )}
     </form>

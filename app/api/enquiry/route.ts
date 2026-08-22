@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { enquirySchema, type EnquiryErrors } from "@/lib/enquiry";
 import { recordEmailStatus, storeLead } from "@/lib/server/leads";
 import { sendEnquiryEmails } from "@/lib/server/email";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 /* Node runtime: the Resend SDK and the Neon HTTP driver both expect it. */
 export const runtime = "nodejs";
@@ -41,6 +42,21 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json(
       { ok: false, formError: "We could not read that submission." },
+      { status: 400 },
+    );
+  }
+
+  const turnstileToken =
+    payload && typeof payload === "object" && "turnstileToken" in payload
+      ? (payload as { turnstileToken?: unknown }).turnstileToken
+      : undefined;
+
+  if (!(await verifyTurnstile(turnstileToken, ip))) {
+    return NextResponse.json(
+      {
+        ok: false,
+        formError: "Please confirm you are human and try again.",
+      },
       { status: 400 },
     );
   }

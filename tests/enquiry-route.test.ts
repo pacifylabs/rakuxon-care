@@ -18,6 +18,11 @@ vi.mock("@/lib/server/email", () => ({
   sendEnquiryEmails: (...args: unknown[]) => sendEnquiryEmails(...args),
 }));
 
+const verifyTurnstile = vi.fn();
+vi.mock("@/lib/turnstile", () => ({
+  verifyTurnstile: (...args: unknown[]) => verifyTurnstile(...args),
+}));
+
 function row(overrides: Partial<EnquiryRow> = {}): EnquiryRow {
   const now = new Date("2026-08-22T10:30:00.000Z");
   return {
@@ -75,6 +80,7 @@ beforeEach(() => {
   storeLead.mockResolvedValue(row());
   sendEnquiryEmails.mockResolvedValue({ admin: "sent", user: "sent" });
   recordEmailStatus.mockResolvedValue(undefined);
+  verifyTurnstile.mockResolvedValue(true);
 });
 
 describe("POST /api/enquiry — success", () => {
@@ -190,6 +196,25 @@ describe("POST /api/enquiry — failure handling", () => {
       admin: "failed",
       user: "sent",
     });
+  });
+});
+
+describe("POST /api/enquiry — Turnstile", () => {
+  it("rejects a failed challenge before storing anything", async () => {
+    verifyTurnstile.mockResolvedValue(false);
+    const POST = await route();
+    const res = await POST(post({ ...valid, turnstileToken: "bad" }));
+    const body = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(body.formError).toMatch(/human/i);
+    expect(storeLead).not.toHaveBeenCalled();
+  });
+
+  it("passes the token and IP to the verifier", async () => {
+    const POST = await route();
+    await POST(post({ ...valid, turnstileToken: "ok-token-12" }, "203.0.113.40"));
+    expect(verifyTurnstile).toHaveBeenCalledWith("ok-token-12", "203.0.113.40");
   });
 });
 

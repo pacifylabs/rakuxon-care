@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { EnquiryForm } from "@/components/marketing/enquiry-form";
-import { CqcBadge } from "@/components/marketing/cqc-badge";
 import { getSiteSettings } from "@/lib/cms";
 import { parseEnquiryIntent } from "@/lib/enquiry";
 import { pageMetadata } from "@/lib/seo";
@@ -9,13 +9,10 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
-    "Talk to Rakuxon Care about arranging care at home, commissioning packages, or registering and growing a care business.",
+    "Talk to Rakuxon Care about arranging care at home, or about support for a care business.",
   path: "/contact",
 });
 
-/* Primary conversion page — the target of the CTA in the nav, the footer and
-   every section. Carries the segmented enquiry form (PRD §8.1) and the only
-   contact details confirmed for the care brand. */
 export default async function ContactPage({
   searchParams,
 }: {
@@ -25,79 +22,76 @@ export default async function ContactPage({
   const initialIntent = parseEnquiryIntent((await searchParams).intent);
 
   return (
-    <div className="py-16 md:py-24">
-      <Container>
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-          <div className="flex flex-col gap-6">
-            <span className="inline-flex w-fit items-center rounded-pill bg-navy-100 px-3 py-1 text-overline text-navy-800 uppercase">
+    <>
+      <section className="bg-care-50 py-14 md:py-20">
+        <Container>
+          <div className="flex max-w-2xl flex-col items-start gap-5">
+            <span className="inline-flex items-center rounded-pill bg-care-100 px-3 py-1 text-overline text-care-700 uppercase">
               Contact
             </span>
             <h1 className="text-h1">Get in touch</h1>
             <p className="measure text-body-lg text-ink-500">
-              Tell us which side you are on and what is happening. We will come
-              back to you with a person, not an autoresponder.
+              Tell us what is happening. We will come back to you with a person,
+              not an autoresponder.
             </p>
+            <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8">
+              {settings.email ? (
+                <li>
+                  <a
+                    href={`mailto:${settings.email}`}
+                    className="inline-flex min-h-11 items-center gap-2 text-navy-800 underline-offset-4 hover:underline"
+                  >
+                    <Mail
+                      className="size-4 shrink-0 text-care-600"
+                      aria-hidden="true"
+                    />
+                    <span className="break-all">{settings.email}</span>
+                  </a>
+                </li>
+              ) : null}
+              {settings.phone ? (
+                <li>
+                  <a
+                    href={`tel:${settings.phone.replace(/\s/g, "")}`}
+                    className="inline-flex min-h-11 items-center gap-2 text-navy-800 underline-offset-4 hover:underline"
+                  >
+                    <Phone
+                      className="size-4 shrink-0 text-care-600"
+                      aria-hidden="true"
+                    />
+                    <span>
+                      {settings.phone}
+                      {settings.phoneNote ? (
+                        <span className="text-ink-500">
+                          {" "}
+                          · {settings.phoneNote}
+                        </span>
+                      ) : null}
+                    </span>
+                  </a>
+                </li>
+              ) : null}
+              {settings.regionsServed ? (
+                <li className="inline-flex min-h-11 items-center gap-2 text-ink-700">
+                  <MapPin
+                    className="size-4 shrink-0 text-care-600"
+                    aria-hidden="true"
+                  />
+                  {settings.regionsServed}
+                </li>
+              ) : null}
+            </ul>
+          </div>
+        </Container>
+      </section>
 
+      <div className="py-14 md:py-20">
+        <Container>
+          <div className="mx-auto max-w-2xl">
             <EnquiryForm initialIntent={initialIntent} />
           </div>
-
-          <aside className="flex flex-col gap-6">
-            <div className="flex flex-col gap-4 rounded-lg bg-paper-100 p-6 shadow-card">
-              <h2 className="text-h4">Direct contact</h2>
-              <dl className="flex flex-col gap-3">
-                {/* Email is the one confirmed channel for the care brand.
-                    Phone and address are omitted rather than filled with
-                    plausible values — see TODO.md. */}
-                {settings.email ? (
-                  <div>
-                    <dt className="text-small text-ink-500">Email</dt>
-                    <dd>
-                      <a
-                        href={`mailto:${settings.email}`}
-                        className="break-all text-navy-800 underline-offset-4 hover:underline"
-                      >
-                        {settings.email}
-                      </a>
-                    </dd>
-                  </div>
-                ) : null}
-                {settings.phone ? (
-                  <div>
-                    <dt className="text-small text-ink-500">Phone</dt>
-                    <dd>
-                      <a
-                        href={`tel:${settings.phone.replace(/\s/g, "")}`}
-                        className="text-navy-800 underline-offset-4 hover:underline"
-                      >
-                        {settings.phone}
-                      </a>
-                    </dd>
-                  </div>
-                ) : null}
-                {settings.address ? (
-                  <div>
-                    <dt className="text-small text-ink-500">Address</dt>
-                    <dd className="text-ink-700">
-                      {settings.address.map((line) => (
-                        <span key={line} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </dd>
-                  </div>
-                ) : null}
-                {settings.regionsServed ? (
-                  <div>
-                    <dt className="text-small text-ink-500">Coverage</dt>
-                    <dd className="text-ink-700">{settings.regionsServed}</dd>
-                  </div>
-                ) : null}
-              </dl>
-            </div>
-            <CqcBadge />
-          </aside>
-        </div>
-      </Container>
-    </div>
+        </Container>
+      </div>
+    </>
   );
 }

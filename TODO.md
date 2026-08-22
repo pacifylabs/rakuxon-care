@@ -77,7 +77,7 @@ the request still succeeds.
 | Gap                 | Detail                                                                                                             |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | Rate limiting       | In-memory and per-instance; resets on deploy. Move to Redis for multi-instance deployments.                        |
-| CAPTCHA             | No Turnstile yet; the honeypot is the only bot defence.                                                            |
+| CAPTCHA             | Cloudflare Turnstile is wired. Set `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` in the host env.    |
 | Data erasure        | UK-GDPR erasure path for stored leads is not built. `enquiries.status` exists for triage but there is no admin UI. |
 | Domain verification | Resend will reject every send until the `ENQUIRY_FROM_EMAIL` domain has its DNS records in place.                  |
 

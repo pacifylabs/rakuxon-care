@@ -44,9 +44,18 @@ export const metadata: Metadata = {
     locale: "en_GB",
     siteName: "Rakuxon Care",
     url: origin(),
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Rakuxon Care — personal care at home",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/opengraph-image"],
   },
 };
 
