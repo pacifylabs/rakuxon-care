@@ -6,6 +6,18 @@ import prettier from "eslint-config-prettier/flat";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  {
+    /* Tests build invalid payloads by omitting keys via destructuring
+       (`const { consent: _drop, ...rest } = valid`). The underscore prefix
+       is that idiom, not dead code. */
+    files: ["tests/**/*.ts"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
+      ],
+    },
+  },
   // Disables stylistic rules that would fight Prettier. Must stay last.
   prettier,
   // Override default ignores of eslint-config-next.
