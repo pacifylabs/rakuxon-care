@@ -31,10 +31,8 @@ export interface NavLane {
 /* 04_SITE_ARCHITECTURE §2 — global nav. Home is kept ahead of the two lane
    menus at the user's request; the doc's list starts at the lane menus. */
 const TAIL_LINKS = [
-  { label: "Resources", href: "/resources" },
   { label: "About & CQC", href: "/about" },
   { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
 ];
 
 function LaneMenu({ lane, care }: { lane: NavLane; care: boolean }) {
@@ -195,12 +193,6 @@ export function SiteNav({
 
           <div className="hidden shrink-0 items-center gap-2 xl:flex">
             <ThemeToggle />
-            <Link
-              href="/contact"
-              className={cn(buttonClasses({ size: "sm" }), "whitespace-nowrap")}
-            >
-              Get in touch
-            </Link>
           </div>
 
           {/* ---------------- Below xl ---------------- */}
