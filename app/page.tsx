@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { AboutIntro } from "@/components/home/about-intro";
 import { CtaBand } from "@/components/home/cta-band";
 import { FaqSection } from "@/components/home/faq-section";
@@ -16,6 +17,15 @@ import {
   getProcess,
   getSiteSettings,
 } from "@/lib/cms";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Home",
+  description:
+    "Dependable support at home, built around your person — and practical expertise for people building better care services.",
+  path: "/",
+  absoluteTitle: "Rakuxon Care | Home care and care-business support",
+});
 
 /**
  * Home — reference structure (14 sections), PRD v2.0 content.

@@ -16,10 +16,10 @@ export default function NotFound() {
             main routes through the site are below.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/find-care" className={buttonClasses({ tone: "care" })}>
+            <Link href="/care" className={buttonClasses({ tone: "care" })}>
               Find care
             </Link>
-            <Link href="/care-businesses" className={buttonClasses({})}>
+            <Link href="/agency" className={buttonClasses({})}>
               For care businesses
             </Link>
             <Link

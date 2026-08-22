@@ -9,12 +9,14 @@ import { PHOTOS } from "@/lib/images";
 import type { Faq } from "@/lib/cms";
 import type { Photo as PhotoData } from "@/lib/images";
 import { cn } from "@/lib/cn";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Frequently asked questions",
   description:
     "Answers for families arranging care at home, and for care businesses working towards CQC registration, tenders and recruitment.",
-};
+  path: "/faq",
+});
 
 /* Two sections, each with its accordion on the left and a photograph on the
    right. Below lg they stack, accordion first, so the questions are never

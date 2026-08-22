@@ -9,12 +9,14 @@ import { IconCard, StatCard } from "@/components/marketing/cards";
 import { PHOTOS } from "@/lib/images";
 import { Section, SectionIntro } from "@/components/marketing/section";
 import { getArms, getMarketStats, getSiteSettings } from "@/lib/cms";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata: Metadata = pageMetadata({
+  title: "About Rakuxon Care",
   description:
-    "Rakuxon Care delivers CQC-registered home care and helps care businesses register, win contracts and recruit. One brand, two sides.",
-};
+    "One brand, two sides: home care for families and councils, and support for care businesses on registration, tenders and recruitment.",
+  path: "/about",
+});
 
 const ARM_ICONS = [HeartHandshake, Building2];
 

@@ -47,9 +47,13 @@ function Field({
   );
 }
 
-export function EnquiryForm() {
+export function EnquiryForm({
+  initialIntent = null,
+}: {
+  initialIntent?: Intent | null;
+}) {
   const uid = useId();
-  const [intent, setIntent] = useState<Intent | null>(null);
+  const [intent, setIntent] = useState<Intent | null>(initialIntent);
   const [errors, setErrors] = useState<EnquiryErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");

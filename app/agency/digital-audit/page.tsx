@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { UtilityPage } from "@/components/marketing/utility-page";
 import { PHOTOS } from "@/lib/images";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Free digital audit",
+export const metadata: Metadata = pageMetadata({
+  title: "Free digital audit for care providers",
   description:
     "A free review of how your care business looks to families, commissioners and candidates online.",
-};
+  path: "/agency/digital-audit",
+});
 
 export default function DigitalAuditPage() {
   return (
@@ -28,6 +30,31 @@ export default function DigitalAuditPage() {
         label: "Website and digital",
         href: "/agency/digital-services",
       }}
+      crumbs={[
+        { label: "Home", href: "/" },
+        { label: "Care businesses", href: "/agency" },
+        { label: "Digital audit" },
+      ]}
+      related={[
+        {
+          slug: "digital-services",
+          href: "/agency/digital-services",
+          title: "Website and digital",
+          summary: "A website built for local search and enquiry capture.",
+        },
+        {
+          slug: "branding-kits",
+          href: "/agency/branding-kits",
+          title: "Branding kits",
+          summary: "Identity and collateral that make a new provider look established.",
+        },
+        {
+          slug: "social-presence",
+          href: "/agency/social-presence",
+          title: "Social presence",
+          summary: "Accounts set up properly, with a routine you can keep.",
+        },
+      ]}
     />
   );
 }

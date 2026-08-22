@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Inter, Lora, Plus_Jakarta_Sans } from "next/font/google";
 import { CookieConsent } from "@/components/marketing/cookie-consent";
+import { JsonLd } from "@/components/marketing/json-ld";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { StickyCta } from "@/components/marketing/sticky-cta";
+import { organisationJsonLd, websiteJsonLd } from "@/lib/schema";
+import { origin } from "@/lib/seo";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
@@ -29,12 +32,22 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(origin()),
   title: {
-    default: "Rakuxon Care",
+    default: "Rakuxon Care | Home care and care-business support",
     template: "%s · Rakuxon Care",
   },
   description:
-    "CQC-registered home care for families and councils, and end-to-end support for care businesses — registration, tenders, branding and staffing.",
+    "Home care for families and councils, and end-to-end support for care businesses — CQC registration, tenders, branding and staffing.",
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    siteName: "Rakuxon Care",
+    url: origin(),
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -56,6 +69,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body>
+        <JsonLd data={organisationJsonLd()} />
+        <JsonLd data={websiteJsonLd()} />
         <a
           href="#main"
           className="sr-only rounded-md focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-brand-navy focus:px-4 focus:py-3 focus:text-white"

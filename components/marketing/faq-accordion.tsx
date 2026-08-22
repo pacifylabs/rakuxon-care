@@ -6,7 +6,7 @@ import type { Faq } from "@/lib/cms";
 /* §4.14. Built on Radix rather than hand-rolled: the accessible accordion
    pattern (roving focus, aria-expanded/controls wiring, Home/End keys) is
    exactly the kind of hard a11y work worth taking off the shelf. Styling is
-   entirely our own tokens. Pairs with FAQPage JSON-LD in Phase 6. */
+   entirely our own tokens. Service pages emit matching FAQPage JSON-LD. */
 export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
   return (
     <Accordion.Root type="single" collapsible className="flex flex-col gap-3">

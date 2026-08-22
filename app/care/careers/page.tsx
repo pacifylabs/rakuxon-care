@@ -23,7 +23,7 @@ export default function CareCareersPage() {
         "Two references, verified",
         "Care Certificate progress tracked",
       ]}
-      cta={{ label: "Register your interest", href: "/contact?intent=carer" }}
+      cta={{ label: "Register your interest", href: "/contact" }}
       secondaryCta={{ label: "All careers", href: "/careers" }}
     />
   );

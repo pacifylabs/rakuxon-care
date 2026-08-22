@@ -1,4 +1,4 @@
-import type { Cluster, Service } from "@/lib/cms";
+import type { Cluster, Service } from "@/lib/cms/types";
 
 /** Mega-menu and hub grouping — 04_SITE_ARCHITECTURE §3. */
 export interface ClusterMeta {

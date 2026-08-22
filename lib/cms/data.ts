@@ -32,8 +32,8 @@ export const ARMS: Arm[] = [
     lane: "b2c",
     audience: "Families, councils and ICBs",
     summary:
-      "A CQC-registered provider of personal care and domiciliary care at home. Private-pay clients, and packages commissioned by councils, ICBs and NHS Continuing Healthcare.",
-    href: "/find-care",
+      "A provider of personal care and domiciliary care at home. Private-pay clients, and packages commissioned by councils, ICBs and NHS Continuing Healthcare. CQC registration is in progress.",
+    href: "/care",
     services: ["home-care"],
   },
   {
@@ -45,7 +45,7 @@ export const ARMS: Arm[] = [
     audience: "Other care providers",
     summary:
       "Enablement for care businesses: CQC registration, tenders and frameworks, policies, digital and branding, consulting, and Rakuxon Staffing.",
-    href: "/care-businesses",
+    href: "/agency",
     services: [
       "cqc-registration",
       "tender-writing",

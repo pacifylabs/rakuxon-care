@@ -9,12 +9,14 @@ import {
 import { SERVICE_ICONS } from "@/lib/service-icons";
 import { getServicesByArm } from "@/lib/cms";
 import { PHOTOS } from "@/lib/images";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Care business services",
   description:
-    "CQC registration, tenders and frameworks, branding and digital, staffing and advisory for care businesses — from a provider that runs its own regulated service.",
-};
+    "CQC registration, tenders and frameworks, branding and digital, staffing and advisory for care businesses.",
+  path: "/agency",
+});
 
 /* 04_SITE_ARCHITECTURE §3.2 — the B2B hub for /agency/*. */
 export default async function AgencyHubPage() {
@@ -56,6 +58,16 @@ export default async function AgencyHubPage() {
       }}
       clusters={clusters}
       fallbackIcon={Building2}
+      crumbs={[
+        { label: "Home", href: "/" },
+        { label: "Care businesses" },
+      ]}
+      otherLane={{
+        title: "Looking for care at home?",
+        body: "Personal care, visiting support, live-in and respite — assessed at home and written into a plan you agree.",
+        href: "/care",
+        cta: "Care at home",
+      }}
     />
   );
 }

@@ -17,6 +17,7 @@ import {
 import type { Arm, Lane } from "./types";
 
 export * from "./types";
+export { relatedExtras, relatedFromCatalogue, type RelatedPage } from "./related";
 
 /**
  * Accessors are async so Phase 4 can swap the stub dataset for real CMS
