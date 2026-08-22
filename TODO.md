@@ -41,22 +41,45 @@ education arm's: `enquiries@rakuxon.com`, `+44 776 094 4935`, `+234 816 717 8847
 
 Their nav and footer links were removed too, so nothing points at a dead route.
 
-## 3. Enquiry form — what is built and what is not
+## 3. Enquiry form — wired to Postgres and Resend
 
-The segmented enquiry form (PRD §8.1) is live at `/contact`. Working today:
-intent selector, branching fields per audience, shared client/server Zod
-schema, server-authoritative validation with field-keyed errors, unticked
-GDPR consent recorded as a timestamp, honeypot, and rate limiting.
+**You only need to fill in `.env.local`.** Copy `.env.example`, paste the five
+values, run the migration. Nothing else is outstanding in the code.
 
-**Not yet wired — needed before launch:**
+```bash
+cp .env.example .env.local   # then fill it in
+pnpm db:migrate              # creates the enquiries table
+pnpm dev
+```
 
-| Gap                 | Detail                                                                                                                                                                                                                                                                         |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Lead storage        | Appends to `.leads/enquiries.jsonl` and always logs. A serverless filesystem is ephemeral and not shared between instances, so **enquiries will be lost in production**. Swap the body of `storeLead()` in `lib/server/leads.ts` for Postgres — the call site does not change. |
-| Confirmation emails | Nothing is sent to the enquirer or to Rakuxon. Needs an email provider and API key (Resend/Postmark/SES). The success screen deliberately does not claim an email was sent.                                                                                                    |
-| Rate limiting       | In-memory, per-instance, resets on deploy. Blunts a naive flood only. Move to Redis.                                                                                                                                                                                           |
-| CAPTCHA             | No Turnstile yet; the honeypot is the only bot defence.                                                                                                                                                                                                                        |
-| Data erasure        | UK-GDPR erasure path for stored leads is not built.                                                                                                                                                                                                                            |
+| Variable                | Where it comes from                                                            |
+| ----------------------- | ------------------------------------------------------------------------------ |
+| `DATABASE_URL`          | Neon → Connection string → **Pooled** (hostname contains `-pooler`)            |
+| `DATABASE_URL_UNPOOLED` | The same URL **without** `-pooler`. Migrations only; PgBouncer cannot run DDL. |
+| `RESEND_API_KEY`        | resend.com → API Keys                                                          |
+| `ENQUIRY_FROM_EMAIL`    | Any address on a domain **verified in Resend**, or every send fails            |
+| `ENQUIRY_NOTIFY_EMAIL`  | The mailbox that should receive new enquiries                                  |
+
+Built and tested: intent selector with branching fields, one Zod schema shared
+by client and server, field-keyed errors, unticked GDPR consent stored as a
+timestamp, honeypot, per-IP rate limiting, Postgres persistence via Drizzle,
+and two Resend emails (admin notification and enquirer confirmation) with
+plain-text alternatives.
+
+**Degradation is deliberate.** If the database is unreachable the API returns
+503 and tells the enquirer to email instead — it never shows a success screen
+for a message nobody will read. If mail is unconfigured or a send fails, the
+lead is still saved, the outcome is written to `enquiries.email_status`, and
+the request still succeeds.
+
+**Still outstanding for production:**
+
+| Gap                 | Detail                                                                                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Rate limiting       | In-memory and per-instance; resets on deploy. Move to Redis for multi-instance deployments.                        |
+| CAPTCHA             | No Turnstile yet; the honeypot is the only bot defence.                                                            |
+| Data erasure        | UK-GDPR erasure path for stored leads is not built. `enquiries.status` exists for triage but there is no admin UI. |
+| Domain verification | Resend will reject every send until the `ENQUIRY_FROM_EMAIL` domain has its DNS records in place.                  |
 
 ## 4. Legal pages
 
