@@ -1,0 +1,19 @@
+# Runs the production image locally against the real Neon database.
+#
+# There is no local Postgres service here on purpose: Neon branching gives
+# every developer an isolated database in seconds, which is closer to
+# production than a container running a different Postgres build.
+#
+#   cp .env.example .env.local && $EDITOR .env.local
+#   docker compose up --build
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped

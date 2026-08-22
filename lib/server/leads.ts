@@ -1,64 +1,69 @@
-import { appendFile, mkdir } from "node:fs/promises";
-import path from "node:path";
+import { eq } from "drizzle-orm";
+import { db } from "@/lib/db";
+import { enquiries, type EnquiryRow } from "@/lib/db/schema";
 import type { EnquiryInput } from "@/lib/enquiry";
 
 /**
- * Lead persistence.
+ * Lead persistence — the single pipeline every form feeds
+ * (04_SITE_ARCHITECTURE §4).
  *
- * PRD names Postgres for leads; no database is provisioned yet, so this
- * appends newline-delimited JSON to a local file and always logs the lead.
- * That means a submission is never silently lost in development.
- *
- * NOT production-ready: a serverless filesystem is ephemeral and not shared
- * between instances. Swap the body of this function for the real datastore
- * before launch — the call site does not change. See TODO.md.
+ * The honeypot never reaches here, and `consent` is deliberately not stored
+ * as a boolean: UK GDPR wants evidence of when consent was given, which the
+ * consent_given_at timestamp carries instead.
  */
-const LEAD_FILE = path.join(process.cwd(), ".leads", "enquiries.jsonl");
-
-export type StoredLead = Omit<EnquiryInput, "honeypot" | "consent"> & {
-  id: string;
-  receivedAt: string;
-  consentGivenAt: string;
-};
-
 export async function storeLead(
   input: EnquiryInput,
-): Promise<{ id: string; persisted: boolean }> {
-  const now = new Date().toISOString();
-  /* honeypot and consent are deliberately dropped: the honeypot is an
-     anti-spam artefact, and the consent flag is recorded as a timestamp
-     below rather than as a bare boolean. */
-  const rest = { ...input } as Partial<EnquiryInput>;
-  delete rest.honeypot;
-  delete rest.consent;
-  const lead: StoredLead = {
-    ...(rest as Omit<EnquiryInput, "honeypot" | "consent">),
-    id: crypto.randomUUID(),
-    receivedAt: now,
-    // UK GDPR: record when consent was given, not merely that it was.
-    consentGivenAt: now,
-  };
+  meta: { sourcePath?: string } = {},
+): Promise<EnquiryRow> {
+  const branch =
+    input.intent === "family"
+      ? { careFor: input.careFor, postcode: emptyToNull(input.postcode) }
+      : input.intent === "council"
+        ? { organisation: input.organisation, packageType: input.packageType }
+        : { organisation: input.organisation, stage: input.stage };
 
-  // Logged first, so the lead survives even if the write fails.
+  const [row] = await db()
+    .insert(enquiries)
+    .values({
+      intent: input.intent,
+      name: input.name,
+      email: input.email,
+      phone: emptyToNull(input.phone),
+      message: input.message,
+      sourcePath: meta.sourcePath ?? null,
+      ...branch,
+    })
+    .returning();
+
   console.info(
-    `[enquiry] ${lead.id} intent=${lead.intent} email=${redact(lead.email)}`,
+    `[enquiry] ${row.id} stored intent=${row.intent} email=${redact(row.email)}`,
   );
+  return row;
+}
 
+/** Records the delivery outcome so a failed send is visible in the data. */
+export async function recordEmailStatus(
+  id: string,
+  status: Record<string, string>,
+): Promise<void> {
   try {
-    await mkdir(path.dirname(LEAD_FILE), { recursive: true });
-    await appendFile(LEAD_FILE, JSON.stringify(lead) + "\n", "utf8");
-    return { id: lead.id, persisted: true };
+    await db()
+      .update(enquiries)
+      .set({ emailStatus: status, updatedAt: new Date() })
+      .where(eq(enquiries.id, id));
   } catch (error) {
-    // Surfaced, never swallowed — but the caller still succeeds, because the
-    // lead is in the log and losing the enquirer's message is the worse
-    // outcome.
-    console.error(`[enquiry] ${lead.id} could not be written to disk`, error);
-    return { id: lead.id, persisted: false };
+    // Never fail the request over bookkeeping — the lead is already safe.
+    console.error(`[enquiry] ${id} could not record email status`, error);
   }
 }
 
+function emptyToNull(value: string | undefined | null): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
 /** Never log a full address. */
-function redact(value: string) {
+export function redact(value: string): string {
   const [user, domain] = value.split("@");
   if (!domain) return "***";
   return `${user.slice(0, 2)}***@${domain}`;

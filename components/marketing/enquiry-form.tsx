@@ -69,7 +69,12 @@ export function EnquiryForm() {
     setFormError(null);
 
     const data = new FormData(event.currentTarget);
-    const payload: Record<string, unknown> = { intent };
+    const payload: Record<string, unknown> = {
+      intent,
+      // Tags the lead with the page it started on — PRD asks for leads to be
+      // identifiable by source route as well as intent.
+      sourcePath: window.location.pathname,
+    };
     data.forEach((value, key) => {
       payload[key] = key === "consent" ? value === "on" : value;
     });

@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { enquirySchema, type EnquiryErrors } from "@/lib/enquiry";
-import { storeLead } from "@/lib/server/leads";
+import { recordEmailStatus, storeLead } from "@/lib/server/leads";
+import { sendEnquiryEmails } from "@/lib/server/email";
+
+/* Node runtime: the Resend SDK and the Neon HTTP driver both expect it. */
+export const runtime = "nodejs";
 
 /* Rate limit. Redis is named in the plan but not provisioned; this in-memory
    window is per-instance and resets on deploy — enough to blunt a naive
@@ -57,12 +61,36 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, id: null });
   }
 
-  const { id, persisted } = await storeLead(parsed.data);
+  const sourcePath =
+    typeof (payload as { sourcePath?: unknown }).sourcePath === "string"
+      ? (payload as { sourcePath: string }).sourcePath.slice(0, 512)
+      : undefined;
+
+  let lead;
+  try {
+    lead = await storeLead(parsed.data, { sourcePath });
+  } catch (error) {
+    // Fail loudly: if the lead is not stored, the enquirer must be told, not
+    // shown a success screen for a message nobody will ever read.
+    console.error("[enquiry] could not be stored", error);
+    return NextResponse.json(
+      {
+        ok: false,
+        formError:
+          "We could not save that just now. Please email hello@rakuxoncare.co.uk and we will pick it up.",
+      },
+      { status: 503 },
+    );
+  }
+
+  // The lead is safe from here on, so email failures degrade rather than fail.
+  const emailStatus = await sendEnquiryEmails(lead);
+  await recordEmailStatus(lead.id, emailStatus);
 
   return NextResponse.json({
     ok: true,
-    id,
-    // Honest about the remaining gap rather than claiming an email was sent.
-    persisted,
+    id: lead.id,
+    reference: lead.id.slice(0, 8),
+    emailStatus,
   });
 }

@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.github
+.leads
+.env
+.env.*
+!.env.example
+docs
+tests
+coverage
+npm-debug.log*
+.DS_Store
+README.md
+TODO.md

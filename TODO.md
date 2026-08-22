@@ -50,13 +50,13 @@ GDPR consent recorded as a timestamp, honeypot, and rate limiting.
 
 **Not yet wired — needed before launch:**
 
-| Gap | Detail |
-|---|---|
-| Lead storage | Appends to `.leads/enquiries.jsonl` and always logs. A serverless filesystem is ephemeral and not shared between instances, so **enquiries will be lost in production**. Swap the body of `storeLead()` in `lib/server/leads.ts` for Postgres — the call site does not change. |
-| Confirmation emails | Nothing is sent to the enquirer or to Rakuxon. Needs an email provider and API key (Resend/Postmark/SES). The success screen deliberately does not claim an email was sent. |
-| Rate limiting | In-memory, per-instance, resets on deploy. Blunts a naive flood only. Move to Redis. |
-| CAPTCHA | No Turnstile yet; the honeypot is the only bot defence. |
-| Data erasure | UK-GDPR erasure path for stored leads is not built. |
+| Gap                 | Detail                                                                                                                                                                                                                                                                         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Lead storage        | Appends to `.leads/enquiries.jsonl` and always logs. A serverless filesystem is ephemeral and not shared between instances, so **enquiries will be lost in production**. Swap the body of `storeLead()` in `lib/server/leads.ts` for Postgres — the call site does not change. |
+| Confirmation emails | Nothing is sent to the enquirer or to Rakuxon. Needs an email provider and API key (Resend/Postmark/SES). The success screen deliberately does not claim an email was sent.                                                                                                    |
+| Rate limiting       | In-memory, per-instance, resets on deploy. Blunts a naive flood only. Move to Redis.                                                                                                                                                                                           |
+| CAPTCHA             | No Turnstile yet; the honeypot is the only bot defence.                                                                                                                                                                                                                        |
+| Data erasure        | UK-GDPR erasure path for stored leads is not built.                                                                                                                                                                                                                            |
 
 ## 4. Legal pages
 
