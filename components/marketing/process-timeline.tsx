@@ -15,7 +15,7 @@ export function ProcessTimeline({
     ? "text-navy-700"
     : lane === "b2c"
       ? "text-care-100"
-      : "text-navy-100";
+      : "text-on-navy";
 
   return (
     <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -36,7 +36,7 @@ export function ProcessTimeline({
           </span>
           <span
             className={`relative text-overline uppercase ${
-              invert ? "text-navy-100" : "text-ink-500"
+              invert ? "text-on-navy" : "text-ink-500"
             }`}
           >
             Step {step.number}
@@ -44,9 +44,7 @@ export function ProcessTimeline({
           <h3 className={`relative text-h4 ${invert ? "text-white" : ""}`}>
             {step.title}
           </h3>
-          <p
-            className={`relative ${invert ? "text-navy-100" : "text-ink-500"}`}
-          >
+          <p className={`relative ${invert ? "text-on-navy" : "text-ink-500"}`}>
             {step.description}
           </p>
         </li>

@@ -59,7 +59,7 @@ export function WorkingProcess({ steps }: { steps: ProcessStep[] }) {
                       1.19:1; navy-600 at 70% measures 3.29:1. */}
                   <span
                     aria-hidden="true"
-                    className="font-display text-h2 leading-none font-bold text-navy-600/70"
+                    className="font-display text-h2 leading-none font-bold text-ink-500/80"
                   >
                     {step.number}
                   </span>

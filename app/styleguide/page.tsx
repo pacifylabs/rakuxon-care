@@ -366,7 +366,7 @@ export default function StyleguidePage() {
 
             <div data-surface="navy" className="rounded-lg bg-navy-800 p-8">
               <h3 className="text-h4 text-white">On a navy surface</h3>
-              <p className="measure mt-1 text-small text-navy-100">
+              <p className="measure mt-1 text-small text-on-navy">
                 The focus ring flips to white here via{" "}
                 <code>data-surface=&quot;navy&quot;</code>. Tab into these to
                 confirm.

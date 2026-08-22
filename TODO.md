@@ -5,10 +5,10 @@ placeholder. Supply the real content and it can go back in.
 
 Sources consulted for this pass:
 
-| Source | Result |
-|---|---|
-| `https://rakuxon.com/` | Reachable. **This is a different business** — Rakuxon Ltd, a global *education* consultancy ("Where Minds Meet Maps": university placement, visas, travel). None of its service copy applies to Rakuxon Care. Its contact details belong to the education arm. |
-| `https://rakuxon-care-designs--mychat247.replit.app/#organisations` | Reachable, but client-rendered — a plain fetch returned only the shell. Read via a JS-executing browser instead. This supplied nearly all the real Rakuxon Care copy now on the site. |
+| Source                                                              | Result                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `https://rakuxon.com/`                                              | Reachable. **This is a different business** — Rakuxon Ltd, a global _education_ consultancy ("Where Minds Meet Maps": university placement, visas, travel). None of its service copy applies to Rakuxon Care. Its contact details belong to the education arm. |
+| `https://rakuxon-care-designs--mychat247.replit.app/#organisations` | Reachable, but client-rendered — a plain fetch returned only the shell. Read via a JS-executing browser instead. This supplied nearly all the real Rakuxon Care copy now on the site.                                                                          |
 
 ---
 
@@ -16,28 +16,28 @@ Sources consulted for this pass:
 
 **Currently shown: `hello@rakuxoncare.co.uk` only.** One real channel, per instruction.
 
-| Field | Status |
-|---|---|
-| Email | `hello@rakuxoncare.co.uk` — from the Rakuxon Care source. **Confirm this mailbox is live before launch.** |
-| Phone | **Removed.** The source lists `020 7946 0000`, which is inside Ofcom's `020 7946 0xxx` range reserved for fiction and drama. It is not a real number and was not used. Supply a real one. |
-| Postal address | **Removed.** `rakuxon.com` publishes *Flat 15, St Matthews House, Phelp Street, London SE17 2PJ*, but that is the education business. Supply the care service's registered address. |
-| Company number | **Removed.** Never published on either source. |
-| ICO registration | **Removed.** Never published on either source. |
-| Social accounts | **Removed.** `rakuxon.com` lists Instagram/TikTok/X/Facebook/YouTube `@rakuxon`, but those are the education brand's. Supply care-specific accounts, or confirm the group accounts should be used. |
+| Field            | Status                                                                                                                                                                                             |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Email            | `hello@rakuxoncare.co.uk` — from the Rakuxon Care source. **Confirm this mailbox is live before launch.**                                                                                          |
+| Phone            | **Removed.** The source lists `020 7946 0000`, which is inside Ofcom's `020 7946 0xxx` range reserved for fiction and drama. It is not a real number and was not used. Supply a real one.          |
+| Postal address   | **Removed.** `rakuxon.com` publishes _Flat 15, St Matthews House, Phelp Street, London SE17 2PJ_, but that is the education business. Supply the care service's registered address.                |
+| Company number   | **Removed.** Never published on either source.                                                                                                                                                     |
+| ICO registration | **Removed.** Never published on either source.                                                                                                                                                     |
+| Social accounts  | **Removed.** `rakuxon.com` lists Instagram/TikTok/X/Facebook/YouTube `@rakuxon`, but those are the education brand's. Supply care-specific accounts, or confirm the group accounts should be used. |
 
 Also available from `rakuxon.com` if you want them, though they are the
 education arm's: `enquiries@rakuxon.com`, `+44 776 094 4935`, `+234 816 717 8847`.
 
 ## 2. Sections removed for lack of real content
 
-| Removed | Was | Restore when you have |
-|---|---|---|
-| Testimonials section (home) | 7 invented quotes with invented names | Real client quotes with consent to publish |
-| `/care/testimonials` page | Same invented quotes | As above |
-| `/agency/case-studies` page | Same invented quotes | Real case studies with outcomes |
-| Team / specialists grid (home + `/about`) | 3 invented people with stock headshots | Real names, roles, photos |
-| `/agency/opportunities` page | Invented tenders from "Placeholder County Council" | A real feed or CMS collection |
-| "Trusted by" partner logo row | Six invented companies (Boltshift, Lightbox, FeatherDev, Spherule, GlobalBank, Nietzsche) | Real partner or accreditation logos. Replaced with the source's real trust line and three practice badges. |
+| Removed                                   | Was                                                                                       | Restore when you have                                                                                      |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Testimonials section (home)               | 7 invented quotes with invented names                                                     | Real client quotes with consent to publish                                                                 |
+| `/care/testimonials` page                 | Same invented quotes                                                                      | As above                                                                                                   |
+| `/agency/case-studies` page               | Same invented quotes                                                                      | Real case studies with outcomes                                                                            |
+| Team / specialists grid (home + `/about`) | 3 invented people with stock headshots                                                    | Real names, roles, photos                                                                                  |
+| `/agency/opportunities` page              | Invented tenders from "Placeholder County Council"                                        | A real feed or CMS collection                                                                              |
+| "Trusted by" partner logo row             | Six invented companies (Boltshift, Lightbox, FeatherDev, Spherule, GlobalBank, Nietzsche) | Real partner or accreditation logos. Replaced with the source's real trust line and three practice badges. |
 
 Their nav and footer links were removed too, so nothing points at a dead route.
 

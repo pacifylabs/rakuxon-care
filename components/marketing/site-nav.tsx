@@ -154,7 +154,7 @@ export function SiteNav({
             aria-label="Rakuxon Care — home"
             className="flex min-h-11 shrink-0 items-center rounded-sm py-1"
           >
-            <Logo priority className="h-6 md:h-7" />
+            <Logo variant="auto" priority className="h-6 md:h-7" />
           </Link>
 
           {/* Desktop nav. Seven items plus two long lane labels do not fit at
@@ -218,7 +218,7 @@ export function SiteNav({
               <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-[min(24rem,100vw)] flex-col overflow-y-auto bg-paper-50 shadow-card focus:outline-none">
                 <Dialog.Title className="sr-only">Menu</Dialog.Title>
                 <div className="flex items-center justify-between border-b border-navy-100 px-5 py-3">
-                  <Logo className="h-6" />
+                  <Logo variant="auto" className="h-6" />
                   <Dialog.Close
                     aria-label="Close menu"
                     className="inline-flex size-11 items-center justify-center rounded-pill text-ink-700 transition-colors hover:bg-navy-50"

@@ -130,7 +130,7 @@ export function Hero({ cqc }: { cqc: CqcStatus }) {
                   81% since 2017
                 </p>
               </div>
-              <span className="grid size-14 shrink-0 place-items-center rounded-pill bg-care-600 text-small font-semibold text-white">
+              <span className="grid size-14 shrink-0 place-items-center rounded-pill bg-brand-care text-small font-semibold text-white">
                 +81%
               </span>
             </div>
@@ -160,15 +160,18 @@ export function Hero({ cqc }: { cqc: CqcStatus }) {
                   Care at
                   <br /> home
                 </p>
+                {/* The full address wraps mid-domain in this 180px column,
+                    so the card carries a short label. The address itself is
+                    shown in the footer and on the contact page. */}
                 <a
                   href="mailto:hello@rakuxoncare.co.uk"
-                  className="inline-flex min-h-11 items-center gap-2 text-small break-all text-ink-700 underline-offset-4 hover:underline"
+                  className="inline-flex min-h-11 items-center gap-2 text-small text-ink-700 underline-offset-4 hover:underline"
                 >
                   <Mail
                     className="size-4 shrink-0 text-care-600"
                     aria-hidden="true"
                   />
-                  hello@rakuxoncare.co.uk
+                  Email us
                 </a>
               </div>
             </div>

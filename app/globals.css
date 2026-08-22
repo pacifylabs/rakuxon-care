@@ -56,6 +56,12 @@
   --color-brand-care: #158368;
   --color-brand-care-hover: #0f6e56;
 
+  /* Text on surfaces that are navy in BOTH themes — the footer, the navy
+     section band, inverted process steps. navy-100 cannot serve here: it is
+     also a light chip background (27 uses) and must go dark in dark mode,
+     which turned the footer dark-on-dark. */
+  --color-on-navy: #dde6f2;
+
   /* ── Warm accent · optional, max one per view ───────────── */
   --color-accent-600: #c2410c;
   --color-accent-500: #ea580c;
@@ -368,5 +374,33 @@
     --shadow-card: 0 1px 3px rgb(0 0 0 / 0.5), 0 8px 24px rgb(0 0 0 / 0.38);
     --shadow-card-hover:
       0 2px 6px rgb(0 0 0 / 0.55), 0 16px 40px rgb(0 0 0 / 0.45);
+  }
+}
+
+@layer base {
+  /* The wordmark is a raster image, so it cannot inherit currentColor.
+     Both variants are rendered and CSS reveals the right one — the navy
+     mark is invisible on the dark nav, and the white one is invisible on
+     the light nav. Mirrors the three theme states above. */
+  .logo-on-dark {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .logo-on-light {
+      display: none;
+    }
+
+    :root:not([data-theme="light"]) .logo-on-dark {
+      display: block;
+    }
+  }
+
+  :root[data-theme="dark"] .logo-on-light {
+    display: none;
+  }
+
+  :root[data-theme="dark"] .logo-on-dark {
+    display: block;
   }
 }

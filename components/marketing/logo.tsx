@@ -25,7 +25,36 @@ export function Logo({
   className,
   priority = false,
 }: {
-  variant?: keyof typeof SRC;
+  /** "auto" follows the theme — use it on surfaces that change colour. */
+  variant?: keyof typeof SRC | "auto";
+  className?: string;
+  priority?: boolean;
+}) {
+  if (variant === "auto") {
+    return (
+      <>
+        <Mark
+          variant="navy"
+          className={cn("logo-on-light", className)}
+          priority={priority}
+        />
+        <Mark
+          variant="white"
+          className={cn("logo-on-dark", className)}
+          priority={priority}
+        />
+      </>
+    );
+  }
+  return <Mark variant={variant} className={className} priority={priority} />;
+}
+
+function Mark({
+  variant,
+  className,
+  priority,
+}: {
+  variant: keyof typeof SRC;
   className?: string;
   priority?: boolean;
 }) {

@@ -70,12 +70,12 @@ export async function SiteFooter() {
   return (
     <footer data-surface="navy" className="pb-6">
       <Container>
-        <div className="rounded-lg bg-navy-900 px-6 py-12 text-navy-100 md:px-10 md:py-14">
+        <div className="rounded-lg bg-navy-900 px-6 py-12 text-on-navy md:px-10 md:py-14">
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
             {/* Left: logo, blurb, socials. */}
             <div className="flex flex-col gap-5">
               <Logo variant="white" className="h-7 self-start" />
-              <p className="measure text-navy-100">
+              <p className="measure text-on-navy">
                 Dependable support at home, built around your person. And
                 practical expertise for the people building better care
                 services.
@@ -92,7 +92,7 @@ export async function SiteFooter() {
                     <li key={`${col.heading}-${l.label}`}>
                       <Link
                         href={l.href}
-                        className="flex min-h-11 items-center text-navy-100 underline-offset-4 transition-colors hover:text-white hover:underline"
+                        className="flex min-h-11 items-center text-on-navy underline-offset-4 transition-colors hover:text-white hover:underline"
                       >
                         {l.label}
                       </Link>
@@ -114,7 +114,7 @@ export async function SiteFooter() {
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="flex min-h-11 items-center text-navy-100 underline-offset-4 transition-colors hover:text-white hover:underline"
+                      className="flex min-h-11 items-center text-on-navy underline-offset-4 transition-colors hover:text-white hover:underline"
                     >
                       {l.label}
                     </Link>
@@ -184,7 +184,7 @@ export async function SiteFooter() {
                 ? `CQC registered, rated ${settings.cqc.rating}`
                 : "CQC and regulated-care information available on request"}
             </p>
-            <p className="text-small text-navy-100/85">{settings.easNote}</p>
+            <p className="text-small text-on-navy/85">{settings.easNote}</p>
             <ul className="flex flex-wrap items-center gap-x-5">
               {[
                 { label: "Privacy", href: "/privacy" },

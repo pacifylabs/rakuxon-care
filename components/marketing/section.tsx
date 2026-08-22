@@ -54,7 +54,7 @@ export function SectionIntro({
         <p
           className={cn(
             "measure text-body-lg",
-            invert ? "text-navy-100" : "text-ink-500",
+            invert ? "text-on-navy" : "text-ink-500",
             align === "center" && "mx-auto",
           )}
         >
