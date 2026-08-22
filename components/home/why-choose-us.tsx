@@ -12,22 +12,22 @@ const FEATURES = [
   {
     icon: HeartHandshake,
     title: "The person comes first",
-    body: "Plans are built around the routine in front of us, not a standard visit length.",
+    body: "Plans follow the routine in front of us, not a standard visit length.",
   },
   {
     icon: BadgeCheck,
     title: "Faces you recognise",
-    body: "The same small team wherever the rota allows, so nobody starts again each week.",
+    body: "The same small team wherever we can, so nobody starts again each week.",
   },
   {
     icon: FileCheck2,
-    title: "Funding we already work with",
+    title: "Funding we work with",
     body: "Private-pay, council packages, ICBs and NHS Continuing Healthcare.",
   },
   {
     icon: MonitorSmartphone,
     title: "Clear from the start",
-    body: "A written plan and named carers before support begins. If we are not the right fit, we say so.",
+    body: "A written plan and named carers before support begins — or we say no.",
   },
 ];
 

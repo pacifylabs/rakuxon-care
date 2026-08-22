@@ -67,9 +67,9 @@ export async function SiteFooter() {
     <footer data-surface="navy" className="pb-6">
       <Container>
         <div className="rounded-lg bg-navy-900 px-6 py-10 text-on-navy md:px-10 md:py-12">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10">
-            <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-1">
-              <Logo variant="white" className="h-7 self-start" />
+          <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10">
+            <div className="flex flex-col gap-4">
+              <Logo variant="white" className="h-10 self-start md:h-12" />
               <p className="max-w-sm text-small text-on-navy">
                 Dependable support at home, and practical expertise for people
                 building better care services.
@@ -146,29 +146,31 @@ export async function SiteFooter() {
               ) : null}
             </div>
 
-            {COLUMNS.map((col) => (
-              <div key={col.heading} className="flex flex-col gap-2">
-                <h2 className="text-overline text-white uppercase">
-                  {col.heading}
-                </h2>
-                <ul className="flex flex-col">
-                  {col.links.map((l) => (
-                    <li key={`${col.heading}-${l.label}`}>
-                      <Link
-                        href={l.href}
-                        className="flex min-h-9 items-center text-small text-on-navy underline-offset-4 transition-colors hover:text-white hover:underline"
-                      >
-                        {l.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:contents">
+              {COLUMNS.map((col) => (
+                <div key={col.heading} className="flex min-w-0 flex-col gap-2">
+                  <h2 className="text-overline text-white uppercase">
+                    {col.heading}
+                  </h2>
+                  <ul className="flex flex-col">
+                    {col.links.map((l) => (
+                      <li key={`${col.heading}-${l.label}`}>
+                        <Link
+                          href={l.href}
+                          className="flex min-h-9 items-center text-small text-on-navy underline-offset-4 transition-colors hover:text-white hover:underline"
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-8 flex flex-col gap-4 border-t border-navy-700 pt-5">
-            <ul className="flex flex-wrap items-center gap-x-4">
+            <ul className="grid grid-cols-2 gap-x-6 sm:flex sm:flex-wrap sm:items-center sm:gap-x-4">
               {LEGAL_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link

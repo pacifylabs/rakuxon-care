@@ -31,18 +31,37 @@ export async function SiteHeader() {
             .map((s) => ({ label: s.title, href: serviceHref(s) })),
   }));
 
+  const agencyNavTitle: Record<string, string> = {
+    "interview-readiness": "Manager and NI preparation",
+    frameworks: "Council and NHS frameworks",
+    consulting: "Consulting and advisory",
+    coaching: "Coaching sessions",
+    "hr-documents": "HR document pack",
+    staffing: "Recruitment and staffing",
+    "statement-of-purpose": "Statement of purpose",
+  };
+
   const agencyClusters: NavCluster[] = AGENCY_CLUSTERS.map((meta) => ({
-    label: meta.label,
+    label: meta.eyebrow,
     links: [
       ...agencyServices
         .filter((s) => s.cluster === meta.id)
-        .map((s) => ({ label: s.title, href: serviceHref(s) })),
+        .map((s) => ({
+          label: agencyNavTitle[s.slug] ?? s.title,
+          href: serviceHref(s),
+        })),
       ...AGENCY_EXTRA_PAGES.filter((p) => p.cluster === meta.id).map((p) => ({
         label: p.title,
         href: `/agency/${p.slug}`,
       })),
     ],
   }));
+
+  const agencyColumns: NavCluster[][] = [
+    agencyClusters.slice(0, 1),
+    agencyClusters.slice(1, 3),
+    agencyClusters.slice(3, 5),
+  ];
 
   const lanes: { care: NavLane; agency: NavLane } = {
     care: {
@@ -56,10 +75,11 @@ export async function SiteHeader() {
     agency: {
       trigger: "For care businesses",
       eyebrow: armTwo.name,
-      label: "Build and grow a care business",
+      label: "Care business services",
       href: "/agency",
-      blurb: armTwo.audience,
+      blurb: "CQC, tenders, digital and staffing",
       clusters: agencyClusters,
+      columns: agencyColumns,
     },
   };
 

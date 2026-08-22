@@ -1,35 +1,50 @@
 import { BadgeCheck, HeartHandshake, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
-/*
- * Replaces the invented partner-logo row ("Boltshift", "Lightbox", …). Those
- * companies did not exist. This is the trust line and the three practice
- * badges as published on the Rakuxon Care source site.
- */
 const BADGES = [
-  { icon: BadgeCheck, label: "CQC-conscious practice" },
-  { icon: HeartHandshake, label: "Person-centred by design" },
-  { icon: MapPin, label: "UK care expertise" },
+  {
+    icon: BadgeCheck,
+    title: "Written to CQC standards",
+    body: "Plans and notes prepared the way an inspection would read them.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "The person sets the pace",
+    body: "Routines and preferences agreed at home before anyone starts.",
+  },
+  {
+    icon: MapPin,
+    title: "Care stays in the home",
+    body: "Support where life already is — not a move to somewhere new.",
+  },
 ];
 
 export function TrustStrip() {
   return (
     <section className="pb-12 md:pb-16">
       <Container>
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col gap-6">
           <p className="text-center text-small text-ink-500">
             Proudly serving families across the UK
           </p>
-          <ul className="flex flex-wrap items-center justify-center gap-3">
-            {BADGES.map(({ icon: Icon, label }) => (
-              <li key={label}>
-                <span className="inline-flex items-center gap-2 rounded-pill border border-navy-100 bg-paper-100 px-4 py-2 text-small text-ink-700">
-                  <Icon
-                    className="size-4 shrink-0 text-care-600"
-                    strokeWidth={1.75}
-                    aria-hidden="true"
-                  />
-                  {label}
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+            {BADGES.map(({ icon: Icon, title, body }) => (
+              <li
+                key={title}
+                className="flex items-start gap-3 rounded-md border border-navy-100 bg-paper-100 px-4 py-4"
+              >
+                <Icon
+                  className="mt-0.5 size-5 shrink-0 text-care-600"
+                  strokeWidth={1.75}
+                  aria-hidden="true"
+                />
+                <span className="min-w-0">
+                  <span className="block font-display text-body font-semibold text-ink-900">
+                    {title}
+                  </span>
+                  <span className="mt-1 block text-small text-ink-500">
+                    {body}
+                  </span>
                 </span>
               </li>
             ))}

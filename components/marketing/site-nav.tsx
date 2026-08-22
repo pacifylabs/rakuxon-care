@@ -26,6 +26,8 @@ export interface NavLane {
   href: string;
   blurb: string;
   clusters: NavCluster[];
+  /** Stack clusters inside these columns. Defaults to one cluster per column. */
+  columns?: NavCluster[][];
 }
 
 /* 04_SITE_ARCHITECTURE §2 — global nav. Home is kept ahead of the two lane
@@ -34,7 +36,48 @@ const TAIL_LINKS = [
   { label: "About & CQC", href: "/about" },
 ];
 
+function ClusterList({
+  cluster,
+  care,
+}: {
+  cluster: NavCluster;
+  care: boolean;
+}) {
+  return (
+    <div className="flex min-w-0 flex-col gap-1">
+      <p
+        className={cn(
+          "px-3 text-overline uppercase",
+          care ? "text-care-700" : "text-navy-800",
+        )}
+      >
+        {cluster.label}
+      </p>
+      <ul className="flex min-w-0 flex-col">
+        {cluster.links.map((l) => (
+          <li key={l.href} className="min-w-0">
+            <NavigationMenu.Link asChild>
+              <Link
+                href={l.href}
+                className="group/link flex min-h-11 min-w-0 items-center justify-between gap-2 rounded-md px-3 py-2 text-ink-700 transition-colors hover:bg-paper-0 hover:text-navy-800"
+              >
+                <span>{l.label}</span>
+                <ChevronRight
+                  className="size-4 shrink-0 text-ink-300 opacity-0 transition-all duration-200 group-hover/link:translate-x-0.5 group-hover/link:opacity-100"
+                  aria-hidden="true"
+                />
+              </Link>
+            </NavigationMenu.Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function LaneMenu({ lane, care }: { lane: NavLane; care: boolean }) {
+  const columns = lane.columns ?? lane.clusters.map((cluster) => [cluster]);
+
   return (
     <NavigationMenu.Item>
       <NavigationMenu.Trigger className="group inline-flex min-h-11 items-center gap-1.5 rounded-pill px-2.5 text-body whitespace-nowrap text-ink-700 transition-colors hover:bg-navy-50 hover:text-navy-800 data-[state=open]:bg-navy-50 data-[state=open]:text-navy-800 xl:px-3">
@@ -78,42 +121,23 @@ function LaneMenu({ lane, care }: { lane: NavLane; care: boolean }) {
           <div
             className={cn(
               "mt-5 grid gap-x-6 gap-y-5",
-              lane.clusters.length > 3
+              columns.length > 3
                 ? "md:grid-cols-3"
                 : "md:grid-cols-2 lg:grid-cols-3",
             )}
           >
-            {lane.clusters.map((c) => (
-              <div key={c.label} className="flex min-w-0 flex-col gap-1">
-                <p
-                  className={cn(
-                    "px-3 text-overline uppercase",
-                    care ? "text-care-700" : "text-navy-800",
-                  )}
-                >
-                  {c.label}
-                </p>
-                <ul className="flex min-w-0 flex-col">
-                  {c.links.map((l) => (
-                    <li key={l.href} className="min-w-0">
-                      <NavigationMenu.Link asChild>
-                        <Link
-                          href={l.href}
-                          className="group/link flex min-h-11 min-w-0 items-center justify-between gap-2 rounded-md px-3 py-2 text-ink-700 transition-colors hover:bg-paper-0 hover:text-navy-800"
-                        >
-                          {/* Wraps rather than truncating — several cluster
-                              labels are longer than a third of the panel and
-                              an ellipsis hides which service the link is. */}
-                          <span>{l.label}</span>
-                          <ChevronRight
-                            className="size-4 shrink-0 text-ink-300 opacity-0 transition-all duration-200 group-hover/link:translate-x-0.5 group-hover/link:opacity-100"
-                            aria-hidden="true"
-                          />
-                        </Link>
-                      </NavigationMenu.Link>
-                    </li>
-                  ))}
-                </ul>
+            {columns.map((column) => (
+              <div
+                key={column.map((c) => c.label).join("-")}
+                className="flex min-w-0 flex-col gap-5"
+              >
+                {column.map((cluster) => (
+                  <ClusterList
+                    key={cluster.label}
+                    cluster={cluster}
+                    care={care}
+                  />
+                ))}
               </div>
             ))}
           </div>
@@ -151,7 +175,7 @@ export function SiteNav({
             aria-label="Rakuxon Care — home"
             className="flex min-h-11 shrink-0 items-center rounded-sm py-1"
           >
-            <Logo variant="auto" priority className="h-8 md:h-10" />
+            <Logo variant="auto" priority className="h-12 md:h-14" />
           </Link>
 
           {/* Desktop nav. Careers and Contact left the bar, so the four
@@ -202,20 +226,22 @@ export function SiteNav({
 
           {/* ---------------- Below xl ---------------- */}
           <Dialog.Root open={drawerOpen} onOpenChange={setDrawerOpen}>
-            <ThemeToggle className="lg:hidden" />
-            <Dialog.Trigger
-              aria-label="Open menu"
-              className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-pill border-2 border-navy-800 px-3 text-small font-semibold text-navy-800 transition-colors hover:bg-navy-50 sm:px-4 lg:hidden"
-            >
-              <Menu className="size-5" aria-hidden="true" />
-              <span className="hidden sm:inline">Menu</span>
-            </Dialog.Trigger>
+            <div className="flex shrink-0 items-center gap-1 lg:hidden">
+              <ThemeToggle />
+              <Dialog.Trigger
+                aria-label="Open menu"
+                className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-pill border-2 border-navy-800 px-3 text-small font-semibold text-navy-800 transition-colors hover:bg-navy-50 sm:px-4"
+              >
+                <Menu className="size-5" aria-hidden="true" />
+                <span className="hidden sm:inline">Menu</span>
+              </Dialog.Trigger>
+            </div>
             <Dialog.Portal>
               <Dialog.Overlay className="fixed inset-0 z-50 bg-navy-900/40 backdrop-blur-sm" />
               <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-full max-w-96 flex-col overflow-y-auto bg-paper-50 shadow-card focus:outline-none">
                 <Dialog.Title className="sr-only">Menu</Dialog.Title>
                 <div className="flex items-center justify-between border-b border-navy-100 px-5 py-3">
-                  <Logo variant="auto" className="h-8" />
+                  <Logo variant="auto" className="h-12" />
                   <Dialog.Close
                     aria-label="Close menu"
                     className="inline-flex size-11 items-center justify-center rounded-pill text-ink-700 transition-colors hover:bg-navy-50"

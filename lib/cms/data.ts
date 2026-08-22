@@ -42,7 +42,7 @@ export const ARMS: Arm[] = [
     name: "Rakuxon Care Agency",
     laneLabel: "For care businesses",
     lane: "b2b",
-    audience: "Other care providers",
+    audience: "CQC, tenders, digital and staffing",
     summary:
       "Enablement for care businesses: CQC registration, tenders and frameworks, policies, digital and branding, consulting, and Rakuxon Staffing.",
     href: "/agency",

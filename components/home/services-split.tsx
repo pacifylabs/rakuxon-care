@@ -19,16 +19,16 @@ export function ServicesSplit({ services }: { services: Service[] }) {
   return (
     <section id="services" className="scroll-mt-24 py-14 md:py-20">
       <Container>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid items-stretch gap-6 lg:grid-cols-2">
           <Photo
             photo={PHOTOS.carerBedside}
-            ratio="16/9"
+            ratio="fill"
             duotone="care"
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="shadow-card lg:aspect-[4/5]"
+            className="shadow-card"
           />
 
-          <div className="flex flex-col gap-6 rounded-lg bg-paper-100 p-5 shadow-card sm:p-8">
+          <div className="flex h-full flex-col gap-5 rounded-lg bg-paper-100 p-5 shadow-card sm:p-8">
             <div className="flex flex-col items-start gap-4">
               <span className="inline-flex items-center rounded-pill bg-care-100 px-3 py-1 text-overline text-care-700 uppercase">
                 Services
@@ -44,7 +44,7 @@ export function ServicesSplit({ services }: { services: Service[] }) {
               </Link>
             </div>
 
-            <div className="mt-auto grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-2">
               {featured.map((service) => {
                 const Icon = SERVICE_ICONS[service.slug] ?? HandHeart;
                 return (
