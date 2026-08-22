@@ -8,10 +8,10 @@ export function CtaBand() {
     <section className="py-14 md:py-20">
       <Container>
         <div className="flex flex-col items-center gap-4 rounded-lg bg-navy-50 px-6 py-14 text-center md:px-12 md:py-20">
-          <h2 className="text-h2">Talk to us about care today</h2>
+          <h2 className="text-h2">Tell us what would help</h2>
           <p className="measure text-ink-500">
-            One conversation, no obligation, and no commitment until you have
-            read the plan in writing.
+            Looking for care at home, or trying to make a care service stronger?
+            Leave a few details and the right person will be in touch.
           </p>
           <Link
             href="/contact"

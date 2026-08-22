@@ -43,6 +43,19 @@
   --color-care-100: #dcf2ea;
   --color-care-50: #eef8f4;
 
+  /* ── Solid brand fills · identical in both themes ───────────
+     navy-800 and care-700 are overwhelmingly TEXT tokens (45 and 24
+     usages), so in dark mode they invert to light. These are the
+     handful of places where the same navy is a solid FILL — buttons,
+     the skip link, badges — and must stay navy against white text in
+     both themes. Keeping them separate is what lets the text tokens
+     flip without breaking every button.                              */
+  --color-brand-navy: #1f3864;
+  --color-brand-navy-hover: #2e4a7d;
+  --color-brand-navy-active: #10203d;
+  --color-brand-care: #158368;
+  --color-brand-care-hover: #0f6e56;
+
   /* ── Warm accent · optional, max one per view ───────────── */
   --color-accent-600: #c2410c;
   --color-accent-500: #ea580c;
@@ -266,5 +279,94 @@
 
   .animate-accordion-up {
     animation: accordion-up 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ============================================================
+   Dark theme
+   ------------------------------------------------------------
+   Three states, per the design system's accessibility floor:
+     1. no data-theme  -> follow the OS via prefers-color-scheme
+     2. data-theme=dark -> force dark, beating the media query
+     3. data-theme=light -> force light, beating the media query
+
+   Only token VALUES change. No utility, component or layout is
+   theme-aware, so switching cannot shift layout.
+
+   Backgrounds are navy-tinted charcoal rather than pure black
+   (#000 on an OLED panel makes the soft shadows invisible and
+   raises halation on body text). Brand text tokens invert to
+   light; the solid --color-brand-* fills above do not.
+   ============================================================ */
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+
+      --color-paper-50: #0f1620;
+      --color-paper-100: #18212e;
+      --color-paper-0: #131b26;
+
+      --color-ink-900: #eef3f9;
+      --color-ink-700: #c6d1de;
+      --color-ink-500: #9aa9bb;
+      --color-ink-300: #465366;
+
+      --color-navy-900: #0b1220;
+      --color-navy-800: #a8c4ea;
+      --color-navy-700: #35455f;
+      --color-navy-600: #43566f;
+      --color-navy-100: #1e2b40;
+      --color-navy-50: #131c2b;
+
+      --color-care-700: #63d2ad;
+      --color-care-600: #46c39a;
+      --color-care-500: #55cfa6;
+      --color-care-100: #16302a;
+      --color-care-50: #0f1b18;
+
+      --color-info: #a8c4ea;
+
+      --shadow-card: 0 1px 3px rgb(0 0 0 / 0.5), 0 8px 24px rgb(0 0 0 / 0.38);
+      --shadow-card-hover:
+        0 2px 6px rgb(0 0 0 / 0.55), 0 16px 40px rgb(0 0 0 / 0.45);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --color-paper-50: #0f1620;
+    --color-paper-100: #18212e;
+    --color-paper-0: #131b26;
+
+    --color-ink-900: #eef3f9;
+    --color-ink-700: #c6d1de;
+    --color-ink-500: #9aa9bb;
+    --color-ink-300: #465366;
+
+    --color-navy-900: #0b1220;
+    --color-navy-800: #a8c4ea;
+    --color-navy-700: #35455f;
+    --color-navy-600: #43566f;
+    --color-navy-100: #1e2b40;
+    --color-navy-50: #131c2b;
+
+    --color-care-700: #63d2ad;
+    --color-care-600: #46c39a;
+    --color-care-500: #55cfa6;
+    --color-care-100: #16302a;
+    --color-care-50: #0f1b18;
+
+    --color-info: #a8c4ea;
+
+    --shadow-card: 0 1px 3px rgb(0 0 0 / 0.5), 0 8px 24px rgb(0 0 0 / 0.38);
+    --shadow-card-hover:
+      0 2px 6px rgb(0 0 0 / 0.55), 0 16px 40px rgb(0 0 0 / 0.45);
   }
 }

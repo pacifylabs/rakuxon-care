@@ -49,42 +49,54 @@ export default async function ContactPage() {
             <div className="flex flex-col gap-4 rounded-lg bg-paper-100 p-6 shadow-card">
               <h2 className="text-h4">Direct contact</h2>
               <dl className="flex flex-col gap-3">
-                <div>
-                  <dt className="text-small text-ink-500">Email</dt>
-                  <dd>
-                    <a
-                      href={`mailto:${settings.email}`}
-                      className="text-navy-800 underline-offset-4 hover:underline"
-                    >
-                      {settings.email}
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-small text-ink-500">Phone</dt>
-                  <dd>
-                    <a
-                      href={`tel:${settings.phone.replace(/\s/g, "")}`}
-                      className="text-navy-800 underline-offset-4 hover:underline"
-                    >
-                      {settings.phone}
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-small text-ink-500">Address</dt>
-                  <dd className="text-ink-700">
-                    {settings.address.map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </dd>
-                </div>
+                {/* Email is the one confirmed channel for the care brand.
+                    Phone and address are omitted rather than filled with
+                    plausible values — see TODO.md. */}
+                {settings.email ? (
+                  <div>
+                    <dt className="text-small text-ink-500">Email</dt>
+                    <dd>
+                      <a
+                        href={`mailto:${settings.email}`}
+                        className="break-all text-navy-800 underline-offset-4 hover:underline"
+                      >
+                        {settings.email}
+                      </a>
+                    </dd>
+                  </div>
+                ) : null}
+                {settings.phone ? (
+                  <div>
+                    <dt className="text-small text-ink-500">Phone</dt>
+                    <dd>
+                      <a
+                        href={`tel:${settings.phone.replace(/\s/g, "")}`}
+                        className="text-navy-800 underline-offset-4 hover:underline"
+                      >
+                        {settings.phone}
+                      </a>
+                    </dd>
+                  </div>
+                ) : null}
+                {settings.address ? (
+                  <div>
+                    <dt className="text-small text-ink-500">Address</dt>
+                    <dd className="text-ink-700">
+                      {settings.address.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                ) : null}
+                {settings.regionsServed ? (
+                  <div>
+                    <dt className="text-small text-ink-500">Coverage</dt>
+                    <dd className="text-ink-700">{settings.regionsServed}</dd>
+                  </div>
+                ) : null}
               </dl>
-              <p className="text-small text-ink-500">
-                Placeholder contact details — PRD §10.
-              </p>
             </div>
             <CqcBadge />
           </aside>

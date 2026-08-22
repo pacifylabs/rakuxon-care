@@ -1,8 +1,9 @@
 import { Container } from "@/components/ui/container";
 
-/* Structure now, approved copy later — PRD §9 question 6 assigns ownership
-   of the legal text. Each page states plainly that it is not final rather
-   than presenting placeholder text as a binding policy. */
+/* Legal text is the company's to write and approve; inventing it here would
+   be worse than leaving it out, since these documents bind. Each page states
+   plainly that the notice is in preparation and gives the real contact route,
+   rather than listing invented section stubs. */
 export function LegalPage({
   title,
   summary,
@@ -26,9 +27,15 @@ export function LegalPage({
             role="note"
             className="rounded-md border-2 border-warning bg-paper-100 px-5 py-4 text-ink-900"
           >
-            <strong>Not final.</strong> This page carries the structure only.
-            The binding text must be written and approved before launch — see
-            PRD §9, question 6.
+            <strong>In preparation.</strong> This notice is being written and
+            approved. For anything you need in the meantime, email{" "}
+            <a
+              href="mailto:hello@rakuxoncare.co.uk"
+              className="break-all underline underline-offset-4"
+            >
+              hello@rakuxoncare.co.uk
+            </a>
+            .
           </p>
 
           <div className="mt-6 flex flex-col gap-10">

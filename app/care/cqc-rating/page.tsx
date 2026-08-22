@@ -54,10 +54,19 @@ export default async function CqcRatingPage() {
           >
             Ask about our registration
           </Link>
-          <p className="text-small text-ink-500">
-            Company number {settings.companyNumber} · ICO{" "}
-            {settings.icoRegistration}
-          </p>
+          {settings.companyNumber || settings.icoRegistration ? (
+            <p className="text-small text-ink-500">
+              {settings.companyNumber
+                ? `Company number ${settings.companyNumber}`
+                : null}
+              {settings.companyNumber && settings.icoRegistration
+                ? " · "
+                : null}
+              {settings.icoRegistration
+                ? `ICO ${settings.icoRegistration}`
+                : null}
+            </p>
+          ) : null}
         </div>
       </Section>
     </>

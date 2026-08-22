@@ -12,11 +12,12 @@ export function AboutIntro() {
           <span className="inline-flex items-center rounded-pill bg-navy-100 px-3 py-1 text-overline text-navy-800 uppercase">
             About
           </span>
-          <h2 className="text-h2">Caring for you, backed by expertise</h2>
+          <h2 className="text-h2">Care that feels like care</h2>
           <p className="measure text-ink-500">
-            We combine hands-on home care with the operational knowledge that
-            keeps a care service running, so families and providers both get the
-            benefit of the same experience.
+            There is a difference between support that is delivered and support
+            that is felt. Rakuxon brings practitioner knowledge to every part of
+            the care journey — so families get reassurance, people get dignity,
+            and care leaders get a partner who understands the real work.
           </p>
         </div>
         <Photo

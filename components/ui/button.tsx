@@ -34,10 +34,10 @@ const tertiarySizes: Record<ButtonSize, string> = {
 const variants: Record<ButtonVariant, Record<ButtonTone, string>> = {
   primary: {
     navy:
-      "bg-navy-800 text-white hover:bg-navy-700 active:bg-navy-900 " +
+      "bg-brand-navy text-white hover:bg-brand-navy-hover active:bg-brand-navy-active " +
       "disabled:bg-ink-300 disabled:text-white",
     care:
-      "bg-care-600 text-white hover:bg-care-700 active:bg-care-700 " +
+      "bg-brand-care text-white hover:bg-brand-care-hover active:bg-brand-care-hover " +
       "active:brightness-90 disabled:bg-ink-300 disabled:text-white",
   },
   secondary: {

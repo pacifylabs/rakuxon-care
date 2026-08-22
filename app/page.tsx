@@ -4,9 +4,7 @@ import { FaqSection } from "@/components/home/faq-section";
 import { Hero } from "@/components/home/hero";
 import { Personalized } from "@/components/home/personalized";
 import { ServicesSplit } from "@/components/home/services-split";
-import { Specialists } from "@/components/home/specialists";
 import { StatBand } from "@/components/home/stat-band";
-import { Testimonials } from "@/components/home/testimonials";
 import { TrustStrip } from "@/components/home/trust-strip";
 import { TwoArms } from "@/components/home/two-arms";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
@@ -17,8 +15,6 @@ import {
   getMarketStats,
   getProcess,
   getSiteSettings,
-  getTeam,
-  getTestimonials,
 } from "@/lib/cms";
 
 /**
@@ -37,16 +33,13 @@ import {
  * beneath it rather than inside it.
  */
 export default async function HomePage() {
-  const [arms, stats, careProcess, testimonials, team, faqs, settings] =
-    await Promise.all([
-      getArms(),
-      getMarketStats("compact"),
-      getProcess("b2c"),
-      getTestimonials(),
-      getTeam(),
-      getFaqs(),
-      getSiteSettings(),
-    ]);
+  const [arms, stats, careProcess, faqs, settings] = await Promise.all([
+    getArms(),
+    getMarketStats("compact"),
+    getProcess("b2c"),
+    getFaqs(),
+    getSiteSettings(),
+  ]);
 
   return (
     <>
@@ -55,7 +48,7 @@ export default async function HomePage() {
       <AboutIntro />
       <StatBand
         stats={stats}
-        caption="Adult social care in England. Source citations to be confirmed before launch."
+        caption="Adult social care in England, latest published figures (March 2025)."
       />
       <ServicesSplit />
       <TwoArms arms={arms} />
@@ -63,8 +56,6 @@ export default async function HomePage() {
       <WorkingProcess steps={careProcess} />
       <WhyChooseUs />
       <CtaBand />
-      <Specialists members={team} />
-      <Testimonials testimonials={testimonials} />
       <FaqSection faqs={faqs} />
     </>
   );

@@ -8,8 +8,7 @@ import { Photo } from "@/components/ui/photo";
 import { IconCard, StatCard } from "@/components/marketing/cards";
 import { PHOTOS } from "@/lib/images";
 import { Section, SectionIntro } from "@/components/marketing/section";
-import { TeamGrid } from "@/components/marketing/team-grid";
-import { getArms, getMarketStats, getSiteSettings, getTeam } from "@/lib/cms";
+import { getArms, getMarketStats, getSiteSettings } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "About",
@@ -20,10 +19,9 @@ export const metadata: Metadata = {
 const ARM_ICONS = [HeartHandshake, Building2];
 
 export default async function AboutPage() {
-  const [arms, stats, team, settings] = await Promise.all([
+  const [arms, stats, settings] = await Promise.all([
     getArms(),
     getMarketStats("compact"),
-    getTeam(),
     getSiteSettings(),
   ]);
 
@@ -38,9 +36,9 @@ export default async function AboutPage() {
             </span>
             <h1 className="text-h1">Two jobs, done by one team</h1>
             <p className="measure text-body-lg text-ink-500">
-              Placeholder story pending PRD §1. The shape is set: Rakuxon Care
-              both delivers care and builds the businesses that deliver it, and
-              each side makes the other better informed.
+              Rakuxon brings practitioner knowledge to every part of the care
+              journey — so families get reassurance, people get dignity, and
+              care leaders get a partner who understands the real work.
             </p>
           </div>
         </Container>
@@ -64,8 +62,9 @@ export default async function AboutPage() {
               because the care service is regulated in its own right.
             </p>
             <p className="text-ink-700">
-              Placeholder narrative. Final copy, founding date and the real
-              origin story are owed by PRD §1.
+              We believe the best care is reliable, respectful and clear. No
+              jargon. No shortcuts. Just people who know what good looks like,
+              and show up for it.
             </p>
             <CqcBadge />
           </div>
@@ -101,20 +100,8 @@ export default async function AboutPage() {
           ))}
         </div>
         <p className="measure mx-auto mt-8 text-center text-small text-ink-500">
-          Adult social care in England. Source citations to be confirmed before
-          launch.
+          Adult social care in England, latest published figures (March 2025).
         </p>
-      </Section>
-
-      <Section>
-        <SectionIntro
-          eyebrow="Team"
-          title="Who you will actually deal with"
-          subtitle="Placeholder people pending PRD §10 team content and photography."
-        />
-        <div className="mt-12">
-          <TeamGrid members={team} />
-        </div>
       </Section>
 
       <Section tint="paper">

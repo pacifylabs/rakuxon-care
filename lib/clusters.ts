@@ -91,11 +91,6 @@ export const CARE_TRUST_PAGES = [
     summary: "Our registration status and inspection history.",
   },
   {
-    slug: "testimonials",
-    title: "Client and family testimonials",
-    summary: "What families say about the care we deliver.",
-  },
-  {
     slug: "refer",
     title: "Refer or request care",
     summary: "Start a care enquiry or refer someone.",
@@ -109,22 +104,10 @@ export const CARE_TRUST_PAGES = [
 
 export const AGENCY_EXTRA_PAGES = [
   {
-    slug: "opportunities",
-    title: "Live tender opportunities",
-    cluster: "tenders-frameworks" as Cluster,
-    summary: "Open tenders and framework rounds, updated as they publish.",
-  },
-  {
     slug: "digital-audit",
     title: "Free digital audit",
     cluster: "brand-digital" as Cluster,
     summary: "A review of how you look to families and commissioners.",
-  },
-  {
-    slug: "case-studies",
-    title: "Case studies and results",
-    cluster: "advisory" as Cluster,
-    summary: "Providers we have registered, staffed and grown.",
   },
   {
     slug: "book-a-call",

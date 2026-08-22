@@ -49,17 +49,21 @@ export function WhyChooseUs() {
           />
           <div className="flex flex-col items-start gap-4">
             <span className="inline-flex items-center rounded-pill bg-navy-100 px-3 py-1 text-overline text-navy-800 uppercase">
-              Why choose us
+              The people behind the promise
             </span>
             <h2 className="text-h2">
-              The only consultancy
-              <br className="hidden sm:block" /> that runs its own service
+              We know care
+              <br className="hidden sm:block" /> because we do care
             </h2>
             <p className="measure text-ink-500">
-              Care consultancies sell credibility they do not hold. We hold it,
-              because we deliver regulated care every day, and we sell only what
-              that service actually uses.
+              Rakuxon was shaped by people who have worked inside care — with
+              families, with teams, and with the responsibilities that sit
+              behind every visit. That lived perspective keeps our work
+              practical, warm and accountable.
             </p>
+            <blockquote className="measure border-l-2 border-care-600 pl-4 font-serif text-body-lg text-ink-700 italic">
+              Respect is not an extra in care. It is the starting point.
+            </blockquote>
           </div>
         </div>
 

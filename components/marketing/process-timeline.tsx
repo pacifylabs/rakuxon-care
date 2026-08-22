@@ -24,7 +24,7 @@ export function ProcessTimeline({
           key={step.number}
           className={
             invert
-              ? "relative flex flex-col gap-2 overflow-hidden rounded-lg border border-navy-700 bg-navy-800 p-6"
+              ? "relative flex flex-col gap-2 overflow-hidden rounded-lg border border-navy-700 bg-brand-navy p-6"
               : "relative flex flex-col gap-2 overflow-hidden rounded-lg bg-paper-100 p-6 shadow-card"
           }
         >

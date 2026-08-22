@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Phone, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Mail, ShieldCheck } from "lucide-react";
 import { buttonClasses } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Photo } from "@/components/ui/photo";
@@ -64,27 +64,34 @@ export function Hero({ cqc }: { cqc: CqcStatus }) {
           <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
             <span className="inline-flex items-center gap-2 rounded-pill bg-navy-100 px-3 py-1 text-overline text-navy-800 uppercase">
               <ShieldCheck className="size-3.5" aria-hidden="true" />
-              We do what we sell
+              Care, with authority
             </span>
             <h1 className="mt-5 text-h1">
-              We run the care service
-              <br className="hidden sm:block" /> we help others build
+              Good care starts
+              <br className="hidden sm:block" /> with being seen
             </h1>
             <p className="measure mt-5 text-body-lg text-ink-500">
-              Rakuxon Care is a home care provider and a care-business
-              consultancy. Every policy, tender and framework we sell is one we
-              use in our own regulated service.
+              Dependable support at home, built around your person. And
+              practical expertise for the people building better care services.
             </p>
-            <Link
-              href="/contact"
-              className={buttonClasses({
-                tone: "care",
-                size: "lg",
-                className: "mt-8",
-              })}
-            >
-              Get in touch
-            </Link>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/contact"
+                className={buttonClasses({ tone: "care", size: "lg" })}
+              >
+                Talk about care
+              </Link>
+              <Link
+                href="/agency"
+                className={buttonClasses({
+                  variant: "secondary",
+                  tone: "navy",
+                  size: "lg",
+                })}
+              >
+                For care organisations
+              </Link>
+            </div>
           </div>
 
           {/* Floating card row. */}
@@ -92,8 +99,8 @@ export function Hero({ cqc }: { cqc: CqcStatus }) {
             <div className="flex flex-col gap-4 rounded-lg bg-paper-100 p-5 shadow-card">
               <div className="flex items-start justify-between gap-3">
                 <p className="font-display text-h4 text-ink-900">
-                  Two arms,
-                  <br /> one team
+                  One group,
+                  <br /> connected help
                 </p>
                 <ArrowUpRight
                   className="size-5 shrink-0 text-ink-500"
@@ -110,7 +117,8 @@ export function Hero({ cqc }: { cqc: CqcStatus }) {
                 ]}
               />
               <p className="text-small text-ink-500">
-                Care delivery and care-business support, run by the same people
+                Care, advisory, digital and people — one human-first view of
+                care
               </p>
             </div>
 
@@ -137,7 +145,7 @@ export function Hero({ cqc }: { cqc: CqcStatus }) {
                   sizes="160px"
                   className="w-32 sm:w-40"
                 />
-                <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-pill bg-navy-800 px-3 py-1 text-small whitespace-nowrap text-white shadow-card">
+                <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-pill bg-brand-navy px-3 py-1 text-small whitespace-nowrap text-white shadow-card">
                   {cqc.state === "registered"
                     ? `Rated ${cqc.rating}`
                     : "CQC in progress"}
@@ -153,14 +161,14 @@ export function Hero({ cqc }: { cqc: CqcStatus }) {
                   <br /> home
                 </p>
                 <a
-                  href="tel:00000000000"
-                  className="inline-flex min-h-11 items-center gap-2 text-small text-ink-700 underline-offset-4 hover:underline"
+                  href="mailto:hello@rakuxoncare.co.uk"
+                  className="inline-flex min-h-11 items-center gap-2 text-small break-all text-ink-700 underline-offset-4 hover:underline"
                 >
-                  <Phone
+                  <Mail
                     className="size-4 shrink-0 text-care-600"
                     aria-hidden="true"
                   />
-                  0000 000 0000
+                  hello@rakuxoncare.co.uk
                 </a>
               </div>
             </div>

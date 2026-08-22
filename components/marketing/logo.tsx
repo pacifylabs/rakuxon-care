@@ -9,12 +9,13 @@ import { cn } from "@/lib/cn";
  * footer. /logo-navy.png and /logo-white.png are transparent-background
  * variants generated from it — see TODO.md.
  */
+/* Each variant carries its own intrinsic size. They are not the same
+   aspect ratio (3.000 vs 2.809), so a single shared constant stretched
+   whichever one it did not describe. */
 const SRC = {
-  navy: "/logo-navy.png",
-  white: "/logo-white.png",
+  navy: { src: "/logo-navy.png", width: 2172, height: 724 },
+  white: { src: "/logo-white.png", width: 2101, height: 748 },
 } as const;
-
-const INTRINSIC = { width: 919, height: 267 };
 
 /* Size with a height class (`h-6`, `h-7`); width follows the aspect ratio.
    In a `flex-col` parent, add `self-start` — otherwise align-items:stretch
@@ -30,10 +31,10 @@ export function Logo({
 }) {
   return (
     <Image
-      src={SRC[variant]}
+      src={SRC[variant].src}
       alt="Rakuxon Care"
-      width={INTRINSIC.width}
-      height={INTRINSIC.height}
+      width={SRC[variant].width}
+      height={SRC[variant].height}
       priority={priority}
       className={cn("w-auto", className)}
     />

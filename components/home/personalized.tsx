@@ -54,7 +54,7 @@ export function Personalized() {
                   <span
                     aria-hidden="true"
                     className={`size-2.5 shrink-0 rounded-pill ${
-                      item.tone === "care" ? "bg-care-600" : "bg-navy-800"
+                      item.tone === "care" ? "bg-brand-care" : "bg-brand-navy"
                     }`}
                   />
                   {item.title}

@@ -22,11 +22,10 @@ export function TwoArms({ arms }: { arms: Arm[] }) {
           <span className="inline-flex items-center rounded-pill bg-navy-100 px-3 py-1 text-overline text-navy-800 uppercase">
             One brand, two sides
           </span>
-          <h2 className="text-h2">Which side are you on?</h2>
+          <h2 className="text-h2">Different disciplines, the same standard</h2>
           <p className="measure text-ink-500">
-            One side delivers care in people&rsquo;s homes. The other helps care
-            businesses register, win work and staff up. The first is what makes
-            the second credible.
+            From a first conversation at home to the systems behind a thriving
+            care business, our expertise connects.
           </p>
         </div>
 

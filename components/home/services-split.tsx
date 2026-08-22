@@ -26,9 +26,7 @@ export function ServicesSplit() {
               <span className="inline-flex items-center rounded-pill bg-navy-100 px-3 py-1 text-overline text-navy-800 uppercase">
                 Services
               </span>
-              <h2 className="text-h2">
-                Care delivered, and care businesses built
-              </h2>
+              <h2 className="text-h2">One group, four ways to help</h2>
               <p className="measure text-ink-500">
                 Rakuxon Care provides personal and domiciliary care at home.
                 Rakuxon Care Agency gives other providers the registration,

@@ -11,6 +11,7 @@ import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/marketing/logo";
 import { useScrolled } from "@/lib/hooks/use-scrolled";
 import { cn } from "@/lib/cn";
+import { ThemeToggle } from "@/components/marketing/theme-toggle";
 
 export interface NavCluster {
   label: string;
@@ -193,12 +194,7 @@ export function SiteNav({
           </NavigationMenu.Root>
 
           <div className="hidden shrink-0 items-center gap-2 xl:flex">
-            <Link
-              href="/login"
-              className="inline-flex min-h-11 items-center rounded-pill px-3 text-body whitespace-nowrap text-navy-800 transition-colors hover:bg-navy-50"
-            >
-              Log in
-            </Link>
+            <ThemeToggle />
             <Link
               href="/contact"
               className={cn(buttonClasses({ size: "sm" }), "whitespace-nowrap")}
@@ -209,6 +205,7 @@ export function SiteNav({
 
           {/* ---------------- Below xl ---------------- */}
           <Dialog.Root open={drawerOpen} onOpenChange={setDrawerOpen}>
+            <ThemeToggle className="xl:hidden" />
             <Dialog.Trigger
               aria-label="Open menu"
               className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-pill border-2 border-navy-800 px-4 text-small font-semibold text-navy-800 transition-colors hover:bg-navy-50 xl:hidden"
@@ -298,7 +295,7 @@ export function SiteNav({
                                   <span
                                     className={cn(
                                       "size-1.5 shrink-0 rounded-pill",
-                                      care ? "bg-care-600" : "bg-navy-800",
+                                      care ? "bg-brand-care" : "bg-brand-navy",
                                     )}
                                     aria-hidden="true"
                                   />
@@ -355,13 +352,6 @@ export function SiteNav({
                   </ul>
 
                   <div className="flex flex-col gap-3 border-t border-navy-100 pt-5">
-                    <Link
-                      href="/login"
-                      onClick={closeDrawer}
-                      className={buttonClasses({ variant: "secondary" })}
-                    >
-                      Log in
-                    </Link>
                     <Link
                       href="/contact"
                       onClick={closeDrawer}

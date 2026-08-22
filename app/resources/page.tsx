@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { buttonClasses } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Section, SectionIntro } from "@/components/marketing/section";
 
@@ -8,8 +10,8 @@ export const metadata: Metadata = {
     "Guides and insights on arranging care at home, and on registering, staffing and growing a care business.",
 };
 
-/* Placeholder hub. The blog/guides collections arrive with the CMS in
-   Phase 4; this exists so the global nav has a real destination. */
+/* No articles are published yet. The page states that plainly and routes the
+   reader to a conversation instead of showing an empty grid. */
 export default function ResourcesPage() {
   return (
     <>
@@ -29,10 +31,15 @@ export default function ResourcesPage() {
       </section>
       <Section tint="paper">
         <SectionIntro
-          eyebrow="Coming with the CMS"
-          title="Not yet populated"
-          subtitle="Posts and guides become a CMS collection in Phase 4. This page exists so the navigation has a real destination rather than a dead link."
+          eyebrow="In the meantime"
+          title="Nothing published here yet"
+          subtitle="Our guides are being written. If you have a question about arranging care or about registration, tenders and staffing, ask us directly — you will get a person, not a download."
         />
+        <div className="mt-8 flex justify-center">
+          <Link href="/contact" className={buttonClasses({ tone: "care" })}>
+            Ask us a question
+          </Link>
+        </div>
       </Section>
     </>
   );

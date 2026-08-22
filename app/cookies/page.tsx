@@ -12,26 +12,7 @@ export default function Page() {
     <LegalPage
       title="Cookie policy"
       summary="The cookies this site sets, what they do, and how to change your choice."
-      sections={[
-        {
-          heading: "Essential cookies",
-          body: [
-            "Placeholder — the cookies required to make the site work, which cannot be switched off.",
-          ],
-        },
-        {
-          heading: "Analytics cookies",
-          body: [
-            "Placeholder — the analytics provider and what it measures. Analytics are off until you accept them; no analytics cookie is set before consent.",
-          ],
-        },
-        {
-          heading: "Changing your choice",
-          body: [
-            "Placeholder — how to withdraw consent, including clearing the stored preference.",
-          ],
-        },
-      ]}
+      sections={[]}
     />
   );
 }

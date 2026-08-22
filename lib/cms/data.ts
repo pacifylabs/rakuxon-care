@@ -17,8 +17,8 @@ import type {
    Content aligned to PRD v2.0 — two arms, one authority.
 
    The market figures in MARKET_STATS are REAL, taken from PRD §7 ("use
-   these, not placeholders"). Everything else — testimonials, team, company
-   registration numbers, contact details — remains placeholder and is marked
+   these, not placeholders"). Anything not confirmed by a source — testimonials,
+   team, registration numbers, phone and address — is absent rather than
    as such in the UI. See TODO.md.
    =========================================================================== */
 
@@ -229,66 +229,20 @@ export const BUSINESS_PROCESS: ProcessStep[] = [
   },
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    id: "t1",
-    quote:
-      "They handled our CQC registration end to end. We opened three months earlier than planned.",
-    name: "Placeholder name",
-    role: "Director, placeholder home care provider",
-    lane: "b2b",
-  },
-  {
-    id: "t2",
-    quote:
-      "The same two carers every week. Mum knows them, and I stopped worrying about the handover.",
-    name: "Placeholder name",
-    role: "Daughter of a client",
-    lane: "b2c",
-  },
-  {
-    id: "t3",
-    quote:
-      "We had been rejected once before. They rebuilt the application and it went through first time.",
-    name: "Placeholder name",
-    role: "Registered manager",
-    lane: "b2b",
-  },
-  {
-    id: "t4",
-    quote:
-      "Booking took one phone call. The assessment happened at Dad's kitchen table two days later, and nothing was rushed.",
-    name: "Placeholder name",
-    role: "Family carer",
-    lane: "b2c",
-  },
-  {
-    id: "t5",
-    quote:
-      "They filled a fortnight of bank shifts at three days' notice, and every worker's file was already in order.",
-    name: "Placeholder name",
-    role: "Operations lead, placeholder provider",
-    lane: "b2b",
-  },
-  {
-    id: "t6",
-    quote:
-      "They told us we were not ready to submit, six weeks before we would have found out the hard way.",
-    name: "Placeholder name",
-    role: "Founder, placeholder provider",
-    lane: "b2b",
-  },
-];
+/* No client testimonials are published on either source. Inventing quotes
+   attributed to named people would be a fabrication, so the dataset is empty
+   and every surface that renders it hides itself. See TODO.md. */
+export const TESTIMONIALS: Testimonial[] = [];
 
 export const FAQS: Faq[] = [
   {
-    question: "How quickly can care start?",
+    question: "What kind of home care do you provide?",
     answer:
-      "Most packages begin within a week of the assessment. Where a hospital discharge is involved we can often move faster.",
+      "We provide personal and domiciliary care shaped around the individual. That can include companionship, personal care, medication support and help at home — always discussed with you first.",
     lane: "b2c",
   },
   {
-    question: "Do you take council-funded and NHS packages?",
+    question: "Do you work with councils and commissioners?",
     answer:
       "Yes. We work with local authorities, ICBs and NHS Continuing Healthcare, and with direct-payment and personal-budget clients.",
     lane: "b2c",
@@ -300,9 +254,9 @@ export const FAQS: Faq[] = [
     lane: "b2c",
   },
   {
-    question: "What makes Rakuxon different from other care consultancies?",
+    question: "Can you help an existing care business?",
     answer:
-      "We run our own CQC-registered care service. Every framework, policy and bid we sell is one we use in a service that is inspected against the same standards.",
+      "Yes. Whether you are preparing to register, responding to a tender or improving how your service is seen, our advice is grounded in care delivery — not theory.",
     lane: "b2b",
   },
   {
@@ -319,81 +273,40 @@ export const FAQS: Faq[] = [
   },
 ];
 
-export const TEAM: TeamMember[] = [
-  {
-    name: "Placeholder name",
-    role: "Founder",
-    bio: "Placeholder biography pending PRD §10 team content.",
-  },
-  {
-    name: "Placeholder name",
-    role: "Registered manager, Rakuxon Care",
-    bio: "Placeholder biography pending PRD §10 team content.",
-  },
-  {
-    name: "Placeholder name",
-    role: "Head of Rakuxon Staffing",
-    bio: "Placeholder biography pending PRD §10 team content.",
-  },
-];
+/* No team members are named on either source. Empty rather than invented.
+   See TODO.md. */
+export const TEAM: TeamMember[] = [];
 
 /* PRD §10 Q2 keeps CQC pinned to in-progress: Arm 1 is pre-registration per
    the roadmap. Flip to `registered` with rating and profile URL when it is. */
 export const SITE_SETTINGS: SiteSettings = {
   companyName: "Rakuxon Care",
   legalName: "Rakuxon Care Ltd",
-  companyNumber: "00000000 (placeholder)",
-  icoRegistration: "ZA000000 (placeholder)",
   cqc: { state: "in-progress" },
   easNote:
     "Rakuxon Staffing operates under the Conduct of Employment Agencies and Employment Businesses Regulations 2003.",
-  email: "hello@example.com",
-  phone: "0000 000 0000",
-  address: ["Placeholder address line 1", "Placeholder city", "AA1 1AA"],
-  regionsServed: ["Placeholder region — PRD §10 open decision 6"],
-  socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com" },
-    { label: "Facebook", href: "https://www.facebook.com" },
-    { label: "Instagram", href: "https://www.instagram.com" },
-  ],
+
+  /* The only contact channel confirmed for the care brand. Taken from the
+     Rakuxon Care source site. */
+  email: "hello@rakuxoncare.co.uk",
+
+  /* Deliberately absent — do not fill these with plausible values:
+     - phone: the source lists 020 7946 0000, which sits in Ofcom's
+       020 7946 0xxx range reserved for fiction. It is not a real number.
+     - address: rakuxon.com's London address belongs to the education
+       business (Rakuxon Ltd), not the care service.
+     - companyNumber / icoRegistration: never published on either source.
+     - socials: rakuxon.com's accounts are the education brand's.
+     See TODO.md. */
+
+  regionsServed: "Across the UK",
 };
 
 /**
- * Placeholder opportunities. In production this is either a CMS collection
+ * Live tender opportunities. In production this is either a CMS collection
  * or an external feed (Contracts Finder / Find a Tender); the shape is kept
  * deliberately close to those so the swap is a data-source change.
  */
-export const OPPORTUNITIES: Opportunity[] = [
-  {
-    id: "placeholder-1",
-    title: "Domiciliary care framework — Lot 2",
-    buyer: "Placeholder County Council",
-    region: "Placeholder region",
-    value: "Value on application",
-    closes: "Date to be confirmed",
-    status: "open",
-    summary:
-      "Placeholder entry. Live opportunities will be pulled from a feed rather than hand-entered.",
-  },
-  {
-    id: "placeholder-2",
-    title: "Supported living dynamic purchasing system",
-    buyer: "Placeholder ICB",
-    region: "Placeholder region",
-    value: "Value on application",
-    closes: "Date to be confirmed",
-    status: "closing-soon",
-    summary:
-      "Placeholder entry. Status, value and closing date come from the source feed.",
-  },
-  {
-    id: "placeholder-3",
-    title: "Complex care package — spot purchase",
-    buyer: "Placeholder Council",
-    region: "Placeholder region",
-    value: "Value on application",
-    closes: "Closed",
-    status: "closed",
-    summary: "Placeholder entry retained to show the closed state.",
-  },
-];
+/* The live tender feed needs a real data source (a CMS collection or an
+   external feed). Empty until one exists — see TODO.md. */
+export const OPPORTUNITIES: Opportunity[] = [];

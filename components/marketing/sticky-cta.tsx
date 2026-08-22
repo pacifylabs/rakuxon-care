@@ -15,7 +15,7 @@ export function StickyCta() {
   const consent = useConsent();
   const pathname = usePathname();
 
-  const suppressed = pathname === "/contact" || pathname.startsWith("/login");
+  const suppressed = pathname === "/contact";
   if (suppressed || !pastHero || consent === null) return null;
 
   return (

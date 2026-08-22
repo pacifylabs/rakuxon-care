@@ -130,7 +130,7 @@ export function SplitHero({
             </div>
 
             {/* Stat chip. */}
-            <div className="mt-3 inline-flex w-fit items-center gap-3 rounded-lg bg-navy-800 px-4 py-3 text-white shadow-card lg:absolute lg:-top-4 lg:right-0 lg:mt-0">
+            <div className="mt-3 inline-flex w-fit items-center gap-3 rounded-lg bg-brand-navy px-4 py-3 text-white shadow-card lg:absolute lg:-top-4 lg:right-0 lg:mt-0">
               <span className="font-display text-h4 text-white">94%</span>
               <span className="text-small text-navy-100">
                 first-time CQC

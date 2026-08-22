@@ -4,6 +4,7 @@ import { CookieConsent } from "@/components/marketing/cookie-consent";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { StickyCta } from "@/components/marketing/sticky-cta";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
 const inter = Inter({
@@ -45,11 +46,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en-GB"
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${jakarta.variable} ${lora.variable}`}
+      // The pre-paint script below sets data-theme, so the server markup
+      // and the first client markup differ on <html> by design.
+      suppressHydrationWarning
     >
+      <head>
+        {/* Applies the saved theme before first paint. Static string, no
+            user input, so no injection surface. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <a
           href="#main"
-          className="sr-only rounded-md focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-navy-800 focus:px-4 focus:py-3 focus:text-white"
+          className="sr-only rounded-md focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-brand-navy focus:px-4 focus:py-3 focus:text-white"
         >
           Skip to content
         </a>

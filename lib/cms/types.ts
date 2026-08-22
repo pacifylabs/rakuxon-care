@@ -106,16 +106,22 @@ export type CqcStatus =
 export interface SiteSettings {
   companyName: string;
   legalName: string;
-  companyNumber: string;
-  icoRegistration: string;
   cqc: CqcStatus;
   /** PRD §3.2 — EAS note for Rakuxon Staffing. */
   easNote: string;
-  email: string;
-  phone: string;
-  address: string[];
-  regionsServed: string[];
-  socials: { label: string; href: string }[];
+  /**
+   * Everything below is optional on purpose. The rule for this site is that
+   * an unverified contact detail is removed, never filled with a plausible
+   * looking placeholder — so consumers must handle absence rather than
+   * render an empty field. See TODO.md for what is currently missing.
+   */
+  email?: string;
+  phone?: string;
+  address?: string[];
+  companyNumber?: string;
+  icoRegistration?: string;
+  regionsServed?: string;
+  socials?: { label: string; href: string }[];
 }
 
 /** Live tender opportunities feed — 04_SITE_ARCHITECTURE §5. */
