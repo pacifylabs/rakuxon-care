@@ -1,3 +1,4 @@
+import { SERVICE_COPY } from "./service-copy";
 import type { Service } from "./types";
 
 /**
@@ -12,7 +13,40 @@ import type { Service } from "./types";
  * supplies it. See TODO.md before publishing.
  */
 
-type Draft = Omit<Service, "lane" | "arm"> & Partial<Pick<Service, "href">>;
+type Draft = Omit<
+  Service,
+  | "lane"
+  | "arm"
+  | "seoTitle"
+  | "seoDescription"
+  | "sections"
+  | "faqs"
+  | "related"
+> &
+  Partial<Pick<Service, "href">>;
+
+function attachCopy(
+  draft: Draft,
+  arm: Service["arm"],
+  lane: Service["lane"],
+): Service {
+  const copy = SERVICE_COPY[draft.slug];
+  if (!copy) {
+    throw new Error(
+      `SERVICE_COPY has no entry for "${draft.slug}". Every catalogue slug needs page copy.`,
+    );
+  }
+  return {
+    ...draft,
+    arm,
+    lane,
+    seoTitle: copy.seoTitle,
+    seoDescription: copy.seoDescription,
+    sections: copy.sections,
+    faqs: copy.faqs.map((faq) => ({ ...faq, lane })),
+    related: copy.related,
+  };
+}
 
 const careService = (
   slug: string,
@@ -858,12 +892,8 @@ const AGENCY: Draft[] = [
   ),
 ];
 
-/** Everything, with lane and arm derived rather than repeated. */
+/** Everything, with lane, arm and page copy attached rather than repeated. */
 export const CATALOGUE: Service[] = [
-  ...[...CARE, ...WHO_WE_SUPPORT].map((d): Service => ({
-    ...d,
-    arm: "care",
-    lane: "b2c",
-  })),
-  ...AGENCY.map((d): Service => ({ ...d, arm: "agency", lane: "b2b" })),
+  ...[...CARE, ...WHO_WE_SUPPORT].map((d) => attachCopy(d, "care", "b2c")),
+  ...AGENCY.map((d) => attachCopy(d, "agency", "b2b")),
 ];

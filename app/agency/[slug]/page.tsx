@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ServicePage } from "@/components/marketing/service-page";
-import { getFaqs, getProcess, getServices } from "@/lib/cms";
+import { getProcess, getServices } from "@/lib/cms";
+import { serviceMetadata } from "@/lib/seo";
 
 /* Clusters A–E — agency service lines (04_SITE_ARCHITECTURE §3.2). */
 export async function generateStaticParams() {
@@ -21,8 +22,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const service = await find((await params).slug);
-  return service ? { title: service.title, description: service.summary } : {};
+  return serviceMetadata(await find((await params).slug));
 }
 
 export default async function AgencyServicePage({
@@ -32,15 +32,11 @@ export default async function AgencyServicePage({
 }) {
   const service = await find((await params).slug);
   if (!service) notFound();
-  const [process, faqs] = await Promise.all([
-    getProcess("b2b"),
-    getFaqs("b2b"),
-  ]);
+  const process = await getProcess("b2b");
   return (
     <ServicePage
       service={service}
       process={process}
-      faqs={faqs}
       backHref="/agency"
       backLabel="All business services"
     />

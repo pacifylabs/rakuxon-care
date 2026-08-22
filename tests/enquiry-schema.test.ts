@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { enquirySchema, INTENTS } from "@/lib/enquiry";
+import { enquirySchema, INTENTS, parseEnquiryIntent } from "@/lib/enquiry";
 
 const base = {
   name: "Test Person",
@@ -176,5 +176,24 @@ describe("enquiry schema — boundaries", () => {
   it("rejects null and undefined outright", () => {
     expect(enquirySchema.safeParse(null).success).toBe(false);
     expect(enquirySchema.safeParse(undefined).success).toBe(false);
+  });
+});
+
+describe("parseEnquiryIntent", () => {
+  it.each([
+    ["care", "family"],
+    ["family", "family"],
+    ["council", "council"],
+    ["business", "business"],
+    ["call", "business"],
+    ["audit", "business"],
+  ] as const)("maps %s to %s", (raw, intent) => {
+    expect(parseEnquiryIntent(raw)).toBe(intent);
+  });
+
+  it("ignores unknown aliases rather than inventing an intent", () => {
+    expect(parseEnquiryIntent("carer")).toBeNull();
+    expect(parseEnquiryIntent("spam")).toBeNull();
+    expect(parseEnquiryIntent(undefined)).toBeNull();
   });
 });

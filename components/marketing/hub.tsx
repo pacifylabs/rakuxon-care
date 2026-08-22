@@ -3,8 +3,11 @@ import type { LucideIcon } from "lucide-react";
 import { buttonClasses } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Photo } from "@/components/ui/photo";
+import { Breadcrumbs, type Crumb } from "@/components/marketing/breadcrumbs";
 import { IconCard } from "@/components/marketing/cards";
+import { JsonLd } from "@/components/marketing/json-ld";
 import { Section, SectionIntro } from "@/components/marketing/section";
+import { breadcrumbJsonLd } from "@/lib/schema";
 import type { ClusterMeta } from "@/lib/clusters";
 import type { Lane } from "@/lib/cms";
 import type { Photo as PhotoData } from "@/lib/images";
@@ -36,6 +39,8 @@ export function Hub({
   secondaryCta,
   clusters,
   fallbackIcon,
+  crumbs,
+  otherLane,
 }: {
   lane: Lane;
   eyebrow: string;
@@ -46,12 +51,20 @@ export function Hub({
   secondaryCta: { label: string; href: string };
   clusters: HubCluster[];
   fallbackIcon: LucideIcon;
+  crumbs: Crumb[];
+  otherLane: {
+    title: string;
+    body: string;
+    href: string;
+    cta: string;
+  };
 }) {
   const isCare = lane === "b2c";
   const tone = isCare ? ("care" as const) : ("navy" as const);
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <section
         className={
           isCare ? "bg-care-50 py-14 md:py-20" : "bg-navy-50 py-14 md:py-20"
@@ -60,6 +73,7 @@ export function Hub({
         <Container>
           <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
             <div className="flex flex-col items-start gap-5">
+              <Breadcrumbs items={crumbs} />
               <span
                 className={
                   isCare
@@ -129,6 +143,16 @@ export function Hub({
           </div>
         </Section>
       ))}
+
+      <Section tint="paper">
+        <div className="flex flex-col items-start gap-5 rounded-lg bg-paper-100 p-8 shadow-card md:p-12">
+          <h2 className="text-h3">{otherLane.title}</h2>
+          <p className="measure text-ink-700">{otherLane.body}</p>
+          <Link href={otherLane.href} className={buttonClasses({ tone })}>
+            {otherLane.cta}
+          </Link>
+        </div>
+      </Section>
     </>
   );
 }

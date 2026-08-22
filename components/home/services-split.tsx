@@ -33,10 +33,10 @@ export function ServicesSplit() {
                 tenders, systems and staffing to do the same.
               </p>
               <Link
-                href="/services"
+                href="/care"
                 className={buttonClasses({ tone: "care", className: "mt-1" })}
               >
-                See all services
+                See care services
               </Link>
             </div>
 
@@ -46,13 +46,13 @@ export function ServicesSplit() {
                   icon: HeartHandshake,
                   title: "Rakuxon Care",
                   body: "Personal and domiciliary care at home, for families, councils and ICBs.",
-                  href: "/find-care",
+                  href: "/care",
                 },
                 {
                   icon: Building2,
                   title: "Rakuxon Care Agency",
                   body: "Registration, tenders, policies, digital, consulting and staffing.",
-                  href: "/care-businesses",
+                  href: "/agency",
                 },
               ].map(({ icon: Icon, title, body, href }) => (
                 <Link

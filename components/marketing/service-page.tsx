@@ -5,12 +5,21 @@ import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/cn";
 import { Photo } from "@/components/ui/photo";
 import { CheckRow } from "@/components/marketing/cards";
+import { Breadcrumbs, type Crumb } from "@/components/marketing/breadcrumbs";
 import { FaqAccordion } from "@/components/marketing/faq-accordion";
+import { JsonLd } from "@/components/marketing/json-ld";
 import { ProcessTimeline } from "@/components/marketing/process-timeline";
+import { RelatedPages } from "@/components/marketing/related-pages";
 import { Section, SectionIntro } from "@/components/marketing/section";
+import { relatedExtras, relatedFromCatalogue } from "@/lib/cms";
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serviceJsonLd,
+} from "@/lib/schema";
 import { SERVICE_ICONS } from "@/lib/service-icons";
 import { PHOTOS, type Photo as PhotoData } from "@/lib/images";
-import type { Faq, ProcessStep, Service } from "@/lib/cms";
+import type { ProcessStep, Service } from "@/lib/cms";
 
 const HERO_PHOTO: Record<string, PhotoData> = {
   "personal-care": PHOTOS.carerSupport,
@@ -27,6 +36,30 @@ const HERO_PHOTO: Record<string, PhotoData> = {
   staffing: PHOTOS.businessTeam,
 };
 
+function crumbsFor(service: Service): Crumb[] {
+  const home = { label: "Home", href: "/" };
+  if (service.template === "who-we-support") {
+    return [
+      home,
+      { label: "Care services", href: "/care" },
+      { label: "Who we support", href: "/care#who-we-support" },
+      { label: service.title },
+    ];
+  }
+  if (service.arm === "care") {
+    return [
+      home,
+      { label: "Care services", href: "/care" },
+      { label: service.title },
+    ];
+  }
+  return [
+    home,
+    { label: "Care businesses", href: "/agency" },
+    { label: service.title },
+  ];
+}
+
 /**
  * One template behind three routes — /care/{slug}, /care/who-we-support/{slug}
  * and /agency/{slug}. 04_SITE_ARCHITECTURE §5 lists them separately because
@@ -36,22 +69,28 @@ const HERO_PHOTO: Record<string, PhotoData> = {
 export function ServicePage({
   service,
   process,
-  faqs,
   backHref,
   backLabel,
 }: {
   service: Service;
   process: ProcessStep[];
-  faqs: Faq[];
   backHref: string;
   backLabel: string;
 }) {
   const isCare = service.lane === "b2c";
   const tone = isCare ? ("care" as const) : ("navy" as const);
   const Icon = SERVICE_ICONS[service.slug];
+  const crumbs = crumbsFor(service);
+  const related = relatedFromCatalogue(service);
+  const extras = relatedExtras(service);
+  const faqSchema = faqJsonLd(service.faqs);
 
   return (
     <>
+      <JsonLd data={serviceJsonLd(service)} />
+      <JsonLd data={breadcrumbJsonLd(crumbs)} />
+      {faqSchema ? <JsonLd data={faqSchema} /> : null}
+
       <section
         className={
           isCare ? "bg-care-50 py-14 md:py-20" : "bg-navy-50 py-14 md:py-20"
@@ -60,6 +99,7 @@ export function ServicePage({
         <Container>
           <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
             <div className="flex flex-col items-start gap-5">
+              <Breadcrumbs items={crumbs} />
               <Link
                 href={backHref}
                 className="inline-flex min-h-11 items-center gap-2 text-small text-ink-700 underline-offset-4 hover:underline"
@@ -89,7 +129,7 @@ export function ServicePage({
                   {isCare ? "Request care" : "Book a free call"}
                 </Link>
                 <Link
-                  href="/contact"
+                  href={isCare ? "/contact?intent=care" : "/contact?intent=business"}
                   className={buttonClasses({ variant: "secondary", tone })}
                 >
                   Get in touch
@@ -167,6 +207,28 @@ export function ServicePage({
         </div>
       </Section>
 
+      {service.sections.map((block, index) => (
+        <Section key={block.id} id={block.id} tint={index % 2 === 0 ? "none" : "paper"}>
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="flex flex-col gap-5">
+              <SectionIntro
+                lane={service.lane}
+                align="start"
+                title={block.title}
+                subtitle={block.body}
+              />
+            </div>
+            <ul className="flex flex-col gap-3">
+              {block.items.map((item) => (
+                <CheckRow key={item} lane={service.lane}>
+                  {item}
+                </CheckRow>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      ))}
+
       <Section tint="deep">
         <SectionIntro
           invert
@@ -191,9 +253,37 @@ export function ServicePage({
           title="Common questions"
         />
         <div className="mx-auto mt-12 w-full max-w-3xl">
-          <FaqAccordion faqs={faqs} />
+          <FaqAccordion faqs={service.faqs} />
         </div>
+        <p className="mt-8 text-center text-small text-ink-500">
+          More answers on the{" "}
+          <Link
+            href={isCare ? "/faq#families" : "/faq#businesses"}
+            className="text-navy-800 underline-offset-4 hover:underline"
+          >
+            FAQ page
+          </Link>
+          .
+        </p>
       </Section>
+
+      <RelatedPages
+        lane={service.lane}
+        heading="Related services"
+        subtitle="Pages that usually sit next to this one — so you are not hunting the menu."
+        pages={related}
+      />
+      <RelatedPages
+        lane={service.lane}
+        heading={isCare ? "Arranging care" : "Next steps for providers"}
+        subtitle={
+          isCare
+            ? "Funding, coverage and how to start."
+            : "Calls, audits and the pages that convert an enquiry."
+        }
+        pages={extras}
+        tint="none"
+      />
     </>
   );
 }

@@ -5,12 +5,14 @@ import { CARE_CLUSTERS, CARE_TRUST_PAGES, serviceHref } from "@/lib/clusters";
 import { SERVICE_ICONS } from "@/lib/service-icons";
 import { getServicesByArm } from "@/lib/cms";
 import { PHOTOS } from "@/lib/images";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Care services",
+export const metadata: Metadata = pageMetadata({
+  title: "Home care services",
   description:
-    "CQC-registered personal care, home care, live-in and respite support delivered in the person's own home. For families, councils, ICBs and NHS Continuing Healthcare.",
-};
+    "Personal care, domiciliary visits, live-in and respite support in the person's own home. For families, councils, ICBs and NHS Continuing Healthcare.",
+  path: "/care",
+});
 
 /* 04_SITE_ARCHITECTURE §3.1 — the B2C hub for /care/*. */
 export default async function CareHubPage() {
@@ -49,6 +51,16 @@ export default async function CareHubPage() {
       secondaryCta={{ label: "Fees and funding", href: "/care/fees-funding" }}
       clusters={clusters}
       fallbackIcon={HeartHandshake}
+      crumbs={[
+        { label: "Home", href: "/" },
+        { label: "Care services" },
+      ]}
+      otherLane={{
+        title: "Building or growing a care business?",
+        body: "CQC registration, tenders, brand, staffing and advisory — from a team that also delivers care.",
+        href: "/agency",
+        cta: "Care business services",
+      }}
     />
   );
 }

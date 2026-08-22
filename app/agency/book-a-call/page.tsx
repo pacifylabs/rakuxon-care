@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { UtilityPage } from "@/components/marketing/utility-page";
 import { PHOTOS } from "@/lib/images";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Book a free consultation",
+export const metadata: Metadata = pageMetadata({
+  title: "Book a free care-business consultation",
   description:
-    "Book a free consultation or audit call with a provider that runs its own CQC-registered service.",
-};
+    "Book a free consultation with people who advise care businesses on registration, tenders, brand and staffing.",
+  path: "/agency/book-a-call",
+});
 
 export default function BookACallPage() {
   return (
@@ -28,6 +30,31 @@ export default function BookACallPage() {
         label: "Care Business Launch Kit",
         href: "/agency/launch-kit",
       }}
+      crumbs={[
+        { label: "Home", href: "/" },
+        { label: "Care businesses", href: "/agency" },
+        { label: "Book a call" },
+      ]}
+      related={[
+        {
+          slug: "launch-kit",
+          href: "/agency/launch-kit",
+          title: "Care Business Launch Kit",
+          summary: "The productised route from nothing to a trading care business.",
+        },
+        {
+          slug: "cqc-registration",
+          href: "/agency/cqc-registration",
+          title: "CQC registration support",
+          summary: "End-to-end registration, from application through to the decision.",
+        },
+        {
+          slug: "consulting",
+          href: "/agency/consulting",
+          title: "Consulting",
+          summary: "Planning, governance and growth advice.",
+        },
+      ]}
     />
   );
 }

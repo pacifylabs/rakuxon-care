@@ -3,18 +3,26 @@ import { Container } from "@/components/ui/container";
 import { EnquiryForm } from "@/components/marketing/enquiry-form";
 import { CqcBadge } from "@/components/marketing/cqc-badge";
 import { getSiteSettings } from "@/lib/cms";
+import { parseEnquiryIntent } from "@/lib/enquiry";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
     "Talk to Rakuxon Care about arranging care at home, commissioning packages, or registering and growing a care business.",
-};
+  path: "/contact",
+});
 
 /* Primary conversion page — the target of the CTA in the nav, the footer and
    every section. Carries the segmented enquiry form (PRD §8.1) and the only
    contact details confirmed for the care brand. */
-export default async function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ intent?: string | string[] }>;
+}) {
   const settings = await getSiteSettings();
+  const initialIntent = parseEnquiryIntent((await searchParams).intent);
 
   return (
     <div className="py-16 md:py-24">
@@ -30,7 +38,7 @@ export default async function ContactPage() {
               back to you with a person, not an autoresponder.
             </p>
 
-            <EnquiryForm />
+            <EnquiryForm initialIntent={initialIntent} />
           </div>
 
           <aside className="flex flex-col gap-6">

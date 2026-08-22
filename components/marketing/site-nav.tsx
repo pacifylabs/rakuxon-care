@@ -32,7 +32,6 @@ export interface NavLane {
    menus at the user's request; the doc's list starts at the lane menus. */
 const TAIL_LINKS = [
   { label: "About & CQC", href: "/about" },
-  { label: "Careers", href: "/careers" },
 ];
 
 function LaneMenu({ lane, care }: { lane: NavLane; care: boolean }) {

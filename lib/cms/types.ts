@@ -35,6 +35,13 @@ export type Cluster =
 export type Template =
   "care-service" | "who-we-support" | "agency-service" | "conversion" | "list";
 
+export interface ServiceSection {
+  id: string;
+  title: string;
+  body: string;
+  items: string[];
+}
+
 export interface Service {
   slug: string;
   title: string;
@@ -51,8 +58,16 @@ export interface Service {
    * three-word label in an otherwise empty card.
    */
   whoFor: { title: string; body: string }[];
-  /** Optional anchored sub-sections within a page. */
-  sections?: { id: string; title: string; body: string; items: string[] }[];
+  /** Unique <title> for this page — not the H1, and not shared across slugs. */
+  seoTitle: string;
+  /** Unique meta description, written for the SERP not the hero. */
+  seoDescription: string;
+  /** Anchored body sections that make the page more than a feature list. */
+  sections: ServiceSection[];
+  /** Questions that belong to this service, not the shared lane FAQ. */
+  faqs: Faq[];
+  /** Catalogue slugs this page should link to. Resolved at render time. */
+  related: string[];
   /**
    * Set only when the page lives outside its namespace's {slug} route
    * (e.g. who-we-support pages nest one level deeper).

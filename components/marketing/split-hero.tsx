@@ -66,13 +66,13 @@ export function SplitHero({
 
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                href="/find-care"
+                href="/care"
                 className={buttonClasses({ tone: "care", size: "lg" })}
               >
                 Find care
               </Link>
               <Link
-                href="/care-businesses"
+                href="/agency"
                 className={buttonClasses({ variant: "secondary", size: "lg" })}
               >
                 For care businesses
