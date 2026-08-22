@@ -35,28 +35,22 @@ export default function CaseStudiesPage() {
         label: "Care Business Launch Kit",
         href: "/agency/launch-kit",
       }}
-    >
-      <div className="flex flex-col gap-4">
-        <h2 className="text-h3">Why there are no case studies here yet</h2>
-        <p className="text-ink-700">
-          A case study needs a named client, a real engagement and permission to
-          publish. We have not put anonymised or illustrative examples here,
-          because in this sector they are indistinguishable from invention, and
-          a provider choosing a consultancy deserves better than that.
-        </p>
-        <h2 className="mt-4 text-h3">What you can ask for instead</h2>
-        <p className="text-ink-700">
-          Ask us to walk you through a live piece of work in detail: the
-          evidence we assembled, the questions the regulator or commissioner
-          asked, and what we would do differently. Ask to speak to a provider we
-          have worked with. Ask what happens if a registration is refused, and
-          what we do next at no additional cost.
-        </p>
-        <p className="text-ink-700">
-          Those questions tell you more than a published summary would, and we
-          would rather answer them directly.
-        </p>
-      </div>
-    </UtilityPage>
+      notes={[
+        {
+          title: "Why there are no case studies here yet",
+          body: [
+            "A case study needs a named client, a real engagement and permission to publish. We have not put anonymised or illustrative examples here, because in this sector they are indistinguishable from invention, and a provider choosing a consultancy deserves better than that.",
+            "When clients agree to be named, their work appears here with the detail that makes it useful: what the situation was, what we did, and what the outcome was.",
+          ],
+        },
+        {
+          title: "What you can ask for instead",
+          body: [
+            "Ask us to walk you through a live piece of work in detail: the evidence we assembled, the questions the regulator or commissioner asked, and what we would do differently a second time.",
+            "Ask to speak to a provider we have worked with. Ask what happens if a registration is refused, and what we do next at no additional cost. Those questions tell you more than a published summary would.",
+          ],
+        },
+      ]}
+    />
   );
 }

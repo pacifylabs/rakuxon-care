@@ -187,7 +187,14 @@ export async function SiteFooter() {
                         className="size-4 shrink-0 text-care-500"
                         aria-hidden="true"
                       />
-                      {settings.phone}
+                      <span>
+                        {settings.phone}
+                        {settings.phoneNote ? (
+                          <span className="block text-small text-on-navy/75">
+                            {settings.phoneNote}
+                          </span>
+                        ) : null}
+                      </span>
                     </a>
                   </li>
                 ) : null}

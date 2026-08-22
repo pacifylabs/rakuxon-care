@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
+import { EnquiryForm } from "@/components/marketing/enquiry-form";
 import { CqcBadge } from "@/components/marketing/cqc-badge";
 import { getSiteSettings } from "@/lib/cms";
 
@@ -9,10 +10,9 @@ export const metadata: Metadata = {
     "Talk to Rakuxon Care about arranging care at home, commissioning packages, or registering and growing a care business.",
 };
 
-/* Phase 2 shell. The segmented enquiry form (PRD §7.1) is Phase 3 work and
-   drops into the slot below. This page exists now because it is the target
-   of the primary CTA in the nav, footer and every page — shipping Phase 2
-   without it would leave the main conversion path pointing at a 404. */
+/* Primary conversion page — the target of the CTA in the nav, the footer and
+   every section. Carries the segmented enquiry form (PRD §8.1) and the only
+   contact details confirmed for the care brand. */
 export default async function ContactPage() {
   const settings = await getSiteSettings();
 
@@ -30,19 +30,7 @@ export default async function ContactPage() {
               back to you with a person, not an autoresponder.
             </p>
 
-            {/* <div className="rounded-lg border-2 border-dashed border-navy-600/40 bg-navy-50 p-8">
-              <h2 className="text-h4">Enquiry form — Phase 3</h2>
-              <p className="measure mt-2 text-ink-700">
-                The segmented enquiry form goes here: an intent selector, then
-                branching fields for families, councils and care businesses,
-                with GDPR consent and accessible inline errors. It is built in
-                Phase 3 alongside lead storage, confirmation emails and spam
-                protection.
-              </p>
-              <p className="mt-3 text-small text-ink-500">
-                Field-level requirements are owed by PRD §7.1.
-              </p>
-            </div> */}
+            <EnquiryForm />
           </div>
 
           <aside className="flex flex-col gap-6">

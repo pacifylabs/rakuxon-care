@@ -41,7 +41,24 @@ education arm's: `enquiries@rakuxon.com`, `+44 776 094 4935`, `+234 816 717 8847
 
 Their nav and footer links were removed too, so nothing points at a dead route.
 
-## 3. Legal pages
+## 3. Enquiry form — what is built and what is not
+
+The segmented enquiry form (PRD §8.1) is live at `/contact`. Working today:
+intent selector, branching fields per audience, shared client/server Zod
+schema, server-authoritative validation with field-keyed errors, unticked
+GDPR consent recorded as a timestamp, honeypot, and rate limiting.
+
+**Not yet wired — needed before launch:**
+
+| Gap | Detail |
+|---|---|
+| Lead storage | Appends to `.leads/enquiries.jsonl` and always logs. A serverless filesystem is ephemeral and not shared between instances, so **enquiries will be lost in production**. Swap the body of `storeLead()` in `lib/server/leads.ts` for Postgres — the call site does not change. |
+| Confirmation emails | Nothing is sent to the enquirer or to Rakuxon. Needs an email provider and API key (Resend/Postmark/SES). The success screen deliberately does not claim an email was sent. |
+| Rate limiting | In-memory, per-instance, resets on deploy. Blunts a naive flood only. Move to Redis. |
+| CAPTCHA | No Turnstile yet; the honeypot is the only bot defence. |
+| Data erasure | UK-GDPR erasure path for stored leads is not built. |
+
+## 4. Legal pages
 
 `/privacy`, `/terms`, `/cookies`, `/complaints`, `/accessibility` previously
 listed invented section stubs ("Placeholder — the data controller…"). Those are
@@ -49,7 +66,7 @@ gone. Each page now carries an honest "in preparation" notice and the real
 email. **Binding legal text must be written and approved by you** — it is not
 something to generate.
 
-## 4. Still unverified
+## 5. Still unverified
 
 - **CQC status.** The site says "CQC registration in progress" and the footer
   says regulated-care information is available on request, matching the
@@ -61,7 +78,7 @@ something to generate.
 - **`/resources`** has no articles. It now says so plainly and offers a
   conversation instead of showing an empty grid.
 
-## 5. Assets
+## 6. Assets
 
 - `public/logo.png` is an opaque wordmark on a light background. `logo-navy.png`
   and `logo-white.png` are transparent variants generated from it; the white one

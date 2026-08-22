@@ -35,37 +35,36 @@ export default function OpportunitiesPage() {
         label: "Tender and bid writing",
         href: "/agency/tender-writing",
       }}
-    >
-      <div className="flex flex-col gap-4">
-        <h2 className="text-h3">The public portals</h2>
-        <p className="text-ink-700">
-          <strong className="text-ink-900">Find a Tender</strong> is the UK
-          government service that publishes higher-value public contract
-          notices, including adult social care. It replaced the UK&rsquo;s use
-          of the EU journal and is the first place a large council or NHS
-          opportunity appears.
-        </p>
-        <p className="text-ink-700">
-          <strong className="text-ink-900">Contracts Finder</strong> carries
-          lower-value contracts and opportunities from central government,
-          councils and the wider public sector in England, including many
-          smaller domiciliary care packages.
-        </p>
-        <p className="text-ink-700">
-          Individual local authorities and integrated care boards also run their
-          own procurement portals and dynamic purchasing systems. Registering on
-          the portals covering the areas you serve matters more than watching
-          any single national site, because a dynamic purchasing system can
-          admit new providers between formal tender rounds.
-        </p>
-        <h2 className="mt-4 text-h3">Why there is no feed on this page yet</h2>
-        <p className="text-ink-700">
-          A live feed has to be accurate to be useful. Listing opportunities we
-          have not verified, with closing dates we cannot guarantee, would cost
-          a provider a bid rather than win one. Until the feed is connected to a
-          real source, this page points at the portals themselves.
-        </p>
-      </div>
-    </UtilityPage>
+      notes={[
+        {
+          title: "Find a Tender",
+          body: [
+            "The UK government service that publishes higher-value public contract notices, including adult social care. It replaced the UK's use of the EU journal, and it is the first place a large council or NHS opportunity appears.",
+            "Worth watching even if the values look out of reach: framework notices published here often admit smaller providers as subcontractors or through later rounds.",
+          ],
+        },
+        {
+          title: "Contracts Finder",
+          body: [
+            "Carries lower-value contracts and opportunities from central government, councils and the wider public sector in England, including many smaller domiciliary care packages.",
+            "This is where most first contracts for a newly registered provider will be found.",
+          ],
+        },
+        {
+          title: "Authority and ICB portals",
+          body: [
+            "Individual local authorities and integrated care boards run their own procurement portals and dynamic purchasing systems. Registering on the portals covering the areas you serve matters more than watching any single national site.",
+            "A dynamic purchasing system can admit new providers between formal tender rounds, so a place on one is often the fastest route into an authority.",
+          ],
+        },
+        {
+          title: "Why there is no live feed here yet",
+          body: [
+            "A feed has to be accurate to be useful. Listing opportunities we have not verified, with closing dates we cannot guarantee, would cost a provider a bid rather than win one.",
+            "Until it is connected to a real source, this page points at the portals themselves, which are free, public and updated continuously.",
+          ],
+        },
+      ]}
+    />
   );
 }

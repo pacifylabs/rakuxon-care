@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { buttonClasses } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { cn } from "@/lib/cn";
 import { Photo } from "@/components/ui/photo";
 import { CheckRow } from "@/components/marketing/cards";
 import { FaqAccordion } from "@/components/marketing/faq-accordion";
@@ -117,13 +118,25 @@ export function ServicePage({
           title="Is this you?"
           subtitle={service.summary}
         />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {service.whoFor.map((w) => (
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {service.whoFor.map((w, i) => (
             <div
-              key={w}
-              className="rounded-lg bg-paper-100 p-6 text-ink-700 shadow-card"
+              key={w.title}
+              className="flex h-full flex-col gap-3 rounded-lg bg-paper-100 p-6 shadow-card"
             >
-              {w}
+              <span
+                className={cn(
+                  "grid size-9 shrink-0 place-items-center rounded-md text-small font-semibold",
+                  isCare
+                    ? "bg-care-100 text-care-700"
+                    : "bg-navy-100 text-navy-800",
+                )}
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="font-display text-h4 text-ink-900">{w.title}</p>
+              <p className="text-small text-ink-500">{w.body}</p>
             </div>
           ))}
         </div>

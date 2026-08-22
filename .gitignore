@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Internal specs — kept locally, not published.
 /docs
+
+# Local enquiry capture until a datastore is provisioned
+/.leads

@@ -45,8 +45,12 @@ export interface Service {
   summary: string;
   features: string[];
   overview: string;
-  /** "Who it's for" bullets — PRD §5.6. */
-  whoFor: string[];
+  /**
+   * "Who it's for" — PRD §5.6. Each entry carries the situation and a line
+   * describing it, so a reader recognises themselves rather than reading a
+   * three-word label in an otherwise empty card.
+   */
+  whoFor: { title: string; body: string }[];
   /** Optional anchored sub-sections within a page. */
   sections?: { id: string; title: string; body: string; items: string[] }[];
   /**
@@ -117,6 +121,8 @@ export interface SiteSettings {
    */
   email?: string;
   phone?: string;
+  /** Shown beside the number when it is not a care-specific line. */
+  phoneNote?: string;
   address?: string[];
   companyNumber?: string;
   icoRegistration?: string;

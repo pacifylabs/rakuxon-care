@@ -22,6 +22,7 @@ export function UtilityPage({
   pointsTitle,
   cta,
   secondaryCta,
+  notes,
   children,
 }: {
   lane: Lane;
@@ -33,6 +34,12 @@ export function UtilityPage({
   pointsTitle: string;
   cta: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
+  /**
+   * Longer explanatory blocks. Passed as data rather than as children so
+   * they get the page's Section and Container treatment — raw children
+   * rendered edge-to-edge with no container at all.
+   */
+  notes?: { title: string; body: string[] }[];
   children?: React.ReactNode;
 }) {
   const isCare = lane === "b2c";
@@ -96,6 +103,38 @@ export function UtilityPage({
           </div>
         </div>
       </Section>
+
+      {notes?.length ? (
+        <Section tint="paper">
+          <div className="grid gap-6 lg:grid-cols-2">
+            {notes.map((n) => (
+              <article
+                key={n.title}
+                className="flex h-full flex-col gap-4 rounded-lg bg-paper-100 p-6 shadow-card md:p-8"
+              >
+                <div className="flex items-start gap-3">
+                  <span
+                    className={
+                      isCare
+                        ? "mt-1 h-8 w-1 shrink-0 rounded-pill bg-care-600"
+                        : "mt-1 h-8 w-1 shrink-0 rounded-pill bg-navy-800"
+                    }
+                    aria-hidden="true"
+                  />
+                  <h2 className="text-h3">{n.title}</h2>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {n.body.map((para, i) => (
+                    <p key={i} className="text-ink-700">
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       {children}
 

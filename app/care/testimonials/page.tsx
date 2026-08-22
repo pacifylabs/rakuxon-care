@@ -33,30 +33,22 @@ export default function TestimonialsPage() {
       ]}
       cta={{ label: "Ask for references", href: "/contact" }}
       secondaryCta={{ label: "Our CQC standing", href: "/care/cqc-rating" }}
-    >
-      <div className="flex flex-col gap-4">
-        <h2 className="text-h3">What we are measured against</h2>
-        <p className="text-ink-700">
-          Regulated home care in England is assessed by the Care Quality
-          Commission against five questions: whether a service is safe,
-          effective, caring, responsive and well-led. Those are the same
-          questions we hold our own service to, and the same framework our
-          advisory work is built on.
-        </p>
-        <p className="text-ink-700">
-          If a package is arranged through a local authority or an ICB, that
-          commissioner carries its own monitoring and review process on top. You
-          are entitled to see the outcome of those reviews.
-        </p>
-        <h2 className="mt-4 text-h3">If something goes wrong</h2>
-        <p className="text-ink-700">
-          Raise it with us first and we will respond in writing. If you are not
-          satisfied with our response, a complaint about a regulated care
-          service can be taken to the Local Government and Social Care
-          Ombudsman, and concerns about the quality of care can be reported to
-          the Care Quality Commission at any time.
-        </p>
-      </div>
-    </UtilityPage>
+      notes={[
+        {
+          title: "What we are measured against",
+          body: [
+            "Regulated home care in England is assessed by the Care Quality Commission against five questions: whether a service is safe, effective, caring, responsive and well-led. Those are the same questions we hold our own service to, and the same framework our advisory work is built on.",
+            "If a package is arranged through a local authority or an ICB, that commissioner carries its own monitoring and review process on top. You are entitled to see the outcome of those reviews.",
+          ],
+        },
+        {
+          title: "If something goes wrong",
+          body: [
+            "Raise it with us first and we will respond in writing. Our complaints procedure sets out who receives a complaint and how long a response takes, and you can ask for it before care starts.",
+            "If you are not satisfied with our response, a complaint about a regulated care service can be taken to the Local Government and Social Care Ombudsman. Concerns about the quality of care can be reported to the Care Quality Commission at any time, independently of us.",
+          ],
+        },
+      ]}
+    />
   );
 }

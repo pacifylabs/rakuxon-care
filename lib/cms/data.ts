@@ -290,9 +290,14 @@ export const SITE_SETTINGS: SiteSettings = {
      Rakuxon Care source site. */
   email: "hello@rakuxoncare.co.uk",
 
+  /* Real, published UK number from rakuxon.com. It is the group's line,
+     not a care-specific one, so it is labelled as such rather than
+     presented as a care team number. NOT the 020 7946 0000 in the design
+     source — that sits in Ofcom's range reserved for fiction. */
+  phone: "+44 776 094 4935",
+  phoneNote: "Rakuxon group line",
+
   /* Deliberately absent — do not fill these with plausible values:
-     - phone: the source lists 020 7946 0000, which sits in Ofcom's
-       020 7946 0xxx range reserved for fiction. It is not a real number.
      - address: rakuxon.com's London address belongs to the education
        business (Rakuxon Ltd), not the care service.
      - companyNumber / icoRegistration: never published on either source.
