@@ -296,8 +296,19 @@ export const SITE_SETTINGS: SiteSettings = {
      - address: rakuxon.com's London address belongs to the education
        business (Rakuxon Ltd), not the care service.
      - companyNumber / icoRegistration: never published on either source.
-     - socials: rakuxon.com's accounts are the education brand's.
      See TODO.md. */
+
+  /* Verified group accounts, taken from rakuxon.com. These belong to
+     Rakuxon Ltd rather than to the care brand specifically — noted in
+     TODO.md so they can be swapped for care handles when those exist. */
+  socials: [
+    { label: "Instagram", href: "https://www.instagram.com/rakuxon" },
+    { label: "Facebook", href: "https://www.facebook.com/rakuxon" },
+    { label: "X", href: "https://x.com/rakuxon" },
+    { label: "TikTok", href: "https://www.tiktok.com/@rakuxonltd" },
+    { label: "YouTube", href: "https://youtube.com/@rakuxon" },
+    { label: "WhatsApp", href: "https://wa.me/2348167178847" },
+  ],
 
   regionsServed: "Across the UK",
 };

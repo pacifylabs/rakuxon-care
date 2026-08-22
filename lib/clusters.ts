@@ -91,6 +91,11 @@ export const CARE_TRUST_PAGES = [
     summary: "Our registration status and inspection history.",
   },
   {
+    slug: "testimonials",
+    title: "References and proof",
+    summary: "How to check us before you commit.",
+  },
+  {
     slug: "refer",
     title: "Refer or request care",
     summary: "Start a care enquiry or refer someone.",
@@ -108,6 +113,18 @@ export const AGENCY_EXTRA_PAGES = [
     title: "Free digital audit",
     cluster: "brand-digital" as Cluster,
     summary: "A review of how you look to families and commissioners.",
+  },
+  {
+    slug: "opportunities",
+    title: "Tender opportunities",
+    cluster: "tenders-frameworks" as Cluster,
+    summary: "Where care contracts are publicly advertised.",
+  },
+  {
+    slug: "case-studies",
+    title: "Results and evidence",
+    cluster: "advisory" as Cluster,
+    summary: "What each engagement produces, and how to check it.",
   },
   {
     slug: "book-a-call",

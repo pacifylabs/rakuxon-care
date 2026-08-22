@@ -58,7 +58,7 @@ export function Hub({
         }
       >
         <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
             <div className="flex flex-col items-start gap-5">
               <span
                 className={
@@ -88,7 +88,7 @@ export function Hub({
             </div>
             <Photo
               photo={photo}
-              ratio="4/3"
+              ratio="fill"
               duotone="none"
               priority
               sizes="(min-width: 1024px) 48vw, 100vw"

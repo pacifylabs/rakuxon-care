@@ -47,7 +47,7 @@ function FaqSection({
       className={cn("scroll-mt-24 py-14 md:py-20", tint && "bg-care-50")}
     >
       <Container>
-        <div className="grid items-start gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
+        <div className="grid items-stretch gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
           {/* Questions */}
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
@@ -77,11 +77,11 @@ function FaqSection({
           </div>
 
           {/* Image, right on desktop */}
-          {/* 4:3 keeps the image close to the height of its accordion
-              column; 4:5 left a large dead gap beneath the questions. */}
+          {/* Fills the row so the image starts and ends level with the
+              accordion beside it, at any number of questions. */}
           <Photo
             photo={photo}
-            ratio="4/3"
+            ratio="fill"
             duotone={isCare ? "care" : "navy"}
             sizes="(min-width: 1024px) 42vw, 100vw"
             className="shadow-card"

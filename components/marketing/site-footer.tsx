@@ -13,6 +13,22 @@ import { getSiteSettings } from "@/lib/cms";
    Blog, case studies and careers arrive in Phases 4–5; those links are held
    back rather than shipped as 404s. Logged in TODO.md. */
 /* 04_SITE_ARCHITECTURE §3 — footer mirrors the nested namespaces. */
+/* Icon paths keyed to the labels in SITE_SETTINGS.socials. Each link points
+   at a verified account URL from the data layer — never "#". */
+const SOCIAL_ICONS: Record<string, string> = {
+  Instagram:
+    "M10 6.1a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8Zm0 6.43a2.53 2.53 0 1 1 0-5.06 2.53 2.53 0 0 1 0 5.06Zm4.97-6.59a.91.91 0 1 1-1.82 0 .91.91 0 0 1 1.82 0ZM17.55 6.6c-.04-1.22-.32-2.3-1.21-3.19-.9-.89-1.98-1.17-3.2-1.24-1.25-.07-5.02-.07-6.27 0-1.22.07-2.3.35-3.2 1.24-.89.89-1.16 1.97-1.23 3.19-.07 1.26-.07 5.02 0 6.28.04 1.22.32 2.3 1.22 3.19.9.89 1.98 1.17 3.2 1.24 1.26.07 5.02.07 6.28 0 1.22-.07 2.3-.35 3.2-1.24.89-.89 1.17-1.97 1.21-3.19.07-1.26.07-5.02 0-6.28Zm-1.62 7.63a2.56 2.56 0 0 1-1.44 1.44c-1 .4-3.37.31-4.48.31-1.11 0-3.49.08-4.49-.31a2.56 2.56 0 0 1-1.44-1.44c-.4-1-.31-3.37-.31-4.49 0-1.11-.08-3.49.31-4.49a2.56 2.56 0 0 1 1.44-1.44c1-.4 3.38-.31 4.49-.31 1.11 0 3.49-.08 4.48.31.66.26 1.18.78 1.44 1.44.4 1 .31 3.38.31 4.49 0 1.12.09 3.49-.31 4.49Z",
+  Facebook:
+    "M12.4 10.2h-1.9V16H8.1v-5.8H6.8V8.3h1.3V7.1c0-1.7.75-2.7 2.8-2.7h1.7v1.9h-1.06c-.8 0-.85.3-.85.85v1.15h1.92l-.22 1.9Z",
+  X: "M13.6 3.5h2.2l-4.8 5.5 5.65 7.5h-4.42l-3.47-4.53-3.96 4.53H2.6l5.14-5.88L2.32 3.5h4.53l3.13 4.14L13.6 3.5Zm-.77 11.68h1.22L6.5 4.74H5.18l7.65 10.44Z",
+  TikTok:
+    "M13.2 2.5h-2.3v9.35a1.9 1.9 0 1 1-1.36-1.82V7.66a4.2 4.2 0 1 0 3.66 4.16V7.4a4.6 4.6 0 0 0 2.7.87V5.98a2.7 2.7 0 0 1-2.7-2.7v-.78Z",
+  YouTube:
+    "M17.4 6.2a1.94 1.94 0 0 0-1.36-1.37C14.83 4.5 10 4.5 10 4.5s-4.83 0-6.04.33A1.94 1.94 0 0 0 2.6 6.2C2.27 7.4 2.27 10 2.27 10s0 2.6.33 3.8c.18.67.71 1.19 1.36 1.37 1.21.33 6.04.33 6.04.33s4.83 0 6.04-.33a1.94 1.94 0 0 0 1.36-1.37c.33-1.2.33-3.8.33-3.8s0-2.6-.33-3.8ZM8.45 12.31V7.69L12.47 10l-4.02 2.31Z",
+  WhatsApp:
+    "M10.02 2.5a7.42 7.42 0 0 0-6.35 11.25L2.5 17.5l3.85-1.13A7.42 7.42 0 1 0 10.02 2.5Zm0 13.35a5.9 5.9 0 0 1-3.02-.83l-.22-.13-2.29.67.68-2.23-.14-.23a5.93 5.93 0 1 1 4.99 2.75Zm3.26-4.44c-.18-.09-1.06-.52-1.22-.58-.16-.06-.28-.09-.4.09-.12.18-.46.58-.56.7-.1.12-.21.13-.39.04a4.85 4.85 0 0 1-1.43-.88 5.4 5.4 0 0 1-.99-1.23c-.1-.18-.01-.28.08-.37l.27-.32c.09-.1.12-.18.18-.3.06-.12.03-.22-.01-.31-.05-.09-.4-.97-.55-1.33-.15-.35-.29-.3-.4-.3l-.34-.01a.65.65 0 0 0-.47.22c-.16.18-.62.6-.62 1.47s.63 1.71.72 1.83c.09.12 1.24 1.9 3.01 2.66.42.18.75.29 1 .37.42.14.8.12 1.11.07.34-.05 1.06-.43 1.2-.85.15-.42.15-.78.11-.85-.04-.08-.16-.12-.34-.21Z",
+};
+
 const COLUMNS = [
   {
     heading: "Care at home",
@@ -80,6 +96,29 @@ export async function SiteFooter() {
                 practical expertise for the people building better care
                 services.
               </p>
+              {settings.socials?.length ? (
+                <ul className="flex flex-wrap items-center gap-2">
+                  {settings.socials.map((social) => (
+                    <li key={social.label}>
+                      <a
+                        href={social.href}
+                        aria-label={`Rakuxon on ${social.label}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="grid size-11 place-items-center rounded-pill border border-navy-700 text-on-navy transition-colors hover:bg-navy-800 hover:text-white"
+                      >
+                        <svg
+                          viewBox="0 0 20 20"
+                          aria-hidden="true"
+                          className="size-4 fill-current"
+                        >
+                          <path d={SOCIAL_ICONS[social.label]} />
+                        </svg>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </div>
 
             {COLUMNS.slice(0, 3).map((col) => (

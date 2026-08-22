@@ -3,6 +3,16 @@ import { cn } from "@/lib/cn";
 import type { Photo as PhotoData } from "@/lib/images";
 
 const RATIOS = {
+  /*
+   * Fills the height of its grid row instead of holding a ratio, so an
+   * image and the text beside it start and end on the same line. Below lg
+   * the columns stack, where there is no row to fill — so a ratio applies
+   * there, plus a floor so a short text column cannot squash the image
+   * into a letterbox.
+   */
+  fill: "aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-80",
+  // "fill" also takes the <img> out of flow (see below) so the container
+  // contributes no intrinsic height and the TEXT column sets the row.
   "4/3": "aspect-[4/3]",
   "3/2": "aspect-[3/2]",
   "16/9": "aspect-video",
@@ -63,7 +73,15 @@ export function Photo({
         sizes={sizes}
         priority={priority}
         loading={priority ? undefined : "lazy"}
-        className={cn("h-full w-full object-cover", imgClassName)}
+        className={cn(
+          "h-full w-full object-cover",
+          /* Out of flow for "fill": otherwise the image's own aspect ratio
+             sets the row height and the text stretches to match it — the
+             opposite of the intent. Absolute means the container height
+             comes only from h-full, i.e. from the text column. */
+          ratio === "fill" && "absolute inset-0",
+          imgClassName,
+        )}
       />
     </div>
   );

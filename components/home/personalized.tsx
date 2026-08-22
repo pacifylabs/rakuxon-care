@@ -43,7 +43,7 @@ export function Personalized() {
           </p>
         </div>
 
-        <div className="mt-12 grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
+        <div className="mt-12 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
           <ul className="flex flex-col gap-4">
             {ITEMS.map((item) => (
               <li
@@ -68,7 +68,7 @@ export function Personalized() {
 
           <Photo
             photo={PHOTOS.familySupport}
-            ratio="4/3"
+            ratio="fill"
             duotone="care"
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="shadow-card"

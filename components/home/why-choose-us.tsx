@@ -39,10 +39,10 @@ export function WhyChooseUs() {
   return (
     <section className="py-14 md:py-20">
       <Container>
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
           <Photo
             photo={PHOTOS.careTeamGroup}
-            ratio="4/3"
+            ratio="fill"
             duotone="navy"
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="shadow-card"

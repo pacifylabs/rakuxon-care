@@ -57,7 +57,7 @@ export function ServicePage({
         }
       >
         <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
             <div className="flex flex-col items-start gap-5">
               <Link
                 href={backHref}
@@ -100,7 +100,7 @@ export function ServicePage({
                 HERO_PHOTO[service.slug] ??
                 (isCare ? PHOTOS.familySupport : PHOTOS.businessMeeting)
               }
-              ratio="4/3"
+              ratio="fill"
               duotone="none"
               priority
               sizes="(min-width: 1024px) 48vw, 100vw"
@@ -130,7 +130,7 @@ export function ServicePage({
       </Section>
 
       <Section tint="paper">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-5">
             <span className="text-overline text-ink-500 uppercase">
               What is included
@@ -146,7 +146,7 @@ export function ServicePage({
           </div>
           <Photo
             photo={isCare ? PHOTOS.carerMobility : PHOTOS.businessTeam}
-            ratio="4/3"
+            ratio="fill"
             duotone={tone}
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="shadow-card"

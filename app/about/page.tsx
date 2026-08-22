@@ -45,10 +45,10 @@ export default async function AboutPage() {
       </section>
 
       <Section tint="paper">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
           <Photo
             photo={PHOTOS.businessTeam}
-            ratio="4/3"
+            ratio="fill"
             duotone="navy"
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="shadow-card"
@@ -103,6 +103,27 @@ export default async function AboutPage() {
           Adult social care in England, latest published figures (March 2025).
         </p>
       </Section>
+
+      {/*
+        TEAM SECTION — intentionally commented out, not deleted.
+
+        No team members are named on rakuxon.com or on the Rakuxon Care
+        source site, and inventing people for a regulated care service is
+        not acceptable. To restore: populate TEAM in lib/cms/data.ts with
+        real names, roles and photos, add getTeam() back to the Promise.all
+        above, and uncomment this block. See TODO.md.
+
+        <Section>
+          <SectionIntro
+            eyebrow="Team"
+            title="Who you will actually deal with"
+            subtitle="The people behind your care package or your registration."
+          />
+          <div className="mt-12">
+            <TeamGrid members={team} />
+          </div>
+        </Section>
+      */}
 
       <Section tint="paper">
         <div className="flex flex-col items-start gap-5 rounded-lg bg-paper-100 p-8 shadow-card md:p-12">

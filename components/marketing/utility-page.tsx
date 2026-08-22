@@ -76,10 +76,10 @@ export function UtilityPage({
       </section>
 
       <Section>
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
           <Photo
             photo={photo}
-            ratio="4/3"
+            ratio="fill"
             duotone={tone}
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="shadow-card"

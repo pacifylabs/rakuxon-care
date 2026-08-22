@@ -30,7 +30,7 @@ export default async function ContactPage() {
               back to you with a person, not an autoresponder.
             </p>
 
-            <div className="rounded-lg border-2 border-dashed border-navy-600/40 bg-navy-50 p-8">
+            {/* <div className="rounded-lg border-2 border-dashed border-navy-600/40 bg-navy-50 p-8">
               <h2 className="text-h4">Enquiry form — Phase 3</h2>
               <p className="measure mt-2 text-ink-700">
                 The segmented enquiry form goes here: an intent selector, then
@@ -42,7 +42,7 @@ export default async function ContactPage() {
               <p className="mt-3 text-small text-ink-500">
                 Field-level requirements are owed by PRD §7.1.
               </p>
-            </div>
+            </div> */}
           </div>
 
           <aside className="flex flex-col gap-6">

@@ -26,10 +26,10 @@ export function FeatureRow({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
       <Photo
         photo={photo}
-        ratio="4/3"
+        ratio="fill"
         duotone={lane === "b2c" ? "care" : "navy"}
         sizes="(min-width: 1024px) 50vw, 100vw"
         className={cn("shadow-card", reverse && "lg:order-2")}
