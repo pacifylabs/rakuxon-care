@@ -3,7 +3,10 @@ import { serviceHref } from "@/lib/clusters";
 import type { Service } from "@/lib/cms/types";
 import { siteUrl } from "@/lib/env";
 
-const SITE_NAME = "Rakuxon Care";
+export const SITE_NAME = "Rakuxon Care";
+export const SITE_AUTHOR = "Rakuxon Care";
+/** Last editorial review — used for the `date` meta tag SEO tools expect. */
+export const SITE_DATE = "2026-08-22";
 
 export function origin(): string {
   return siteUrl().replace(/\/$/, "");
@@ -34,7 +37,9 @@ export function pageMetadata({
   const url = absoluteUrl(path);
   const ogTitle = absoluteTitle ?? `${title} · ${SITE_NAME}`;
   const ogImage = {
-    url: absoluteUrl("/opengraph-image"),
+    url: absoluteUrl("/og.jpg"),
+    secureUrl: absoluteUrl("/og.jpg"),
+    type: "image/jpeg",
     width: 1200,
     height: 630,
     alt: "Rakuxon Care — personal care at home",
@@ -42,6 +47,8 @@ export function pageMetadata({
   return {
     title: absoluteTitle ? { absolute: absoluteTitle } : title,
     description,
+    authors: [{ name: SITE_AUTHOR }],
+    other: { date: SITE_DATE },
     alternates: { canonical: url },
     openGraph: {
       title: ogTitle,

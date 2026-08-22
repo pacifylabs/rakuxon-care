@@ -111,7 +111,13 @@ describe("siteUrl", () => {
   it("falls back to the production origin", async () => {
     delete process.env.NEXT_PUBLIC_SITE_URL;
     const { siteUrl } = await env();
-    expect(siteUrl()).toBe("https://rakuxoncare.co.uk");
+    expect(siteUrl()).toBe("https://www.rakuxoncare.co.uk");
+  });
+
+  it("rewrites the apex host to www so og:url matches the live site", async () => {
+    process.env.NEXT_PUBLIC_SITE_URL = "https://rakuxoncare.co.uk";
+    const { siteUrl } = await env();
+    expect(siteUrl()).toBe("https://www.rakuxoncare.co.uk");
   });
 
   it("prefers the configured value", async () => {

@@ -22,7 +22,10 @@ const serverSchema = z.object({
   ENQUIRY_NOTIFY_EMAIL: z
     .string()
     .email("ENQUIRY_NOTIFY_EMAIL must be an email"),
-  NEXT_PUBLIC_SITE_URL: z.string().url().default("https://rakuxoncare.co.uk"),
+  NEXT_PUBLIC_SITE_URL: z
+    .string()
+    .url()
+    .default("https://www.rakuxoncare.co.uk"),
 });
 
 export type ServerEnv = z.infer<typeof serverSchema>;
@@ -71,6 +74,18 @@ export function mailConfig():
   return { ready: true, apiKey: apiKey!, from: from!, notify: notify! };
 }
 
+const PRODUCTION_ORIGIN = "https://www.rakuxoncare.co.uk";
+
+/** Live site is www; apex 308s there. og:url must match or Facebook drops tags. */
 export function siteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://rakuxoncare.co.uk";
+  const configured = process.env.NEXT_PUBLIC_SITE_URL ?? PRODUCTION_ORIGIN;
+  try {
+    const url = new URL(configured);
+    if (url.hostname === "rakuxoncare.co.uk") {
+      url.hostname = "www.rakuxoncare.co.uk";
+    }
+    return url.origin;
+  } catch {
+    return PRODUCTION_ORIGIN;
+  }
 }

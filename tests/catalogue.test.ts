@@ -59,7 +59,7 @@ describe("sitemap", () => {
   it("includes every catalogue URL", () => {
     const urls = new Set(sitemap().map((entry) => entry.url));
     for (const service of CATALOGUE) {
-      expect(urls.has(`https://rakuxoncare.co.uk${serviceHref(service)}`)).toBe(
+      expect(urls.has(`https://www.rakuxoncare.co.uk${serviceHref(service)}`)).toBe(
         true,
       );
     }

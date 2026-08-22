@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { StickyCta } from "@/components/marketing/sticky-cta";
 import { organisationJsonLd, websiteJsonLd } from "@/lib/schema";
-import { origin } from "@/lib/seo";
+import { origin, SITE_AUTHOR, SITE_DATE } from "@/lib/seo";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
@@ -39,6 +39,8 @@ export const metadata: Metadata = {
   },
   description:
     "Personal and domiciliary care at home, assessed with you and written into a plan before anyone starts.",
+  authors: [{ name: SITE_AUTHOR }],
+  other: { date: SITE_DATE },
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -46,7 +48,9 @@ export const metadata: Metadata = {
     url: origin(),
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og.jpg",
+        secureUrl: "/og.jpg",
+        type: "image/jpeg",
         width: 1200,
         height: 630,
         alt: "Rakuxon Care — personal care at home",
@@ -55,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/opengraph-image"],
+    images: ["/og.jpg"],
   },
 };
 

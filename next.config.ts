@@ -63,6 +63,18 @@ const nextConfig: NextConfig = {
         destination: "/agency/case-studies",
         permanent: true,
       },
+      /* File-based metadata lives at *.jpg. WhatsApp (and older crawlers)
+         follow og:image with no extension and get a 404 without this. */
+      {
+        source: "/opengraph-image",
+        destination: "/opengraph-image.jpg",
+        permanent: true,
+      },
+      {
+        source: "/twitter-image",
+        destination: "/twitter-image.jpg",
+        permanent: true,
+      },
     ];
   },
 };
