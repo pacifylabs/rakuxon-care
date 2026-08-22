@@ -193,6 +193,12 @@ export function SiteNav({
 
           <div className="hidden shrink-0 items-center gap-2 xl:flex">
             <ThemeToggle />
+            <Link
+              href="/contact"
+              className={cn(buttonClasses({ size: "sm" }), "whitespace-nowrap")}
+            >
+              Get in touch
+            </Link>
           </div>
 
           {/* ---------------- Below xl ---------------- */}
