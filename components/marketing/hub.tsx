@@ -85,16 +85,23 @@ export function Hub({
               </span>
               <h1 className="text-h1">{title}</h1>
               <p className="measure text-body-lg text-ink-700">{subtitle}</p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
                 <Link
                   href={primaryCta.href}
-                  className={buttonClasses({ tone })}
+                  className={buttonClasses({
+                    tone,
+                    className: "w-full sm:w-auto",
+                  })}
                 >
                   {primaryCta.label}
                 </Link>
                 <Link
                   href={secondaryCta.href}
-                  className={buttonClasses({ variant: "secondary", tone })}
+                  className={buttonClasses({
+                    variant: "secondary",
+                    tone,
+                    className: "w-full sm:w-auto",
+                  })}
                 >
                   {secondaryCta.label}
                 </Link>
@@ -145,7 +152,7 @@ export function Hub({
       ))}
 
       <Section tint="paper">
-        <div className="flex flex-col items-start gap-5 rounded-lg bg-paper-100 p-8 shadow-card md:p-12">
+        <div className="flex flex-col items-start gap-5 rounded-lg bg-paper-100 p-6 shadow-card md:p-12">
           <h2 className="text-h3">{otherLane.title}</h2>
           <p className="measure text-ink-700">{otherLane.body}</p>
           <Link href={otherLane.href} className={buttonClasses({ tone })}>

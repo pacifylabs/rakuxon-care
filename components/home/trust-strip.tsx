@@ -18,7 +18,7 @@ export function TrustStrip() {
       <Container>
         <div className="flex flex-col items-center gap-6">
           <p className="text-center text-small text-ink-500">
-            Proudly serving families and care teams across the UK
+            Proudly serving families across the UK
           </p>
           <ul className="flex flex-wrap items-center justify-center gap-3">
             {BADGES.map(({ icon: Icon, label }) => (

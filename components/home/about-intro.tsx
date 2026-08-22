@@ -15,9 +15,9 @@ export function AboutIntro() {
           <h2 className="text-h2">Care that feels like care</h2>
           <p className="measure text-ink-500">
             There is a difference between support that is delivered and support
-            that is felt. Rakuxon brings practitioner knowledge to every part of
-            the care journey — so families get reassurance, people get dignity,
-            and care leaders get a partner who understands the real work.
+            that is felt. Rakuxon brings that difference into the home — so
+            families get reassurance, and the person being supported keeps their
+            dignity.
           </p>
         </div>
         <Photo

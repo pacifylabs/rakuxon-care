@@ -128,18 +128,24 @@ export default async function AboutPage() {
       */}
 
       <Section tint="paper">
-        <div className="flex flex-col items-start gap-5 rounded-lg bg-paper-100 p-8 shadow-card md:p-12">
+        <div className="flex flex-col items-start gap-5 rounded-lg bg-paper-100 p-6 shadow-card md:p-12">
           <h2 className="text-h3">Talk to us</h2>
           <p className="measure text-ink-700">
             Whichever side you are on, the first step is the same conversation.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/contact" className={buttonClasses({})}>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+            <Link
+              href="/contact"
+              className={buttonClasses({ className: "w-full sm:w-auto" })}
+            >
               Get in touch
             </Link>
             <a
               href={`mailto:${settings.email}`}
-              className={buttonClasses({ variant: "secondary" })}
+              className={buttonClasses({
+                variant: "secondary",
+                className: "w-full max-w-full break-all sm:w-auto",
+              })}
             >
               {settings.email}
             </a>

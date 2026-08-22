@@ -22,26 +22,33 @@ export function CookieConsent() {
       role="dialog"
       aria-modal="false"
       aria-labelledby="cookie-consent-heading"
-      className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-3xl rounded-lg border border-navy-100 bg-paper-100 p-6 shadow-card"
+      className="fixed inset-x-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 mx-auto max-w-3xl rounded-lg border border-navy-100 bg-paper-100 p-4 shadow-card sm:p-6"
     >
       <h2 id="cookie-consent-heading" className="text-h4">
         Cookies
       </h2>
-      <p className="measure mt-2 text-ink-700">
+      <p className="mt-2 text-small text-ink-700 sm:text-body">
         We use essential cookies to make the site work. We would also like to
         set analytics cookies to understand how the site is used. Analytics stay
         off unless you accept.
       </p>
-      <div className="mt-5 flex flex-wrap items-center gap-3">
-        <Button onClick={() => writeConsent("accepted")}>
+      <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+        <Button
+          onClick={() => writeConsent("accepted")}
+          className="w-full sm:w-auto"
+        >
           Accept analytics
         </Button>
-        <Button variant="secondary" onClick={() => writeConsent("rejected")}>
+        <Button
+          variant="secondary"
+          onClick={() => writeConsent("rejected")}
+          className="w-full sm:w-auto"
+        >
           Reject analytics
         </Button>
         <Link
           href="/cookies"
-          className="min-h-11 content-center text-navy-800 underline-offset-4 hover:underline"
+          className="inline-flex min-h-11 items-center justify-center text-navy-800 underline-offset-4 hover:underline"
         >
           Cookie policy
         </Link>

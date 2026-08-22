@@ -33,7 +33,7 @@ export function WorkingProcess({ steps }: { steps: ProcessStep[] }) {
             className="pointer-events-none absolute inset-y-8 left-1/2 hidden w-px -translate-x-1/2 bg-navy-100 lg:block"
           />
 
-          <ol className="grid gap-6 lg:grid-cols-2 lg:gap-x-52 xl:gap-x-64">
+          <ol className="grid gap-6 lg:grid-cols-2 lg:gap-x-36 xl:gap-x-64">
             {steps.slice(0, 4).map((step, i) => {
               const isLeft = i < 2;
               return (

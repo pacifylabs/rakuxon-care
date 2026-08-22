@@ -6,11 +6,11 @@ const RATIOS = {
   /*
    * Fills the height of its grid row instead of holding a ratio, so an
    * image and the text beside it start and end on the same line. Below lg
-   * the columns stack, where there is no row to fill — so a ratio applies
+   * the columns stack, where there is no row to fill — so 16/9 applies
    * there, plus a floor so a short text column cannot squash the image
    * into a letterbox.
    */
-  fill: "aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-80",
+  fill: "aspect-video lg:aspect-auto lg:h-full lg:min-h-80",
   // "fill" also takes the <img> out of flow (see below) so the container
   // contributes no intrinsic height and the TEXT column sets the row.
   "4/3": "aspect-[4/3]",

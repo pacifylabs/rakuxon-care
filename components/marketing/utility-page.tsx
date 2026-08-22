@@ -75,14 +75,24 @@ export function UtilityPage({
             </span>
             <h1 className="text-h1">{title}</h1>
             <p className="measure text-body-lg text-ink-500">{intro}</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link href={cta.href} className={buttonClasses({ tone })}>
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
+              <Link
+                href={cta.href}
+                className={buttonClasses({
+                  tone,
+                  className: "w-full sm:w-auto",
+                })}
+              >
                 {cta.label}
               </Link>
               {secondaryCta ? (
                 <Link
                   href={secondaryCta.href}
-                  className={buttonClasses({ variant: "secondary", tone })}
+                  className={buttonClasses({
+                    variant: "secondary",
+                    tone,
+                    className: "w-full sm:w-auto",
+                  })}
                 >
                   {secondaryCta.label}
                 </Link>

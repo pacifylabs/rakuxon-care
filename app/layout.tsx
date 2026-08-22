@@ -34,11 +34,11 @@ const lora = Lora({
 export const metadata: Metadata = {
   metadataBase: new URL(origin()),
   title: {
-    default: "Rakuxon Care | Home care and care-business support",
+    default: "Rakuxon Care | Personal care at home",
     template: "%s · Rakuxon Care",
   },
   description:
-    "Home care for families and councils, and end-to-end support for care businesses — CQC registration, tenders, branding and staffing.",
+    "Personal and domiciliary care at home, assessed with you and written into a plan before anyone starts.",
   openGraph: {
     type: "website",
     locale: "en_GB",

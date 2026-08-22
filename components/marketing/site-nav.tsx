@@ -37,7 +37,7 @@ const TAIL_LINKS = [
 function LaneMenu({ lane, care }: { lane: NavLane; care: boolean }) {
   return (
     <NavigationMenu.Item>
-      <NavigationMenu.Trigger className="group inline-flex min-h-11 items-center gap-1.5 rounded-pill px-3 text-body whitespace-nowrap text-ink-700 transition-colors hover:bg-navy-50 hover:text-navy-800 data-[state=open]:bg-navy-50 data-[state=open]:text-navy-800">
+      <NavigationMenu.Trigger className="group inline-flex min-h-11 items-center gap-1.5 rounded-pill px-2.5 text-body whitespace-nowrap text-ink-700 transition-colors hover:bg-navy-50 hover:text-navy-800 data-[state=open]:bg-navy-50 data-[state=open]:text-navy-800 xl:px-3">
         {lane.trigger}
         <ChevronDown
           className="size-4 transition-transform duration-200 group-data-[state=open]:rotate-180"
@@ -154,10 +154,10 @@ export function SiteNav({
             <Logo variant="auto" priority className="h-8 md:h-10" />
           </Link>
 
-          {/* Desktop nav. Seven items plus two long lane labels do not fit at
-              lg, so the full bar starts at xl and the drawer covers below. */}
+          {/* Desktop nav. Careers and Contact left the bar, so the four
+              remaining items fit from lg; the drawer covers below that. */}
           <NavigationMenu.Root
-            className="relative hidden xl:flex xl:flex-1 xl:justify-center"
+            className="relative hidden lg:flex lg:flex-1 lg:justify-center"
             delayDuration={0}
           >
             <NavigationMenu.List className="flex items-center gap-0.5">
@@ -190,7 +190,7 @@ export function SiteNav({
             </NavigationMenu.List>
           </NavigationMenu.Root>
 
-          <div className="hidden shrink-0 items-center gap-2 xl:flex">
+          <div className="hidden shrink-0 items-center gap-2 lg:flex">
             <ThemeToggle />
             <Link
               href="/contact"
@@ -202,17 +202,17 @@ export function SiteNav({
 
           {/* ---------------- Below xl ---------------- */}
           <Dialog.Root open={drawerOpen} onOpenChange={setDrawerOpen}>
-            <ThemeToggle className="xl:hidden" />
+            <ThemeToggle className="lg:hidden" />
             <Dialog.Trigger
               aria-label="Open menu"
-              className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-pill border-2 border-navy-800 px-4 text-small font-semibold text-navy-800 transition-colors hover:bg-navy-50 xl:hidden"
+              className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-pill border-2 border-navy-800 px-3 text-small font-semibold text-navy-800 transition-colors hover:bg-navy-50 sm:px-4 lg:hidden"
             >
               <Menu className="size-5" aria-hidden="true" />
               <span className="hidden sm:inline">Menu</span>
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="fixed inset-0 z-50 bg-navy-900/40 backdrop-blur-sm" />
-              <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-[min(24rem,100vw)] flex-col overflow-y-auto bg-paper-50 shadow-card focus:outline-none">
+              <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-full max-w-96 flex-col overflow-y-auto bg-paper-50 shadow-card focus:outline-none">
                 <Dialog.Title className="sr-only">Menu</Dialog.Title>
                 <div className="flex items-center justify-between border-b border-navy-100 px-5 py-3">
                   <Logo variant="auto" className="h-8" />

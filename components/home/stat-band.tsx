@@ -14,9 +14,9 @@ export function StatBand({
   return (
     <section className="pb-14 md:pb-20">
       <Container>
-        <dl className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="flex flex-col gap-1">
+            <div key={s.label} className="flex min-w-0 flex-col gap-1">
               <dt className="sr-only">{s.label}</dt>
               <dd className="font-display text-h2 text-ink-900">{s.value}</dd>
               <p aria-hidden="true" className="text-small text-ink-500">

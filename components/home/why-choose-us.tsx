@@ -8,28 +8,26 @@ import { Container } from "@/components/ui/container";
 import { Photo } from "@/components/ui/photo";
 import { PHOTOS } from "@/lib/images";
 
-/* PRD §1.1 — the authority moat. Every claim here is about how the two arms
-   relate, not about volumes we have not delivered yet. */
 const FEATURES = [
   {
+    icon: HeartHandshake,
+    title: "The person comes first",
+    body: "Plans are built around the routine in front of us, not a standard visit length.",
+  },
+  {
     icon: BadgeCheck,
-    title: "We are inspected\ntoo",
-    body: "Our own service is judged against the framework you are judged against.",
+    title: "Faces you recognise",
+    body: "The same small team wherever the rota allows, so nobody starts again each week.",
   },
   {
     icon: FileCheck2,
-    title: "Evidence, not\ntemplates",
-    body: "Policies we supply are policies we run, with the audit trail behind them.",
+    title: "Funding we already work with",
+    body: "Private-pay, council packages, ICBs and NHS Continuing Healthcare.",
   },
   {
     icon: MonitorSmartphone,
-    title: "One team, both\nsides",
-    body: "Registration, tenders, digital and staffing handled by people who talk to each other.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "We will tell you\nno",
-    body: "If an application is not ready we say so before you submit, not after.",
+    title: "Clear from the start",
+    body: "A written plan and named carers before support begins. If we are not the right fit, we say so.",
   },
 ];
 
@@ -40,21 +38,11 @@ export function WhyChooseUs() {
     <section className="py-14 md:py-20">
       <Container>
         <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
-          <Photo
-            photo={PHOTOS.careTeamGroup}
-            ratio="fill"
-            duotone="navy"
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="shadow-card"
-          />
           <div className="flex flex-col items-start gap-4">
             <span className="inline-flex items-center rounded-pill bg-navy-100 px-3 py-1 text-overline text-navy-800 uppercase">
               The people behind the promise
             </span>
-            <h2 className="text-h2">
-              We know care
-              <br className="hidden sm:block" /> because we do care
-            </h2>
+            <h2 className="text-h2">We know care because we do care</h2>
             <p className="measure text-ink-500">
               Rakuxon was shaped by people who have worked inside care — with
               families, with teams, and with the responsibilities that sit
@@ -65,6 +53,13 @@ export function WhyChooseUs() {
               Respect is not an extra in care. It is the starting point.
             </blockquote>
           </div>
+          <Photo
+            photo={PHOTOS.careTeamGroup}
+            ratio="fill"
+            duotone="navy"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="shadow-card lg:order-first"
+          />
         </div>
 
         <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -80,9 +75,7 @@ export function WhyChooseUs() {
                 strokeWidth={1.75}
                 aria-hidden="true"
               />
-              <h3 className="font-display text-h4 whitespace-pre-line">
-                {title}
-              </h3>
+              <h3 className="font-display text-h4">{title}</h3>
               <p className="text-small text-ink-500">{body}</p>
             </li>
           ))}

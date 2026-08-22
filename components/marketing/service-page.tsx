@@ -121,16 +121,23 @@ export function ServicePage({
               <p className="measure text-body-lg text-ink-700">
                 {service.overview}
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
                 <Link
                   href={isCare ? "/care/refer" : "/agency/book-a-call"}
-                  className={buttonClasses({ tone })}
+                  className={buttonClasses({
+                    tone,
+                    className: "w-full sm:w-auto",
+                  })}
                 >
                   {isCare ? "Request care" : "Book a free call"}
                 </Link>
                 <Link
                   href={isCare ? "/contact?intent=care" : "/contact?intent=business"}
-                  className={buttonClasses({ variant: "secondary", tone })}
+                  className={buttonClasses({
+                    variant: "secondary",
+                    tone,
+                    className: "w-full sm:w-auto",
+                  })}
                 >
                   Get in touch
                 </Link>

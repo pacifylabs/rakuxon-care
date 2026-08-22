@@ -12,61 +12,52 @@ import { WhyChooseUs } from "@/components/home/why-choose-us";
 import { WorkingProcess } from "@/components/home/working-process";
 import {
   getArms,
+  getDemandStats,
   getFaqs,
-  getMarketStats,
   getProcess,
-  getSiteSettings,
+  getServices,
 } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Home",
   description:
-    "Dependable support at home, built around your person — and practical expertise for people building better care services.",
+    "Personal and domiciliary care at home, assessed with you and written into a plan before anyone starts.",
   path: "/",
-  absoluteTitle: "Rakuxon Care | Home care and care-business support",
+  absoluteTitle: "Rakuxon Care | Personal care at home",
 });
 
 /**
- * Home — reference structure (14 sections), PRD v2.0 content.
- *
- *  1 navbar (layout)   8 working process
- *  2 hero              9 why choose us (authority moat)
- *  3 trust strip      10 CTA band
- *  4 about intro      11 specialists
- *  5 stat band        12 testimonials
- *  6 services split   13 FAQ
- *  7 two arms         14 footer (layout)
- *
- * Section 7 carries the dual-lane entry that PRD §5.1 requires: the
- * reference hero is a single centred block, so lane selection sits directly
- * beneath it rather than inside it.
+ * Home is care-first. The care-business entry sits at the end, after the
+ * family story, so organisations still have a route in from this page.
  */
 export default async function HomePage() {
-  const [arms, stats, careProcess, faqs, settings] = await Promise.all([
+  const [arms, stats, careProcess, faqs, services] = await Promise.all([
     getArms(),
-    getMarketStats("compact"),
+    getDemandStats(),
     getProcess("b2c"),
-    getFaqs(),
-    getSiteSettings(),
+    getFaqs("b2c"),
+    getServices("b2c"),
   ]);
+
+  const careServices = services.filter((s) => s.cluster === "care-service");
 
   return (
     <>
-      <Hero cqc={settings.cqc} />
+      <Hero />
       <TrustStrip />
       <AboutIntro />
       <StatBand
         stats={stats}
         caption="Adult social care in England, latest published figures (March 2025)."
       />
-      <ServicesSplit />
-      <TwoArms arms={arms} />
+      <ServicesSplit services={careServices} />
       <Personalized />
       <WorkingProcess steps={careProcess} />
       <WhyChooseUs />
       <CtaBand />
       <FaqSection faqs={faqs} />
+      <TwoArms arms={arms} />
     </>
   );
 }

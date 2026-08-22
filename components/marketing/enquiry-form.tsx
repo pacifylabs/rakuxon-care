@@ -143,7 +143,7 @@ export function EnquiryForm({
         <legend className="font-display text-h4 text-ink-900">
           1. What is this about?
         </legend>
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-3">
           {INTENTS.map((option) => {
             const selected = intent === option.value;
             return (

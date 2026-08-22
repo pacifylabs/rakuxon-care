@@ -67,8 +67,8 @@ export async function SiteFooter() {
     <footer data-surface="navy" className="pb-6">
       <Container>
         <div className="rounded-lg bg-navy-900 px-6 py-10 text-on-navy md:px-10 md:py-12">
-          <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-            <div className="flex flex-col gap-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10">
+            <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-1">
               <Logo variant="white" className="h-7 self-start" />
               <p className="max-w-sm text-small text-on-navy">
                 Dependable support at home, and practical expertise for people
@@ -167,20 +167,7 @@ export async function SiteFooter() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-col gap-3 border-t border-navy-700 pt-5 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-small text-on-navy/85">
-              © {new Date().getFullYear()} {settings.legalName}.
-              {settings.companyNumber
-                ? ` Company number ${settings.companyNumber}.`
-                : ""}
-              {settings.icoRegistration
-                ? ` ICO ${settings.icoRegistration}.`
-                : ""}{" "}
-              {settings.cqc.state === "registered"
-                ? `CQC registered, rated ${settings.cqc.rating}.`
-                : "CQC information available on request."}{" "}
-              {settings.easNote}
-            </p>
+          <div className="mt-8 flex flex-col gap-4 border-t border-navy-700 pt-5">
             <ul className="flex flex-wrap items-center gap-x-4">
               {LEGAL_LINKS.map((l) => (
                 <li key={l.href}>
@@ -193,6 +180,21 @@ export async function SiteFooter() {
                 </li>
               ))}
             </ul>
+            <p className="text-small text-on-navy/85">
+              © {new Date().getFullYear()} {settings.legalName}.
+              {settings.companyNumber
+                ? ` Company number ${settings.companyNumber}.`
+                : ""}
+              {settings.icoRegistration
+                ? ` ICO ${settings.icoRegistration}.`
+                : ""}{" "}
+              {settings.cqc.state === "registered"
+                ? `CQC registered, rated ${settings.cqc.rating}.`
+                : "CQC information available on request."}
+            </p>
+            {settings.easNote ? (
+              <p className="text-small text-on-navy/75">{settings.easNote}</p>
+            ) : null}
           </div>
         </div>
       </Container>

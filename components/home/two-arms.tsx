@@ -12,20 +12,19 @@ const PHOTO = {
   agency: PHOTOS.businessMeeting,
 } as const;
 
-/* PRD §1.3 / §5.1 — the dual-lane entry. The reference's hero is a single
-   centred block, so lane selection lives here, immediately beneath it. */
+/* The care-business entry on an otherwise family-first home page. */
 export function TwoArms({ arms }: { arms: Arm[] }) {
   return (
     <section id="arms" className="scroll-mt-24 py-14 md:py-20">
       <Container>
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
           <span className="inline-flex items-center rounded-pill bg-navy-100 px-3 py-1 text-overline text-navy-800 uppercase">
-            One brand, two sides
+            Care organisations
           </span>
-          <h2 className="text-h2">Different disciplines, the same standard</h2>
+          <h2 className="text-h2">We also help care businesses</h2>
           <p className="measure text-ink-500">
-            From a first conversation at home to the systems behind a thriving
-            care business, our expertise connects.
+            Registration, tenders, systems and staffing — from a team that
+            delivers care itself.
           </p>
         </div>
 

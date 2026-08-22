@@ -15,16 +15,28 @@ export default function NotFound() {
             The link may be out of date, or the page may have moved. Both of the
             main routes through the site are below.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/care" className={buttonClasses({ tone: "care" })}>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+            <Link
+              href="/care"
+              className={buttonClasses({
+                tone: "care",
+                className: "w-full sm:w-auto",
+              })}
+            >
               Find care
             </Link>
-            <Link href="/agency" className={buttonClasses({})}>
+            <Link
+              href="/agency"
+              className={buttonClasses({ className: "w-full sm:w-auto" })}
+            >
               For care businesses
             </Link>
             <Link
               href="/contact"
-              className={buttonClasses({ variant: "secondary" })}
+              className={buttonClasses({
+                variant: "secondary",
+                className: "w-full sm:w-auto",
+              })}
             >
               Get in touch
             </Link>

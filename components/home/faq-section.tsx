@@ -13,8 +13,8 @@ export function FaqSection({ faqs }: { faqs: Faq[] }) {
           </span>
           <h2 className="text-h2">Frequently asked questions</h2>
           <p className="measure text-ink-500">
-            The questions families and providers ask us first. If yours is not
-            here, a short call usually settles it.
+            The questions families ask us first. If yours is not here, a short
+            call usually settles it.
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-4xl">

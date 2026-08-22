@@ -1,52 +1,43 @@
 import Link from "next/link";
-import { HeartHandshake, ShieldCheck } from "lucide-react";
+import { HeartHandshake } from "lucide-react";
 import { buttonClasses } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Photo } from "@/components/ui/photo";
 import { PHOTOS } from "@/lib/images";
-import type { CqcStatus } from "@/lib/cms";
 
-export function Hero({ cqc }: { cqc: CqcStatus }) {
-  const cqcLabel =
-    cqc.state === "registered"
-      ? `CQC registered · rated ${cqc.rating}`
-      : "CQC registration in progress";
-
+export function Hero() {
   return (
-    <section className="pt-8 pb-14 md:pt-12 md:pb-20">
+    <section className="pt-8 pb-12 md:pt-12 md:pb-20">
       <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="flex flex-col items-start gap-6">
-            <span className="inline-flex items-center gap-2 rounded-pill bg-care-100 px-3 py-1 text-overline text-care-700 uppercase">
-              <ShieldCheck className="size-3.5" aria-hidden="true" />
-              {cqcLabel}
-            </span>
-            <h1 className="text-h1">
-              Home care for families.
-              <br />
-              A partner for care businesses.
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-12">
+          <div className="flex flex-col items-start gap-5 md:gap-6">
+            <h1 className="text-h1 text-balance">
+              Personal care at home, arranged around the person.
             </h1>
             <p className="measure text-body-lg text-ink-500">
-              Support at home, assessed with you and written into a plan before
-              anyone starts. And practical help for providers on registration,
-              tenders, brand and staffing.
+              Support with washing, dressing, meals and the shape of the week.
+              We visit, agree a written plan with you, and send the same faces
+              back.
             </p>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
               <Link
                 href="/care/refer"
-                className={buttonClasses({ tone: "care", size: "lg" })}
+                className={buttonClasses({
+                  tone: "care",
+                  className: "w-full sm:w-auto",
+                })}
               >
                 Request care
               </Link>
               <Link
-                href="/agency"
+                href="/care"
                 className={buttonClasses({
                   variant: "secondary",
-                  tone: "navy",
-                  size: "lg",
+                  tone: "care",
+                  className: "w-full sm:w-auto",
                 })}
               >
-                For care organisations
+                See care services
               </Link>
             </div>
             <p className="inline-flex items-center gap-2 text-small text-ink-700">
@@ -60,11 +51,11 @@ export function Hero({ cqc }: { cqc: CqcStatus }) {
 
           <Photo
             photo={PHOTOS.homeHero}
-            ratio="3/2"
+            ratio="16/9"
             duotone="none"
             priority
             sizes="(min-width: 1024px) 48vw, 100vw"
-            className="shadow-card"
+            className="shadow-card lg:aspect-[3/2]"
           />
         </div>
       </Container>

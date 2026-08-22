@@ -10,14 +10,14 @@ export function CtaBand() {
         <div className="flex flex-col items-center gap-4 rounded-lg bg-navy-50 px-6 py-14 text-center md:px-12 md:py-20">
           <h2 className="text-h2">Tell us what would help</h2>
           <p className="measure text-ink-500">
-            Looking for care at home, or trying to make a care service stronger?
-            Leave a few details and the right person will be in touch.
+            If someone you love needs support at home, leave a few details and
+            we will be in touch.
           </p>
           <Link
-            href="/contact"
+            href="/care/refer"
             className={buttonClasses({ tone: "care", className: "mt-3" })}
           >
-            Book a conversation
+            Request care
           </Link>
         </div>
       </Container>
