@@ -40,13 +40,15 @@ export default function BookACallPage() {
           slug: "launch-kit",
           href: "/agency/launch-kit",
           title: "Care Business Launch Kit",
-          summary: "The productised route from nothing to a trading care business.",
+          summary:
+            "The productised route from nothing to a trading care business.",
         },
         {
           slug: "cqc-registration",
           href: "/agency/cqc-registration",
           title: "CQC registration support",
-          summary: "End-to-end registration, from application through to the decision.",
+          summary:
+            "End-to-end registration, from application through to the decision.",
         },
         {
           slug: "consulting",

@@ -83,7 +83,7 @@ export function SplitHero({
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
               <span className="inline-flex items-center gap-2 text-small text-ink-700">
                 <ShieldCheck
-                  className="size-4 text-care-600"
+                  className="size-4 text-care-700"
                   aria-hidden="true"
                 />
                 {cqc.state === "registered"
@@ -92,7 +92,7 @@ export function SplitHero({
               </span>
               <span className="inline-flex items-center gap-2 text-small text-ink-700">
                 <HeartHandshake
-                  className="size-4 text-care-600"
+                  className="size-4 text-care-700"
                   aria-hidden="true"
                 />
                 Council-funded packages welcome

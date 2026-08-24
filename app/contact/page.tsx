@@ -42,7 +42,7 @@ export default async function ContactPage({
                     className="inline-flex min-h-11 items-center gap-2 text-navy-800 underline-offset-4 hover:underline"
                   >
                     <Mail
-                      className="size-4 shrink-0 text-care-600"
+                      className="size-4 shrink-0 text-care-700"
                       aria-hidden="true"
                     />
                     <span className="break-all">{settings.email}</span>
@@ -56,7 +56,7 @@ export default async function ContactPage({
                     className="inline-flex min-h-11 items-center gap-2 text-navy-800 underline-offset-4 hover:underline"
                   >
                     <Phone
-                      className="size-4 shrink-0 text-care-600"
+                      className="size-4 shrink-0 text-care-700"
                       aria-hidden="true"
                     />
                     <span>
@@ -74,7 +74,7 @@ export default async function ContactPage({
               {settings.regionsServed ? (
                 <li className="inline-flex min-h-11 items-center gap-2 text-ink-700">
                   <MapPin
-                    className="size-4 shrink-0 text-care-600"
+                    className="size-4 shrink-0 text-care-700"
                     aria-hidden="true"
                   />
                   {settings.regionsServed}

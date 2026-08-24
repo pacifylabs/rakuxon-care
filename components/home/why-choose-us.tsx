@@ -49,7 +49,7 @@ export function WhyChooseUs() {
               behind every visit. That lived perspective keeps our work
               practical, warm and accountable.
             </p>
-            <blockquote className="measure border-l-2 border-care-600 pl-4 font-serif text-body-lg text-ink-700 italic">
+            <blockquote className="measure border-l-2 border-care-700 pl-4 font-serif text-body-lg text-ink-700 italic">
               Respect is not an extra in care. It is the starting point.
             </blockquote>
           </div>
@@ -71,7 +71,7 @@ export function WhyChooseUs() {
               }`}
             >
               <Icon
-                className="size-6 text-care-600"
+                className="size-6 text-care-700"
                 strokeWidth={1.75}
                 aria-hidden="true"
               />

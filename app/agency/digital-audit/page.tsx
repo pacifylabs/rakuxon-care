@@ -46,7 +46,8 @@ export default function DigitalAuditPage() {
           slug: "branding-kits",
           href: "/agency/branding-kits",
           title: "Branding kits",
-          summary: "Identity and collateral that make a new provider look established.",
+          summary:
+            "Identity and collateral that make a new provider look established.",
         },
         {
           slug: "social-presence",

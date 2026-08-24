@@ -136,7 +136,7 @@ export function UtilityPage({
                   <span
                     className={
                       isCare
-                        ? "mt-1 h-8 w-1 shrink-0 rounded-pill bg-care-600"
+                        ? "mt-1 h-8 w-1 shrink-0 rounded-pill bg-care-700"
                         : "mt-1 h-8 w-1 shrink-0 rounded-pill bg-navy-800"
                     }
                     aria-hidden="true"

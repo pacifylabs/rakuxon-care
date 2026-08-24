@@ -29,11 +29,11 @@ const swatchGroups = [
     name: "Care teal · secondary",
     note: "Warmth. Leads the B2C lane.",
     swatches: [
-      { token: "care-700", hex: "#0F6E56", bg: "bg-care-700", dark: true },
-      { token: "care-600", hex: "#158368", bg: "bg-care-600", dark: true },
-      { token: "care-500", hex: "#1D9E75", bg: "bg-care-500", dark: true },
-      { token: "care-100", hex: "#DCF2EA", bg: "bg-care-100", dark: false },
-      { token: "care-50", hex: "#EEF8F4", bg: "bg-care-50", dark: false },
+      { token: "care-700", hex: "#0369A1", bg: "bg-care-700", dark: true },
+      { token: "care-600", hex: "#0EA5E9", bg: "bg-care-600", dark: false },
+      { token: "care-500", hex: "#38BDF8", bg: "bg-care-500", dark: false },
+      { token: "care-100", hex: "#E0F2FE", bg: "bg-care-100", dark: false },
+      { token: "care-50", hex: "#F0F9FF", bg: "bg-care-50", dark: false },
     ],
   },
   {

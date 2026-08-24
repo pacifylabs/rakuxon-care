@@ -494,7 +494,8 @@ export const SERVICE_COPY: Record<string, ServiceCopy> = {
     ],
     [
       {
-        question: "Do you work with people who also have a physical disability?",
+        question:
+          "Do you work with people who also have a physical disability?",
         answer:
           "Yes. Many packages sit across more than one of these pages. The plan is built around the person; the labels are for navigation.",
       },
@@ -865,12 +866,7 @@ export const SERVICE_COPY: Record<string, ServiceCopy> = {
   "inspection-readiness": copy(
     "CQC inspection readiness for care providers",
     "Stay inspection-ready between inspections: rolling audits, mock inspections, an evidence library, and action plans that are actually re-checked.",
-    [
-      "policies-procedures",
-      "cqc-registration",
-      "consulting",
-      "hr-documents",
-    ],
+    ["policies-procedures", "cqc-registration", "consulting", "hr-documents"],
     [
       section(
         "twelve-months",
@@ -966,7 +962,12 @@ export const SERVICE_COPY: Record<string, ServiceCopy> = {
   frameworks: copy(
     "Council and NHS care framework applications",
     "Applications to council and NHS/ICB frameworks and dynamic purchasing systems — portal registration, compliance evidence and renewals.",
-    ["tender-writing", "tender-pricing", "cqc-registration", "inspection-readiness"],
+    [
+      "tender-writing",
+      "tender-pricing",
+      "cqc-registration",
+      "inspection-readiness",
+    ],
     [
       section(
         "volume",

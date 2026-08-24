@@ -15,9 +15,15 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
         {items.map((item, index) => {
           const last = index === items.length - 1;
           return (
-            <li key={`${item.label}-${index}`} className="flex items-center gap-1">
+            <li
+              key={`${item.label}-${index}`}
+              className="flex items-center gap-1"
+            >
               {index > 0 ? (
-                <ChevronRight className="size-3.5 shrink-0" aria-hidden="true" />
+                <ChevronRight
+                  className="size-3.5 shrink-0"
+                  aria-hidden="true"
+                />
               ) : null}
               {last || !item.href ? (
                 <span

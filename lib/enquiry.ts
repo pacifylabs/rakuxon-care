@@ -38,7 +38,9 @@ const INTENT_ALIASES: Record<string, Intent> = {
   audit: "business",
 };
 
-export function parseEnquiryIntent(raw: string | string[] | undefined): Intent | null {
+export function parseEnquiryIntent(
+  raw: string | string[] | undefined,
+): Intent | null {
   const value = Array.isArray(raw) ? raw[0] : raw;
   if (!value) return null;
   return INTENT_ALIASES[value] ?? null;

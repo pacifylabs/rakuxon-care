@@ -45,7 +45,7 @@ const variants: Record<ButtonVariant, Record<ButtonTone, string>> = {
       "border-2 border-navy-800 text-navy-800 hover:bg-navy-50 " +
       "active:bg-navy-100 disabled:border-ink-300 disabled:text-ink-300",
     care:
-      "border-2 border-care-600 text-care-700 hover:bg-care-50 " +
+      "border-2 border-care-700 text-care-700 hover:bg-care-50 " +
       "active:bg-care-100 disabled:border-ink-300 disabled:text-ink-300",
   },
   tertiary: {

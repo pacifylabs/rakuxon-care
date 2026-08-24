@@ -51,10 +51,7 @@ export default async function CareHubPage() {
       secondaryCta={{ label: "Fees and funding", href: "/care/fees-funding" }}
       clusters={clusters}
       fallbackIcon={HeartHandshake}
-      crumbs={[
-        { label: "Home", href: "/" },
-        { label: "Care services" },
-      ]}
+      crumbs={[{ label: "Home", href: "/" }, { label: "Care services" }]}
       otherLane={{
         title: "Building or growing a care business?",
         body: "CQC registration, tenders, brand, staffing and advisory — from a team that also delivers care.",

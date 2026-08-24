@@ -170,8 +170,8 @@ describe("both templates — security and deliverability", () => {
     ]) {
       expect(html).not.toContain(violet);
     }
-    // Navy and care teal are present.
+    // Navy and sky blue are present.
     expect(html).toContain("#10203d");
-    expect(html).toContain("#158368");
+    expect(html).toContain("#0369a1");
   });
 });

@@ -138,7 +138,7 @@ export function StatCard({
     >
       {Icon ? (
         <Icon
-          className="mb-2 size-5 text-care-600"
+          className="mb-2 size-5 text-care-700"
           strokeWidth={1.75}
           aria-hidden="true"
         />

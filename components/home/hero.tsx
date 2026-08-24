@@ -42,7 +42,7 @@ export function Hero() {
             </div>
             <p className="inline-flex items-center gap-2 text-small text-ink-700">
               <HeartHandshake
-                className="size-4 shrink-0 text-care-600"
+                className="size-4 shrink-0 text-care-700"
                 aria-hidden="true"
               />
               Private-pay, council and ICB packages

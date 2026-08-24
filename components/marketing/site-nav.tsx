@@ -32,9 +32,7 @@ export interface NavLane {
 
 /* 04_SITE_ARCHITECTURE §2 — global nav. Home is kept ahead of the two lane
    menus at the user's request; the doc's list starts at the lane menus. */
-const TAIL_LINKS = [
-  { label: "About & CQC", href: "/about" },
-];
+const TAIL_LINKS = [{ label: "About & CQC", href: "/about" }];
 
 function ClusterList({
   cluster,

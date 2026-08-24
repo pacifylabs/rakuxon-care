@@ -12,7 +12,9 @@ import type { EnquiryRow } from "@/lib/db/schema";
 
 const NAVY = "#1f3864";
 const NAVY_DARK = "#10203d";
-const CARE = "#158368";
+/* Sky blue per design system v1.4. Uses the deep end (care-700) —
+   this is a border accent on white, where #0ea5e9 is too light. */
+const CARE = "#0369a1";
 const INK = "#33404f";
 const INK_MUTED = "#5c6b7a";
 const PAPER = "#f7f9fb";

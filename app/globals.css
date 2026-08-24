@@ -36,12 +36,15 @@
   --color-navy-100: #dde6f2;
   --color-navy-50: #eef3fa;
 
-  /* ── Care teal/green · secondary (warmth, B2C lean) ─────── */
-  --color-care-700: #0f6e56;
-  --color-care-600: #158368; /* primary care accent */
-  --color-care-500: #1d9e75;
-  --color-care-100: #dcf2ea;
-  --color-care-50: #eef8f4;
+  /* ── Sky blue · secondary (B2C lean) ────────────────────────
+     Design system v1.4 swapped the secondary from teal-green to
+     sky blue (Option C). Token NAMES are unchanged so no component
+     reference breaks — only the hue moved.                        */
+  --color-care-700: #0369a1; /* deep sky — text on light, strong accents */
+  --color-care-600: #0ea5e9; /* primary sky-blue accent */
+  --color-care-500: #38bdf8; /* lighter sky — highlights */
+  --color-care-100: #e0f2fe; /* light tint — B2C section backgrounds */
+  --color-care-50: #f0f9ff;
 
   /* ── Solid brand fills · identical in both themes ───────────
      navy-800 and care-700 are overwhelmingly TEXT tokens (45 and 24
@@ -53,8 +56,13 @@
   --color-brand-navy: #1f3864;
   --color-brand-navy-hover: #2e4a7d;
   --color-brand-navy-active: #10203d;
-  --color-brand-care: #158368;
-  --color-brand-care-hover: #0f6e56;
+  /* Sky blue is much lighter than the teal it replaced: white on
+     care-600 (#0ea5e9) is 2.8:1 and on care-500 (#38bdf8) only 2.1:1,
+     both well under AA. Solid fills carrying white text therefore use
+     the deep end of the scale — #0369a1 is 5.9:1, and the hover shade
+     (sky-800) is 7.5:1. */
+  --color-brand-care: #0369a1;
+  --color-brand-care-hover: #075985;
 
   /* Text on surfaces that are navy in BOTH themes — the footer, the navy
      section band, inverted process steps. navy-100 cannot serve here: it is
@@ -250,8 +258,8 @@
   .duotone-care::after {
     background: linear-gradient(
       190deg,
-      rgb(21 131 104 / 0.12),
-      rgb(15 110 86 / 0.24)
+      rgb(14 165 233 / 0.12),
+      rgb(3 105 161 / 0.24)
     );
   }
 }
@@ -332,11 +340,11 @@
       --color-navy-100: #1e2b40;
       --color-navy-50: #131c2b;
 
-      --color-care-700: #63d2ad;
-      --color-care-600: #46c39a;
-      --color-care-500: #55cfa6;
-      --color-care-100: #16302a;
-      --color-care-50: #0f1b18;
+      --color-care-700: #7dd3fc;
+      --color-care-600: #38bdf8;
+      --color-care-500: #7dd3fc;
+      --color-care-100: #10293a;
+      --color-care-50: #0b1a24;
 
       --color-info: #a8c4ea;
 
@@ -365,11 +373,11 @@
     --color-navy-100: #1e2b40;
     --color-navy-50: #131c2b;
 
-    --color-care-700: #63d2ad;
-    --color-care-600: #46c39a;
-    --color-care-500: #55cfa6;
-    --color-care-100: #16302a;
-    --color-care-50: #0f1b18;
+    --color-care-700: #7dd3fc;
+    --color-care-600: #38bdf8;
+    --color-care-500: #7dd3fc;
+    --color-care-100: #10293a;
+    --color-care-50: #0b1a24;
 
     --color-info: #a8c4ea;
 

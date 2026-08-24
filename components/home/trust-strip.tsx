@@ -34,7 +34,7 @@ export function TrustStrip() {
                 className="flex items-start gap-3 rounded-md border border-navy-100 bg-paper-100 px-4 py-4"
               >
                 <Icon
-                  className="mt-0.5 size-5 shrink-0 text-care-600"
+                  className="mt-0.5 size-5 shrink-0 text-care-700"
                   strokeWidth={1.75}
                   aria-hidden="true"
                 />

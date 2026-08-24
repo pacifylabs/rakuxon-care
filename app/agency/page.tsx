@@ -58,10 +58,7 @@ export default async function AgencyHubPage() {
       }}
       clusters={clusters}
       fallbackIcon={Building2}
-      crumbs={[
-        { label: "Home", href: "/" },
-        { label: "Care businesses" },
-      ]}
+      crumbs={[{ label: "Home", href: "/" }, { label: "Care businesses" }]}
       otherLane={{
         title: "Looking for care at home?",
         body: "Personal care, visiting support, live-in and respite — assessed at home and written into a plan you agree.",
