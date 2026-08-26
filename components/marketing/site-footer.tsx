@@ -58,6 +58,7 @@ const LEGAL_LINKS = [
   { label: "Terms", href: "/terms" },
   { label: "Accessibility", href: "/accessibility" },
   { label: "Complaints", href: "/complaints" },
+  { label: "Safeguarding", href: "/safeguarding" },
 ];
 
 export async function SiteFooter() {
@@ -192,7 +193,7 @@ export async function SiteFooter() {
                 : ""}{" "}
               {settings.cqc.state === "registered"
                 ? `CQC registered, rated ${settings.cqc.rating}.`
-                : "CQC information available on request."}
+                : "CQC registration: application in progress. No regulated activity is provided until registration is confirmed."}
             </p>
             {settings.easNote ? (
               <p className="text-small text-on-navy/75">{settings.easNote}</p>

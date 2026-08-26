@@ -15,9 +15,10 @@ export function Hero() {
               Personal care at home, arranged around the person.
             </h1>
             <p className="measure text-body-lg text-ink-500">
-              Support with washing, dressing, meals and the shape of the week.
-              We visit, agree a written plan with you, and send the same faces
-              back.
+              Support with personal care, meals, daily routines and the things
+              that matter to you. We assess your needs and preferences, agree a
+              person-centred care plan with you, and aim to provide continuity
+              through a consistent care team.
             </p>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
               <Link
@@ -45,7 +46,8 @@ export function Hero() {
                 className="size-4 shrink-0 text-care-700"
                 aria-hidden="true"
               />
-              Private-pay, council and ICB packages
+              Private-pay care and commissioned packages, subject to eligibility
+              and availability
             </p>
           </div>
 

@@ -38,7 +38,7 @@ export async function CqcBadge() {
       <span className="text-small">
         <span className="block text-ink-900">CQC registration in progress</span>
         <span className="block text-ink-500">
-          Care delivered under a registered service
+          No regulated activity until confirmed
         </span>
       </span>
     </span>

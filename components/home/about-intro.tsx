@@ -6,7 +6,7 @@ import { PHOTOS } from "@/lib/images";
 
 const MOMENTS = [
   "Tea the way they take it",
-  "The same person at the door",
+  "Consistent care team wherever possible",
   "A week that still looks like theirs",
 ];
 

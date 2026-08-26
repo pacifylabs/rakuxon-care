@@ -59,7 +59,7 @@ export function SplitHero({
             </h1>
 
             <p className="measure text-body-lg text-ink-500">
-              We arrange CQC-registered care at home for families and councils,
+              We are preparing to provide CQC-registered care at home for families and councils,
               and we help care businesses register, win contracts and staff up.
               Two things, done properly, under one roof.
             </p>
@@ -124,7 +124,7 @@ export function SplitHero({
               <div className="min-w-0">
                 <p className="text-small text-ink-900">Carer matched</p>
                 <p className="text-small text-ink-500">
-                  Same faces, every visit
+                  Consistent care team wherever possible
                 </p>
               </div>
             </div>

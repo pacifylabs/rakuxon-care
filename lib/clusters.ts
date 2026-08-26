@@ -36,7 +36,7 @@ export const AGENCY_CLUSTERS: ClusterMeta[] = [
     id: "registration-compliance",
     eyebrow: "Getting registered",
     label: "Registration and compliance",
-    blurb: "Getting registered, and staying inspection-ready.",
+    blurb: "Getting registered and maintaining ongoing readiness.",
   },
   {
     id: "tenders-frameworks",

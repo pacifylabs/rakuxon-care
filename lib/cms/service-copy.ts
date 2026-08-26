@@ -864,8 +864,8 @@ export const SERVICE_COPY: Record<string, ServiceCopy> = {
   ),
 
   "inspection-readiness": copy(
-    "CQC inspection readiness for care providers",
-    "Stay inspection-ready between inspections: rolling audits, mock inspections, an evidence library, and action plans that are actually re-checked.",
+    "CQC inspection preparation for care providers",
+    "Ongoing readiness between inspections: rolling audits, mock inspections, an evidence library, and action plans that are actually re-checked.",
     ["policies-procedures", "cqc-registration", "consulting", "hr-documents"],
     [
       section(

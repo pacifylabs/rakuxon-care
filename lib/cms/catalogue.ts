@@ -566,7 +566,7 @@ const AGENCY: Draft[] = [
     "inspection-readiness",
     "Ongoing inspection readiness",
     "registration-compliance",
-    "Staying inspection-ready between inspections, not scrambling before one.",
+    "Ongoing readiness between inspections, with evidence that stays current.",
     "Providers rarely fail on the day; they fail on the twelve months before it. This is the routine that keeps evidence current.",
     [
       {

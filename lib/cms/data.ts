@@ -32,7 +32,7 @@ export const ARMS: Arm[] = [
     lane: "b2c",
     audience: "Families, councils and ICBs",
     summary:
-      "A provider of personal care and domiciliary care at home. Private-pay clients, and packages commissioned by councils, ICBs and NHS Continuing Healthcare. CQC registration is in progress.",
+      "Preparing to provide personal care and domiciliary care at home in England. Private-pay clients, and packages commissioned by councils, ICBs and NHS Continuing Healthcare. CQC registration application is in progress.",
     href: "/care",
     services: ["home-care"],
   },
@@ -191,18 +191,18 @@ export const CARE_PROCESS: ProcessStep[] = [
     number: "02",
     title: "Assessment",
     description:
-      "We visit at home to understand the person, routine and risks.",
+      "We assess needs, preferences, communication, consent, capacity and risks at home.",
   },
   {
     number: "03",
     title: "Care plan",
     description:
-      "A written plan you agree to, with named carers and a schedule.",
+      "A written plan setting out agreed needs, preferences, outcomes, risks, consent, visit arrangements and review dates.",
   },
   {
     number: "04",
     title: "Care starts",
-    description: "Support begins, and the plan is reviewed as needs change.",
+    description: "Support begins once all required arrangements, checks, consent, registration and commissioning requirements are in place, and the plan is reviewed as needs change.",
   },
 ];
 
@@ -250,7 +250,13 @@ export const FAQS: Faq[] = [
   {
     question: "Are your carers DBS checked?",
     answer:
-      "Every carer holds an enhanced DBS check with verified right-to-work documents before their first shift.",
+      "Yes. Our safer recruitment process includes identity checks, right-to-work verification, employment history and references, enhanced DBS checks, qualification and competence verification, induction, training, supervision and ongoing suitability monitoring.",
+    lane: "b2c",
+  },
+  {
+    question: "How do you handle consent and decision-making?",
+    answer:
+      "We seek consent before providing care and support and involve the person in decisions about their care as much as they wish and are able to. Consent is an ongoing process and can be withdrawn. Where a person may lack capacity to make a specific decision, we follow the Mental Capacity Act 2005 and involve the appropriate people and safeguards.",
     lane: "b2c",
   },
   {
@@ -315,7 +321,7 @@ export const SITE_SETTINGS: SiteSettings = {
     { label: "WhatsApp", href: "https://wa.me/2348167178847" },
   ],
 
-  regionsServed: "Across the UK",
+  regionsServed: "England",
 };
 
 /**

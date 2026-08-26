@@ -45,7 +45,7 @@ export default async function CareHubPage() {
       lane="b2c"
       eyebrow="Rakuxon Care"
       title="Care at home, arranged properly"
-      subtitle="A CQC-registered provider of personal and domiciliary care. We assess at home, write the plan with you, and start when you are ready."
+      subtitle="Preparing to provide personal and domiciliary care in England. We assess at home, write the plan with you, and start when all required arrangements are in place."
       photo={PHOTOS.coupleAtHome}
       primaryCta={{ label: "Request care", href: "/care/refer" }}
       secondaryCta={{ label: "Fees and funding", href: "/care/fees-funding" }}

@@ -4,18 +4,18 @@ import { Container } from "@/components/ui/container";
 const BADGES = [
   {
     icon: BadgeCheck,
-    title: "Written to CQC standards",
-    body: "Plans and notes prepared the way an inspection would read them.",
+    title: "Designed around CQC requirements",
+    body: "Person-centred care plans, risk management and clear records.",
   },
   {
     icon: HeartHandshake,
-    title: "The person sets the pace",
-    body: "Routines and preferences agreed at home before anyone starts.",
+    title: "The person leads the plan",
+    body: "Needs, preferences, choices and consent at the centre.",
   },
   {
     icon: MapPin,
     title: "Care stays in the home",
-    body: "Support where life already is — not a move to somewhere new.",
+    body: "Where home care is appropriate, supporting independence at home.",
   },
 ];
 
@@ -25,7 +25,7 @@ export function TrustStrip() {
       <Container>
         <div className="flex flex-col gap-6">
           <p className="text-center text-small text-ink-500">
-            Proudly serving families across the UK
+            Preparing to support people across England
           </p>
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
             {BADGES.map(({ icon: Icon, title, body }) => (

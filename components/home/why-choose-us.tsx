@@ -12,7 +12,7 @@ const FEATURES = [
   {
     icon: HeartHandshake,
     title: "The person comes first",
-    body: "Plans follow the routine in front of us, not a standard visit length.",
+    body: "Needs, preferences, rights, choices and outcomes guide the care plan.",
   },
   {
     icon: BadgeCheck,
@@ -22,12 +22,12 @@ const FEATURES = [
   {
     icon: FileCheck2,
     title: "Funding we work with",
-    body: "Private-pay, council packages, ICBs and NHS Continuing Healthcare.",
+    body: "We can discuss private funding and commissioned care arrangements, subject to eligibility and availability.",
   },
   {
     icon: MonitorSmartphone,
     title: "Clear from the start",
-    body: "A written plan and named carers before support begins — or we say no.",
+    body: "We agree the care plan and intended care team before support begins, with arrangements for continuity and cover.",
   },
 ];
 
@@ -50,7 +50,8 @@ export function WhyChooseUs() {
               practical, warm and accountable.
             </p>
             <blockquote className="measure border-l-2 border-care-700 pl-4 font-serif text-body-lg text-ink-700 italic">
-              Respect is not an extra in care. It is the starting point.
+              Respect is not an extra in care. It is the starting point. We also
+              protect privacy, autonomy, independence and equality.
             </blockquote>
           </div>
           <Photo

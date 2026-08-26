@@ -5,22 +5,22 @@ import { PHOTOS } from "@/lib/images";
 const ITEMS = [
   {
     title: "Assessment at home",
-    body: "We visit, meet the family, and understand the routine before anything is agreed.",
+    body: "We visit, meet the family, and understand needs, preferences, communication, consent and risks.",
     tone: "care" as const,
   },
   {
     title: "A written care plan",
-    body: "Named carers, a clear schedule, and goals you have agreed to in writing.",
+    body: "A plan setting out agreed needs, preferences, outcomes, risks, consent, visit arrangements and review dates.",
     tone: "care" as const,
   },
   {
-    title: "Consistent carers",
-    body: "The same faces week to week, so nobody has to explain themselves twice.",
+    title: "Consistent care team",
+    body: "The same small team wherever possible, so nobody has to explain themselves twice.",
     tone: "navy" as const,
   },
   {
     title: "Reviewed as needs change",
-    body: "Plans are revisited when circumstances shift, not once a year by default.",
+    body: "Plans are reviewed when needs, risks, preferences or circumstances change, and at planned review points.",
     tone: "navy" as const,
   },
 ];
