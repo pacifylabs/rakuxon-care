@@ -4,15 +4,26 @@ export type TurnstileConfig =
   | { enabled: true; siteKey: string; secret: string }
   | { enabled: false };
 
+let warnedUnconfigured = false;
+
 /**
  * Both keys must be present before the widget is shown and before the
  * API starts rejecting missing tokens. Local and CI stay usable without
- * Cloudflare credentials; production should set both.
+ * Cloudflare credentials; production should set both. Warn once per
+ * process if a production deploy is silently running unverified.
  */
 export function turnstileConfig(): TurnstileConfig {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const secret = process.env.TURNSTILE_SECRET_KEY;
   if (siteKey && secret) return { enabled: true, siteKey, secret };
+
+  if (process.env.NODE_ENV === "production" && !warnedUnconfigured) {
+    warnedUnconfigured = true;
+    console.warn(
+      "[turnstile] NEXT_PUBLIC_TURNSTILE_SITE_KEY/TURNSTILE_SECRET_KEY not set in " +
+        "production — the enquiry form is accepting submissions with no bot check.",
+    );
+  }
   return { enabled: false };
 }
 

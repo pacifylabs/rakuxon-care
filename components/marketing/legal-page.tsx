@@ -1,18 +1,24 @@
 import { Container } from "@/components/ui/container";
 
 /* Legal text is the company's to write and approve; inventing it here would
-   be worse than leaving it out, since these documents bind. Each page states
-   plainly that the notice is in preparation and gives the real contact route,
-   rather than listing invented section stubs. */
+   be worse than leaving it out, since these documents bind. Where `sections`
+   is empty the page says plainly it is still in preparation. Where it is
+   filled in, the banner instead says plainly that it is an AI-drafted
+   starting point awaiting a solicitor's review, not the company's approved
+   final wording — never presented as though it already binds. */
 export function LegalPage({
   title,
   summary,
   sections,
+  lastUpdated,
 }: {
   title: string;
   summary: string;
   sections: { heading: string; body: string[] }[];
+  lastUpdated?: string;
 }) {
+  const hasDraftContent = sections.length > 0;
+
   return (
     <article className="py-16 md:py-24">
       <Container>
@@ -23,20 +29,41 @@ export function LegalPage({
           <h1 className="text-h1">{title}</h1>
           <p className="text-body-lg text-ink-500">{summary}</p>
 
-          <p
-            role="note"
-            className="rounded-md border-2 border-warning bg-paper-100 px-5 py-4 text-ink-900"
-          >
-            <strong>In preparation.</strong> This notice is being written and
-            approved. For anything you need in the meantime, email{" "}
-            <a
-              href="mailto:hello@rakuxoncare.co.uk"
-              className="break-all underline underline-offset-4"
+          {hasDraftContent ? (
+            <p
+              role="note"
+              className="rounded-md border-2 border-warning bg-paper-100 px-5 py-4 text-ink-900"
             >
-              hello@rakuxoncare.co.uk
-            </a>
-            .
-          </p>
+              <strong>Draft — pending legal review.</strong> This is a
+              starting point, not our approved final wording. It has not
+              been reviewed by a solicitor and should not be relied on as
+              binding.
+              {lastUpdated ? ` Last edited ${lastUpdated}.` : null} Questions
+              in the meantime:{" "}
+              <a
+                href="mailto:hello@rakuxoncare.co.uk"
+                className="break-all underline underline-offset-4"
+              >
+                hello@rakuxoncare.co.uk
+              </a>
+              .
+            </p>
+          ) : (
+            <p
+              role="note"
+              className="rounded-md border-2 border-warning bg-paper-100 px-5 py-4 text-ink-900"
+            >
+              <strong>In preparation.</strong> This notice is being written
+              and approved. For anything you need in the meantime, email{" "}
+              <a
+                href="mailto:hello@rakuxoncare.co.uk"
+                className="break-all underline underline-offset-4"
+              >
+                hello@rakuxoncare.co.uk
+              </a>
+              .
+            </p>
+          )}
 
           <div className="mt-6 flex flex-col gap-10">
             {sections.map((s) => (
