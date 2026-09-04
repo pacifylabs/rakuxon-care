@@ -17,7 +17,7 @@ export default function Page() {
           heading: "How to complain",
           body: [
             "We welcome feedback and complaints because they help us improve. You can raise a concern in the way that works best for you:",
-            "• By email to hello@rakuxoncare.co.uk",
+            "• By email to info@rakuxoncare.co.uk",
             "• By phone on +44 776 094 4935",
             "• In writing to the address provided when care is arranged",
             "• Verbally to any member of the care team",

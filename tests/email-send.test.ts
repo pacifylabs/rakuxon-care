@@ -44,7 +44,7 @@ beforeEach(() => {
   Object.assign(process.env, {
     RESEND_API_KEY: "re_test",
     ENQUIRY_FROM_EMAIL: "no-reply@rakuxoncare.co.uk",
-    ENQUIRY_NOTIFY_EMAIL: "hello@rakuxoncare.co.uk",
+    ENQUIRY_NOTIFY_EMAIL: "info@rakuxoncare.co.uk",
   });
 });
 
@@ -72,7 +72,7 @@ describe("sendEnquiryEmails — happy path", () => {
     )(lead());
 
     const admin = send.mock.calls.find(
-      ([m]) => (m as { to: string }).to === "hello@rakuxoncare.co.uk",
+      ([m]) => (m as { to: string }).to === "info@rakuxoncare.co.uk",
     )?.[0] as { replyTo: string };
     expect(admin.replyTo).toBe("person@example.org");
   });
@@ -86,7 +86,7 @@ describe("sendEnquiryEmails — happy path", () => {
     const user = send.mock.calls.find(
       ([m]) => (m as { to: string }).to === "person@example.org",
     )?.[0] as { replyTo: string };
-    expect(user.replyTo).toBe("hello@rakuxoncare.co.uk");
+    expect(user.replyTo).toBe("info@rakuxoncare.co.uk");
   });
 
   it("always includes a plain-text part", async () => {

@@ -171,7 +171,7 @@ describe("POST /api/enquiry — failure handling", () => {
     expect(res.status).toBe(503);
     expect(body.ok).toBe(false);
     // The enquirer is told where to send it instead.
-    expect(body.formError).toContain("hello@rakuxoncare.co.uk");
+    expect(body.formError).toContain("info@rakuxoncare.co.uk");
     expect(sendEnquiryEmails).not.toHaveBeenCalled();
   });
 

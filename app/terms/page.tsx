@@ -67,7 +67,7 @@ export default function Page() {
         {
           heading: "Contact and changes",
           body: [
-            "We may update these terms from time to time; the version in force is the one published here. Questions about these terms can be sent to hello@rakuxoncare.co.uk.",
+            "We may update these terms from time to time; the version in force is the one published here. Questions about these terms can be sent to info@rakuxoncare.co.uk.",
           ],
         },
       ]}

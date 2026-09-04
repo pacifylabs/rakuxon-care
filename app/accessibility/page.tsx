@@ -44,7 +44,7 @@ export default function Page() {
         {
           heading: "Reporting a problem",
           body: [
-            "If you find something on this site that is hard to use because of a disability, email hello@rakuxoncare.co.uk describing the page and the problem, and we will get back to you and try to fix it.",
+            "If you find something on this site that is hard to use because of a disability, email info@rakuxoncare.co.uk describing the page and the problem, and we will get back to you and try to fix it.",
           ],
         },
       ]}

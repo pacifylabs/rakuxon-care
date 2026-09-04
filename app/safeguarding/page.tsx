@@ -18,7 +18,7 @@ export default function Page() {
           body: [
             "If you are worried that someone using our service is being abused, neglected, harmed or placed at unacceptable risk, please tell us immediately.",
             "You can raise a concern:",
-            "• By email to hello@rakuxoncare.co.uk with 'SAFEGUARDING CONCERN' in the subject line",
+            "• By email to info@rakuxoncare.co.uk with 'SAFEGUARDING CONCERN' in the subject line",
             "• By phone on +44 776 094 4935",
             "• Verbally to any member of the care team",
             "• In writing to the address provided when care is arranged",

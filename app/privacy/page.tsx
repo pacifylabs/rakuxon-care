@@ -17,7 +17,7 @@ export default function Page() {
         {
           heading: "Who we are",
           body: [
-            "Rakuxon Care Ltd (“Rakuxon Care”, “we”, “us”) is the data controller for the personal data described in this notice. You can contact us at hello@rakuxoncare.co.uk.",
+            "Rakuxon Care Ltd (“Rakuxon Care”, “we”, “us”) is the data controller for the personal data described in this notice. You can contact us at info@rakuxoncare.co.uk.",
           ],
         },
         {
@@ -59,7 +59,7 @@ export default function Page() {
         {
           heading: "Your rights",
           body: [
-            "Under UK GDPR you can ask us for a copy of the data we hold about you, ask us to correct it, ask us to delete it, restrict or object to how we use it, and ask to receive it in a portable format. You can withdraw consent at any time. To exercise any of these, email hello@rakuxoncare.co.uk.",
+            "Under UK GDPR you can ask us for a copy of the data we hold about you, ask us to correct it, ask us to delete it, restrict or object to how we use it, and ask to receive it in a portable format. You can withdraw consent at any time. To exercise any of these, email info@rakuxoncare.co.uk.",
             "If you are not satisfied with how we have handled your data, you can complain to the Information Commissioner's Office at ico.org.uk.",
           ],
         },

@@ -41,7 +41,7 @@ describe("mailConfig", () => {
   const full = {
     RESEND_API_KEY: "re_test",
     ENQUIRY_FROM_EMAIL: "no-reply@rakuxoncare.co.uk",
-    ENQUIRY_NOTIFY_EMAIL: "hello@rakuxoncare.co.uk",
+    ENQUIRY_NOTIFY_EMAIL: "info@rakuxoncare.co.uk",
   };
 
   it("reports ready when every value is present", async () => {
@@ -89,7 +89,7 @@ describe("serverEnv", () => {
       DATABASE_URL: "mysql://user:pw@host/db",
       RESEND_API_KEY: "re_test",
       ENQUIRY_FROM_EMAIL: "no-reply@rakuxoncare.co.uk",
-      ENQUIRY_NOTIFY_EMAIL: "hello@rakuxoncare.co.uk",
+      ENQUIRY_NOTIFY_EMAIL: "info@rakuxoncare.co.uk",
     });
     const { serverEnv } = await env();
     expect(() => serverEnv()).toThrow(/must be a Postgres URL/);

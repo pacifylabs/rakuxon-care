@@ -41,10 +41,10 @@ export function LegalPage({
               {lastUpdated ? ` Last edited ${lastUpdated}.` : null} Questions
               in the meantime:{" "}
               <a
-                href="mailto:hello@rakuxoncare.co.uk"
+                href="mailto:info@rakuxoncare.co.uk"
                 className="break-all underline underline-offset-4"
               >
-                hello@rakuxoncare.co.uk
+                info@rakuxoncare.co.uk
               </a>
               .
             </p>
@@ -56,10 +56,10 @@ export function LegalPage({
               <strong>In preparation.</strong> This notice is being written
               and approved. For anything you need in the meantime, email{" "}
               <a
-                href="mailto:hello@rakuxoncare.co.uk"
+                href="mailto:info@rakuxoncare.co.uk"
                 className="break-all underline underline-offset-4"
               >
-                hello@rakuxoncare.co.uk
+                info@rakuxoncare.co.uk
               </a>
               .
             </p>
