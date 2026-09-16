@@ -93,7 +93,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         formError:
-          "We could not save that just now. Please email hello@rakuxoncare.co.uk and we will pick it up.",
+          "We could not save that just now. Please email info@rakuxoncare.co.uk and we will pick it up.",
       },
       { status: 503 },
     );

@@ -14,11 +14,11 @@ Sources consulted for this pass:
 
 ## 1. Contact details
 
-**Currently shown: `hello@rakuxoncare.co.uk` only.** One real channel, per instruction.
+**Currently shown: `info@rakuxoncare.co.uk` only.** One real channel, per instruction.
 
 | Field            | Status                                                                                                                                                                                             |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Email            | `hello@rakuxoncare.co.uk` — from the Rakuxon Care source. **Confirm this mailbox is live before launch.**                                                                                          |
+| Email            | `info@rakuxoncare.co.uk` — from the Rakuxon Care source. **Confirm this mailbox is live before launch.**                                                                                          |
 | Phone            | **Removed.** The source lists `020 7946 0000`, which is inside Ofcom's `020 7946 0xxx` range reserved for fiction and drama. It is not a real number and was not used. Supply a real one.          |
 | Postal address   | **Removed.** `rakuxon.com` publishes _Flat 15, St Matthews House, Phelp Street, London SE17 2PJ_, but that is the education business. Supply the care service's registered address.                |
 | Company number   | **Removed.** Never published on either source.                                                                                                                                                     |

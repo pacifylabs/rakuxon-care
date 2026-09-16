@@ -125,10 +125,10 @@ export function EnquiryForm({
           A person will read it and come back to you. If it is urgent, email us
           at{" "}
           <a
-            href="mailto:hello@rakuxoncare.co.uk"
+            href="mailto:info@rakuxoncare.co.uk"
             className="break-all underline underline-offset-4"
           >
-            hello@rakuxoncare.co.uk
+            info@rakuxoncare.co.uk
           </a>
           .
         </p>

@@ -9,7 +9,7 @@ export function organisationJsonLd() {
     name: "Rakuxon Care",
     legalName: "Rakuxon Care Ltd",
     url: origin(),
-    email: "hello@rakuxoncare.co.uk",
+    email: "info@rakuxoncare.co.uk",
     areaServed: { "@type": "Country", name: "United Kingdom" },
   };
 }

@@ -294,7 +294,7 @@ export const SITE_SETTINGS: SiteSettings = {
 
   /* The only contact channel confirmed for the care brand. Taken from the
      Rakuxon Care source site. */
-  email: "hello@rakuxoncare.co.uk",
+  email: "info@rakuxoncare.co.uk",
 
   /* Real, published UK number from rakuxon.com. It is the group's line,
      not a care-specific one, so it is labelled as such rather than
