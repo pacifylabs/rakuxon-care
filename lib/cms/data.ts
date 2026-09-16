@@ -300,7 +300,7 @@ export const SITE_SETTINGS: SiteSettings = {
      not a care-specific one, so it is labelled as such rather than
      presented as a care team number. NOT the 020 7946 0000 in the design
      source — that sits in Ofcom's range reserved for fiction. */
-  phone: "+44 776 094 4935",
+  phone: "+44 344 933 1008",
   phoneNote: "Rakuxon group line",
 
   /* Deliberately absent — do not fill these with plausible values:
