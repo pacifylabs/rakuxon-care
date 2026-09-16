@@ -26,7 +26,7 @@ Sources consulted for this pass:
 | Social accounts  | **Removed.** `rakuxon.com` lists Instagram/TikTok/X/Facebook/YouTube `@rakuxon`, but those are the education brand's. Supply care-specific accounts, or confirm the group accounts should be used. |
 
 Also available from `rakuxon.com` if you want them, though they are the
-education arm's: `enquiries@rakuxon.com`, `+44 776 094 4935`, `+234 816 717 8847`.
+education arm's: `enquiries@rakuxon.com`, `+44 344 933 1008`, `+234 816 717 8847`.
 
 ## 2. Sections removed for lack of real content
 
