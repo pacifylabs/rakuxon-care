@@ -138,6 +138,8 @@ export interface SiteSettings {
   phone?: string;
   /** Shown beside the number when it is not a care-specific line. */
   phoneNote?: string;
+  /** Care-brand WhatsApp, shown with the brand icon. */
+  whatsapp?: string;
   address?: string[];
   companyNumber?: string;
   icoRegistration?: string;

@@ -2,7 +2,9 @@ import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/marketing/logo";
+import { WhatsAppIcon } from "@/components/marketing/whatsapp-icon";
 import { getSiteSettings } from "@/lib/cms";
+import { whatsappHref } from "@/lib/whatsapp";
 
 /* Icon paths keyed to SITE_SETTINGS.socials. Lucide 1.x ships no brand
    icons, so the glyphs are inline. Each href is a real account URL. */
@@ -16,8 +18,6 @@ const SOCIAL_ICONS: Record<string, string> = {
     "M13.2 2.5h-2.3v9.35a1.9 1.9 0 1 1-1.36-1.82V7.66a4.2 4.2 0 1 0 3.66 4.16V7.4a4.6 4.6 0 0 0 2.7.87V5.98a2.7 2.7 0 0 1-2.7-2.7v-.78Z",
   YouTube:
     "M17.4 6.2a1.94 1.94 0 0 0-1.36-1.37C14.83 4.5 10 4.5 10 4.5s-4.83 0-6.04.33A1.94 1.94 0 0 0 2.6 6.2C2.27 7.4 2.27 10 2.27 10s0 2.6.33 3.8c.18.67.71 1.19 1.36 1.37 1.21.33 6.04.33 6.04.33s4.83 0 6.04-.33a1.94 1.94 0 0 0 1.36-1.37c.33-1.2.33-3.8.33-3.8s0-2.6-.33-3.8ZM8.45 12.31V7.69L12.47 10l-4.02 2.31Z",
-  WhatsApp:
-    "M10.02 2.5a7.42 7.42 0 0 0-6.35 11.25L2.5 17.5l3.85-1.13A7.42 7.42 0 1 0 10.02 2.5Zm0 13.35a5.9 5.9 0 0 1-3.02-.83l-.22-.13-2.29.67.68-2.23-.14-.23a5.93 5.93 0 1 1 4.99 2.75Zm3.26-4.44c-.18-.09-1.06-.52-1.22-.58-.16-.06-.28-.09-.4.09-.12.18-.46.58-.56.7-.1.12-.21.13-.39.04a4.85 4.85 0 0 1-1.43-.88 5.4 5.4 0 0 1-.99-1.23c-.1-.18-.01-.28.08-.37l.27-.32c.09-.1.12-.18.18-.3.06-.12.03-.22-.01-.31-.05-.09-.4-.97-.55-1.33-.15-.35-.29-.3-.4-.3l-.34-.01a.65.65 0 0 0-.47.22c-.16.18-.62.6-.62 1.47s.63 1.71.72 1.83c.09.12 1.24 1.9 3.01 2.66.42.18.75.29 1 .37.42.14.8.12 1.11.07.34-.05 1.06-.43 1.2-.85.15-.42.15-.78.11-.85-.04-.08-.16-.12-.34-.21Z",
 };
 
 /* Hubs plus a conversion link each — the rest of the catalogue lives in
@@ -112,6 +112,23 @@ export async function SiteFooter() {
                     </a>
                   </li>
                 ) : null}
+                {settings.whatsapp ? (
+                  <li>
+                    <a
+                      href={whatsappHref(settings.whatsapp)}
+                      aria-label={`WhatsApp ${settings.whatsapp}`}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="inline-flex min-h-9 items-center gap-2 text-small underline-offset-4 hover:text-white hover:underline"
+                    >
+                      <WhatsAppIcon className="size-3.5 shrink-0 text-care-500" />
+                      <span>
+                        {settings.whatsapp}
+                        <span className="text-on-navy/75"> · WhatsApp</span>
+                      </span>
+                    </a>
+                  </li>
+                ) : null}
                 {settings.address ? (
                   <li className="flex items-start gap-2 py-1.5 text-small">
                     <MapPin
@@ -133,13 +150,17 @@ export async function SiteFooter() {
                         target="_blank"
                         className="grid size-9 place-items-center rounded-pill text-on-navy transition-colors hover:bg-navy-800 hover:text-white"
                       >
-                        <svg
-                          viewBox="0 0 20 20"
-                          aria-hidden="true"
-                          className="size-4 fill-current"
-                        >
-                          <path d={SOCIAL_ICONS[social.label]} />
-                        </svg>
+                        {social.label === "WhatsApp" ? (
+                          <WhatsAppIcon className="size-4" />
+                        ) : (
+                          <svg
+                            viewBox="0 0 20 20"
+                            aria-hidden="true"
+                            className="size-4 fill-current"
+                          >
+                            <path d={SOCIAL_ICONS[social.label]} />
+                          </svg>
+                        )}
                       </a>
                     </li>
                   ))}

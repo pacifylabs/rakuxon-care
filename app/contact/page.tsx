@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { EnquiryForm } from "@/components/marketing/enquiry-form";
+import { WhatsAppIcon } from "@/components/marketing/whatsapp-icon";
 import { getSiteSettings } from "@/lib/cms";
 import { parseEnquiryIntent } from "@/lib/enquiry";
 import { pageMetadata } from "@/lib/seo";
+import { whatsappHref } from "@/lib/whatsapp";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
@@ -67,6 +69,23 @@ export default async function ContactPage({
                           · {settings.phoneNote}
                         </span>
                       ) : null}
+                    </span>
+                  </a>
+                </li>
+              ) : null}
+              {settings.whatsapp ? (
+                <li>
+                  <a
+                    href={whatsappHref(settings.whatsapp)}
+                    aria-label={`WhatsApp ${settings.whatsapp}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="inline-flex min-h-11 items-center gap-2 text-navy-800 underline-offset-4 hover:underline"
+                  >
+                    <WhatsAppIcon className="size-4 shrink-0 text-care-700" />
+                    <span>
+                      {settings.whatsapp}
+                      <span className="text-ink-500"> · WhatsApp</span>
                     </span>
                   </a>
                 </li>

@@ -302,6 +302,7 @@ export const SITE_SETTINGS: SiteSettings = {
      source — that sits in Ofcom's range reserved for fiction. */
   phone: "+44 344 933 1008",
   phoneNote: "Rakuxon group line",
+  whatsapp: "+44 7412 862819",
 
   /* Deliberately absent — do not fill these with plausible values:
      - address: rakuxon.com's London address belongs to the education
@@ -318,7 +319,7 @@ export const SITE_SETTINGS: SiteSettings = {
     { label: "X", href: "https://x.com/rakuxon" },
     { label: "TikTok", href: "https://www.tiktok.com/@rakuxonltd" },
     { label: "YouTube", href: "https://youtube.com/@rakuxon" },
-    { label: "WhatsApp", href: "https://wa.me/2348167178847" },
+    { label: "WhatsApp", href: "https://wa.me/447412862819" },
   ],
 
   regionsServed: "England",
